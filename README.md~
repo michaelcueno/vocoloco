@@ -12,10 +12,16 @@ Alan Leung
 ## Features (In priority order)
 
 Server-client communication - Patrick Burd
+<br>
 .wav file playback locally
+<br>
 Download audio file from server
+<br>
 Dynamically Create / Read XML documents 
+
 User Registration - Authentication
+
 User interface
+
 Recording .wav files
 
