@@ -2,18 +2,18 @@
 
 An Application to allow users to record, send and play messages from their friends. 
 
-Line  
+----
 
 ## Team Members 
 
--Patrick Burd
--Michael Cueno
--Alex Oommen
--Alan Leung
+- Patrick Burd
+- Michael Cueno
+- Alex Oommen
+- Alan Leung
 
 ## Features (In priority order)
 
-+ Server-client communication - Patrick Burd
++ Server-client communication - **Patrick Burd**
 
 + .wav file playback locally
 
