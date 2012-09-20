@@ -9,7 +9,6 @@ An Application to allow users to record, send and play messages from their frien
 - Patrick Burd
 - Michael Cueno
 - Alex Oommen
-- Alan Leung
 
 ## Features (In priority order)
 
