@@ -8,7 +8,7 @@ An Application to allow users to record, send and play messages from their frien
 
 - Patrick Burd     pburd2@uic.edu
 - Michael Cueno    
-- Alex Oommen
+- Alex Oommen      aoomme2@uic.edu
 
 ## Features (In priority order)
 
