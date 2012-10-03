@@ -10,7 +10,7 @@ Rectangle {
     // This is a data model that can be imported into a ListView. It parses XML -------- //
     XmlListModel {
         id: conversations
-        source: "../xml/conversations.xml"
+        source: "http://vocoloco.herokuapp.com/friends"
         query: "/conversations/conversation"
 
         XmlRole { name: "title_of_newest_message"; query: "title_of_newest_message/string()" }
