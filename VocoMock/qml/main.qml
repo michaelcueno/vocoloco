@@ -8,22 +8,44 @@ Rectangle {
     width: 720; height: 1280
 
     // This is a data model that can be imported into a ListView. It parses XML -------- //
+    // This is not a visual element
     XmlListModel {
         id: conversations
-        source: "../xml/conversations.xml"
+        source: "http://vocoloco.herokuapp.com/friends"
         query: "/conversations/conversation"
 
         XmlRole { name: "title_of_newest_message"; query: "title_of_newest_message/string()" }
         XmlRole { name: "user"; query: "user/name/string()" }
         XmlRole { name: "number_new_messages"; query: "number_new_messages/string()" }
         XmlRole { name: "userImage"; query: "user/image/string()" }
-
     }
 
+    // Start of Visual elements
 
+    Rectangle {
+        id: header
+        x: 0; y: 0; width: 720; height: 150
+        color: "#339ab3"
+        gradient: Gradient {
+            GradientStop {
+                position: 0.00;
+                color: "#339ab3";
+            }
+            GradientStop {
+                position: 1.00;
+                color: "#275375";
+            }
+        }
 
+        Text {
+            text: "All Messages"
+            font.pixelSize: 35; font.bold: true
+            anchors.top: parent.top; anchors.left: parent.left; anchors.margins: 30
+        }
+
+    }
     ListView {
-        id: list_view1
+        id: allConversations
         x: 0
         y:150
         width: 720
@@ -33,14 +55,12 @@ Rectangle {
         model: conversations
     }
 
-    Rectangle {
-        id: rectangle1
-        x: 0
-        y: 0
-        width: 720
-        height: 150
-        color: "#44be06"
+    ScrollBar {
+        scrollArea: allConversations; height: allConversations.height; width:10;
+        anchors.right: allConversations.right
     }
+
+
 
 
 
