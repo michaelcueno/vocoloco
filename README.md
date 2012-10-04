@@ -7,22 +7,25 @@ An Application to allow users to record, send and play messages from their frien
 ## Team Members 
 
 - Patrick Burd     pburd2@uic.edu
-- Michael Cueno    
+- Michael Cueno    mcueno2@uic.edu
 - Alex Oommen      aoomme2@uic.edu
 
 ## Features (In priority order)
 
 + Server-client communication - **Patrick Burd**
 
-+ .wav file playback locally
++ User Interface (Storyboards) - **Mike**
 
-+ Download audio file from server
-
-+ Dynamically Create / Read XML documents 
++ .wav file playback locally **Alex**
 
 + User Registration - Authentication
 
-+ User interface
++ Dynamically Create / Read XML documents 
+
++ Download audio file from server
 
 + Recording .wav files
 
++ Group messaging
+
+ 
