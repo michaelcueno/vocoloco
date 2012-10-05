@@ -6,6 +6,8 @@ RESOURCES += voco.qrc
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
 
+QML_FILES += qml
+
 OTHER_FILES += \
     android/version.xml \
     android/AndroidManifest.xml \
