@@ -6,7 +6,6 @@ Rectangle {
     height: 130
     color: "#ffffff"
 
-
     Image { // User profile picture thumbnail
         id: userthumb
         source:userImage
@@ -44,6 +43,11 @@ Rectangle {
         anchors.fill: parent
         onPressed: parent.state = "pressed"
         onReleased: parent.state = "normal"
+        onClicked: {
+            changeHeader(title_of_newest_message)
+            changeScreen(convoScreen)
+
+        }
 
     }
 
