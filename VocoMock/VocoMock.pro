@@ -46,5 +46,7 @@ OTHER_FILES += \
     qml/content/NewConvo.qml \
     qml/content/Header.qml \
     qml/content/ContactScreen.qml \
-    qml/content/ConversationDelegate.qml
+    qml/content/ConversationDelegate.qml \
+    qml/content/Login.qml \
+    qml/content/TextBox.qml
 

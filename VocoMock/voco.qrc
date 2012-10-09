@@ -13,5 +13,9 @@
         <file>qml/content/NewConvo.qml</file>
         <file>qml/content/Header.qml</file>
         <file>qml/content/ContactScreen.qml</file>
+        <file>qml/content/Login.qml</file>
+        <file>qml/content/images/box-shadow.png</file>
+        <file>qml/content/images/cardboard.png</file>
+        <file>qml/content/TextBox.qml</file>
     </qresource>
 </RCC>
