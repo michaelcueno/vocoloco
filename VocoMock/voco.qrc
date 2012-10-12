@@ -1,11 +1,21 @@
 <RCC>
     <qresource prefix="/">
         <file>qml/main.qml</file>
-        <file>qml/content/ConversationDelegate.qml</file>
         <file>qml/content/ScrollBar.qml</file>
+        <file>qml/content/ConversationXML.qml</file>
         <file>qml/content/images/busy.png</file>
         <file>qml/content/images/scrollbar.png</file>
-        <file>xml/conversations.xml</file>
-        <file>xml/images/larry.jpg</file>
+        <file>qml/content/ConversationDelegate.qml</file>
+        <file>qml/content/Home.qml</file>
+        <file>qml/content/Convo.qml</file>
+        <file>qml/content/images/contacts.png</file>
+        <file>qml/content/images/plus.png</file>
+        <file>qml/content/NewConvo.qml</file>
+        <file>qml/content/Header.qml</file>
+        <file>qml/content/ContactScreen.qml</file>
+        <file>qml/content/Login.qml</file>
+        <file>qml/content/images/box-shadow.png</file>
+        <file>qml/content/images/cardboard.png</file>
+        <file>qml/content/TextBox.qml</file>
     </qresource>
 </RCC>

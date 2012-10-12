@@ -6,8 +6,6 @@ RESOURCES += voco.qrc
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
 
-QML_FILES += qml
-
 OTHER_FILES += \
     android/version.xml \
     android/AndroidManifest.xml \
@@ -42,3 +40,13 @@ OTHER_FILES += \
     android/res/values/strings.xml \
     android/res/values/libs.xml \
     android/res/values-de/strings.xml \
+    qml/content/Home.qml \
+    qml/main.qml \
+    qml/content/Convo.qml \
+    qml/content/NewConvo.qml \
+    qml/content/Header.qml \
+    qml/content/ContactScreen.qml \
+    qml/content/ConversationDelegate.qml \
+    qml/content/Login.qml \
+    qml/content/TextBox.qml
+
