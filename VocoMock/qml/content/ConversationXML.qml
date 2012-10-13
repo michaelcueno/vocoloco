@@ -1,9 +1,9 @@
-// import QtQuick 1.0 // to target S60 5th Edition or Maemo 5
+
 import QtQuick 1.1
 
 XmlListModel {
     id: xml_conversations
-    source: "http://vocoloco.herokuapp.com/friends"
+    source: mainUrl + "/friends"
     query: "/conversations/conversation"
 
     XmlRole { name: "title_of_newest_message"; query: "title_of_newest_message/string()" }

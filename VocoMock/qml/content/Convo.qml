@@ -4,8 +4,6 @@ import QtQuick 1.1
 Rectangle {
     x: 0; y:window.height * (1/10); width: window.width; height: window.height * (9/10)  // Posistioning
 
-    signal showScreen(string msg)
-
     Text{
         text: "this is the conversations page"
     }

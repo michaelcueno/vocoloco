@@ -4,29 +4,33 @@ import QtQuick 1.1
 Rectangle {
     id: container
 
-    property string label
-    property bool isPassword
-    signal entered
+    property string label     // Initial text in grey
+    property bool isPassword  // sets field to use *** instead of chars
+    property string input     // property for accessing user input
 
-
-    width: textInput.width + 70; height: textInput.height + 18
-
-    BorderImage {
-        anchors { fill: container; leftMargin: -6; topMargin: -6; rightMargin: -8; bottomMargin: -8 }
-        source: 'images/box-shadow.png'; smooth: true
-        border.left: 10; border.top: 10; border.right: 10; border.bottom: 10
+    Connections {
+        target: loginScreen
+        onSubmitted: setInput();
     }
 
-    Image { anchors.fill: parent; source: "images/cardboard.png"; smooth: true }
+
+    //width: textInput.width + 70; height: textInput.height + 18
+    smooth: true;
+    radius: 25
 
     TextInput {
-        id: textInput; text: label; font.pixelSize: 15; anchors.centerIn: parent; smooth: true
+        id: textInput;
+        text: label;
+        font { pixelSize: 25; italic:true; } color: "grey"
+        anchors.centerIn: parent;
+        smooth: true;
     }
 
     // Border that is visible on clicked
     Rectangle {
-        anchors.fill: container; border.color: "steelblue"; border.width: 4
+        anchors.fill: container; border.color: "#89c5f5"; border.width: 4
         color: "transparent"; visible: textInput.focus; smooth: true
+        radius: 25
     }
 
     MouseArea {
@@ -34,17 +38,24 @@ Rectangle {
         onClicked: {
             textInput.forceActiveFocus();
             textInput.openSoftwareInputPanel();
-            enteredd();
-
+            reset();
+            textInput.data
         }
     }
 
-    function enteredd(){
+
+    function reset(){
         textInput.text = ""
+        textInput.font.italic = false;
+        textInput.color = "black"
         if (isPassword)
             textInput.echoMode = TextInput.Password;
         else
             textInput.echoMode = TextInput.Normal;
+    }
+
+    function setInput(){
+        input = textInput.text;
     }
 
 }

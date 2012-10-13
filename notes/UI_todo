@@ -1,10 +1,10 @@
 o Global
   [x] Add header menu 
-  [ ] Header string should be set via c++ using signals and slots 
+  [x] Header string should be set via c++ using signals and slots 
 
 
 o Login Screen
-  [ ] Create it
+  [x] Create it
   [ ] link to register screen 
   [ ] link to home screen
 
@@ -12,7 +12,7 @@ o Home screen
   [ ] Multiple contacts per conversation
   [ ] ... after certain title length
   [ ] date sent in right hand side
-  [ ] Link presses to Conversation View
+  [x] Link presses to Conversation View
   [ ] Fix sticky pressed
   [ ] change username display to first name. Cap first, Bold
 
