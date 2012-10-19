@@ -3,9 +3,6 @@ import QtQuick 1.1
 
 Item{
 
-    signal showScreen(string msg)
-
-
     ListView {
         id: allConversations
         x: 0; y:window.height * (1/10); width: window.width; height: window.height * (9/10)  // Posistioning

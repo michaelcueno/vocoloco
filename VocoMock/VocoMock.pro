@@ -1,6 +1,12 @@
-SOURCES += main.cpp
+SOURCES += main.cpp \ 
+           httpmanager.cpp \ 
+
+HEADERS += \
+    httpmanager.h \
 
 RESOURCES += voco.qrc
+
+QT += network
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -48,5 +54,6 @@ OTHER_FILES += \
     qml/content/ContactScreen.qml \
     qml/content/ConversationDelegate.qml \
     qml/content/Login.qml \
-    qml/content/TextBox.qml
+    qml/content/TextBox.qml \
+    qml/content/ConversationXML.qml
 
