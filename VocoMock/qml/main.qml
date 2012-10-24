@@ -1,23 +1,22 @@
 import QtQuick 1.1
-//import Network 1.0
-
 import 'content'
 
 
 // Main window of application -----------//
 Rectangle {
     id: window
-    width: 600; height: 780
+    width: 500; height: 700
+    objectName: "mainObj";
 
     property string mainUrl: "https://vocoloco.herokuapp.com/"
 
     //--- Visual components --------- |
 
-    Header {  id: header }
+    Header {  id: header; visible: false; Loader{id: headerLoader; }}
 
     Login { id: loginScreen; objectName: "loginObj"; anchors.fill: parent;  visible: true }
 
-    Home { id: homeScreen; objectName: "homeObj"; visible: false; }
+    Home { id: homeScreen; visible: false; Loader{id: homeLoader}}
 
     Convo { id: convoScreen; visible: false; }
 
@@ -25,21 +24,28 @@ Rectangle {
 
     ContactScreen { id: contactScreen; visible: false; }
 
-    //---- End of visual comonents ----- |
-
-/*
-    // Element wrapper for network management
-    HttpManager { id: httpManager }
-
-    // Connections between slots and signals / c++ talking to QML
-    Component.onCompleted: {
-        loginScreen.authenticate.connect(httpManager.sendReqest);
+    Rectangle{
+        id: testScreen;
+        visible: false;
+        anchors.centerIn: parent;
+        width: 100;
+        height: 100;
+        Text{
+            text:"got here"
+        }
     }
 
-*/
+    //---- End of visual comonents ----- |
+
     //--- Functions non visual ------------------ |
 
+    function test(){
+        changeScreen(testScreen)
+    }
+
+
     function changeScreen(screen){
+
 
         homeScreen.visible = false;
         convoScreen.visible = false;
@@ -48,6 +54,7 @@ Rectangle {
         loginScreen.visible = false;
 
         screen.visible = true;
+
     }
 
     function changeHeader(msg){

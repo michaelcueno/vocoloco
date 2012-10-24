@@ -2,11 +2,48 @@
 <conversations>
   <conversation>
     <id>1</id>
+    <title>This is a long title for testing purposes. Blah blah blah blah</title>
     <user>
-      <name>pburd</name>
-      <image>http://www.eib.org/img/site/jobs/icon_profile.jpg</image>
+      <name>Pat</name>
+      <image>/../qml/content/images/users/dood1.jpg</image>
+    </user>
+    <user>
+      <name>Mike</name>
+      <image>/../qml/content/images/users/dood2.jpg</image>
+    </user>
+    <user>
+      <name>Pat</name>
+      <image>/../qml/content/images/users/dood4.jpg</image>
+    </user>
+    <user>
+      <name>Mike</name>
+      <image>/../qml/content/images/users/dood5.jpg</image>
+    </user>
+    <user>
+      <name>Alex</name>
+      <image>/../qml/content/images/users/dood6.jpg</image>
+    </user>
+    <title_of_newest_message>This is a long title for testing purposes. Blah blah blah blah</title_of_newest_message>
+    <number_new_messages>2</number_new_messages>
+  </conversation>
+  <conversation>
+    <id>2</id>
+    <title>OMG LIKE OMG</title>
+    <user>
+      <name>DoodRo</name>
+      <image>/../qml/content/images/users/doodro.jpg</image>
     </user>
     <title_of_newest_message>WHOO!!</title_of_newest_message>
+    <number_new_messages>2</number_new_messages>
+  </conversation>
+  <conversation>
+    <id>3</id>
+    <title>123456789012345678901234567890</title>
+    <user>
+      <name>Dooder</name>
+      <image>/../qml/content/images/users/dooder.jpg</image>
+    </user>
+    <title_of_newest_message>So that happened</title_of_newest_message>
     <number_new_messages>2</number_new_messages>
   </conversation>
 </conversations>

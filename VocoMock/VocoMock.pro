@@ -1,8 +1,10 @@
 SOURCES += main.cpp \ 
-           httpmanager.cpp \ 
+           httpmanager.cpp \  
+    cookiejar.cpp
 
 HEADERS += \
     httpmanager.h \
+    cookiejar.h
 
 RESOURCES += voco.qrc
 
@@ -55,5 +57,7 @@ OTHER_FILES += \
     qml/content/ConversationDelegate.qml \
     qml/content/Login.qml \
     qml/content/TextBox.qml \
-    qml/content/ConversationXML.qml
+    qml/content/ConversationXML.qml \
+    qml/content/ConvoUsersXML.qml \
+    qml/content/ConvoUsersDelegate.qml
 

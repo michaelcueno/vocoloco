@@ -1,0 +1,19 @@
+o Bug in android on login, segmentation fault in passing reply between functions 
+
+  Attempt one: Store reply in a temporary QByteArray or a QList<QByteArray (for the headers)
+    that is defined in HttpManager and use this to pass information between functions
+
+    Failed: Doesn't work because reply has no data until it sends the isFinished signal, this signal 
+      must be connected to another method that handles parsing the reply, but this is again passing the 
+      reply to another function. 
+
+    Attempted fix: instead of using isFinished signal, try to pause the system until reply has finished
+      
+      Attempt one: use a while (true) { if (reply.isFinsihed) break; }. 
+           
+            - This failed, caused an infinite loop..
+
+
+  Proposed solution: write an HttpManager that inherits QNetworkManager and reqwrite the get methods... (Hard)
+
+  Proposed solution: Look into authenticator.
