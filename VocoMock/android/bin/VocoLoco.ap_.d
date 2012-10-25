@@ -1,4 +1,4 @@
-/home/mike/workspace/VocoLoco/VocoMock/android/bin/VocoMock.ap_ \
+/home/mike/workspace/VocoLoco/VocoMock/android/bin/VocoLoco.ap_ \
  : /home/mike/workspace/VocoLoco/VocoMock/android/res/values-ru/strings.xml \
 /home/mike/workspace/VocoLoco/VocoMock/android/res/values-nb/strings.xml \
 /home/mike/workspace/VocoLoco/VocoMock/android/res/drawable-hdpi/icon.png \

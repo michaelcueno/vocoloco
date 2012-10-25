@@ -59,5 +59,6 @@ OTHER_FILES += \
     qml/content/TextBox.qml \
     qml/content/ConversationXML.qml \
     qml/content/ConvoUsersXML.qml \
-    qml/content/ConvoUsersDelegate.qml
+    qml/content/ConvoUsersDelegate.qml \
+    qml/content/BusySpinner.qml
 

@@ -80,14 +80,11 @@ Rectangle {
 // ----------------------------- Clickable Interactivity Code -----------------------//
     MouseArea {
         anchors { left: convoUsers.right; right:parent.right; top:parent.top; bottom:parent.bottom;}
-        onPressed: parent.state = "pressed"
-        onReleased: parent.state = "normal"
+        onPressAndHold: parent.state = "pressed"
         onClicked: {
             changeHeader(title)
             changeScreen(convoScreen)
-
         }
-
     }
 
     states: [

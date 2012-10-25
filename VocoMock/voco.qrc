@@ -28,5 +28,6 @@
         <file>qml/content/images/users/dooder.jpg</file>
         <file>qml/content/images/users/doodro.jpg</file>
         <file>qml/content/images/convoNext.png</file>
+        <file>qml/content/BusySpinner.qml</file>
     </qresource>
 </RCC>

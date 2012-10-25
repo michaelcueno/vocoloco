@@ -22,6 +22,7 @@ class HttpManager : public QObject
                READ progress
                WRITE setProgress
                NOTIFY progressChanged )  // Makes available to QML
+    Q_PROPERTY(bool isLoading READ isLoading WRITE setLoading NOTIFY loadingChanged)
 
 
 public:
@@ -30,10 +31,13 @@ public:
 
     void setProgress(int prog);
     int progress();
+    bool isLoading();
+    void setLoading(bool x);
 
 signals:
     void loginSuccess();
     void loginFail();
+    void loadingChanged();
     void progressChanged();
     void test();
 
@@ -51,6 +55,7 @@ private:
     CookieJar *jar;
    // QList<QByteArray> *tmp;
     int m_progress;
+    bool m_isLoading;
 
 };
 

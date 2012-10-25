@@ -12,21 +12,21 @@ Rectangle {
 
     //--- Visual components --------- |
 
-    Header {  id: header; visible: false; Loader{id: headerLoader; }}
+    Header {  id: header;  visible: false }
 
-    Login { id: loginScreen; objectName: "loginObj"; anchors.fill: parent;  visible: true }
+    Login { id: loginScreen; objectName: "loginObj"; anchors.fill: parent; }
 
-    Home { id: homeScreen; visible: false; Loader{id: homeLoader}}
+    Home { id: homeScreen; objectName: "homeObj"; visible: false; }
 
-    Convo { id: convoScreen; visible: false; }
+    Convo { id: convoScreen; visible: false  }
 
-    NewConvo { id: newConvoScreen; visible: false; }
+    NewConvo { id: newConvoScreen; visible: false  }
 
-    ContactScreen { id: contactScreen; visible: false; }
+    ContactScreen { id: contactScreen;  visible: false }
 
     Rectangle{
         id: testScreen;
-        visible: false;
+        visible: false
         anchors.centerIn: parent;
         width: 100;
         height: 100;
@@ -39,6 +39,7 @@ Rectangle {
 
     //--- Functions non visual ------------------ |
 
+
     function test(){
         changeScreen(testScreen)
     }
@@ -46,7 +47,7 @@ Rectangle {
 
     function changeScreen(screen){
 
-
+        header.visible = true;
         homeScreen.visible = false;
         convoScreen.visible = false;
         newConvoScreen.visible = false;

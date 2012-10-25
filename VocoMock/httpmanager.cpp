@@ -21,6 +21,10 @@ int HttpManager::progress(){ return m_progress; }
 
 void HttpManager::setProgress(int prog){ m_progress = prog; emit progressChanged(); }
 
+bool HttpManager::isLoading(){ return m_isLoading; }
+
+void HttpManager::setLoading(bool x){ m_isLoading = x; emit loadingChanged();}
+
 void HttpManager::setDownloadProgress(qint64 soFar, qint64 total){
     setProgress((soFar/total) * 100);
 }
@@ -45,6 +49,8 @@ void HttpManager::requestXML(QString raw){
  * This method Posts login credentails to server @ vocoloco.herokuapp.com/login
  */
 void HttpManager::postCredentials(QString credentials){
+
+    setLoading(true);  // for spinner in qml
 
     QUrl postData;
     QString usrn;
@@ -88,6 +94,7 @@ void HttpManager::authenticate(){
     }else{
         emit loginSuccess();
     }
+    setLoading(false);
 }
 
 /*

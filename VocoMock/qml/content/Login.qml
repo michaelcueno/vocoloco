@@ -3,24 +3,24 @@ import QtQuick 1.1
 
 Rectangle {
 
+
     signal postCredentials(string credentials)
     signal submitted();     // Connects to TextBox, sets TextBox input
+    property bool isLoading
+
+    Component.onCompleted: console.log(isLoading);
 
     function onLoginSuccess(){
         changeScreen(homeScreen)
-        changeHeader("Your Messages");
-        progressBar.visible = true;
+ //       loginScreen.visible = false;
+//        homeLoader.source = ":/qml/content/Home.qml"
+        changeHeader("All Conversations");
+
     }
 
     function onLoginFail(){
         loginFail.visible = true;
-        progressBar.visible = true;
-    }
-
-    function progress(soFar, total){
-        var percent = (soFar/total)*100;
-        progressBar.percent = percent
-        progressBar.visible = true
+        console.log(isLoading);
     }
 
     id: container
@@ -36,23 +36,17 @@ Rectangle {
         text: "VocoLoco"
     }
 
-    // Progress Bar
-    Rectangle {
-        id: progressBar
-        width: parent.width * (3/5); height: 50
-        x: parent.width * (1/5); y: parent.height * (2/7)
-        visible: true;
-        Text {
-            anchors.centerIn: parent;
-            font.bold: true; font.pointSize: 14
-            text: network.progress
-        }
+    BusySpinner {
+        on: network.isLoading;
+        y: parent.height * (2/7)
+        anchors.horizontalCenter: parent.horizontalCenter
     }
+
 
     // Username input field
     TextBox {
         id: username
-        width: parent.width * (3/5); height: 60
+        width: parent.width * (3/5); height: parent.height / 11
         x: parent.width * (1/5); y: parent.height * (3/7)
         isPassword: false;
         label: "username"
@@ -61,7 +55,7 @@ Rectangle {
     // Password input field
     TextBox {
         id: password
-        width: parent.width * (3/5); height: 60
+        width: parent.width * (3/5); height: parent.height / 11
         x: parent.width * (1/5); y: parent.height * (4/7)
         isPassword: true;
         label: "password"
@@ -88,6 +82,7 @@ Rectangle {
                 login_btn.forceActiveFocus()
                 submitted() // needed to set Input fields for the textboxes
                 postCredentials(username.input + " "  + password.input) // connected to HttpManager::authenticate()
+                console.log(isLoading);
             }
         }
     }
@@ -96,16 +91,18 @@ Rectangle {
     // Login Fail notification
     Rectangle {
         id: loginFail
-        color: "#ea0b0b"
+        color: "#f76f6f"
         smooth: true
         visible: false
-        width: parent.width * (4/5); height: 50
+        width: parent.width * (4/5); height: 80
         x: parent.width * (0.5/5); y: parent.height * (6/7)
         Text {
             anchors.centerIn: parent;
-            font.bold: true; font.pointSize: 14
+            font.bold: true; font.pointSize: 18
             text: "Incorrect Username or Password"
         }
+
+
 
     }
 }

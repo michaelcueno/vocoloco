@@ -4,10 +4,10 @@ XmlListModel {
 
     property string conversationId
     id: xml_convoUsers
-    source: mainUrl + "conversations"
+    source: ":/xml/conversations.xml"  // mainUrl + "conversations"
     query: "/conversations/child::element(conversation)[contains(id,'" + conversationId + "')]/user"
 
     XmlRole { name: "name"; query: "name/string()" }
-    XmlRole { name: "image"; query: "url/string()" }
+    XmlRole { name: "image"; query: "image/string()" }
 
 }

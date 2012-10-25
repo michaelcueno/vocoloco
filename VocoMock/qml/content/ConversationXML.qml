@@ -3,7 +3,7 @@ import QtQuick 1.1
 
 XmlListModel {
     id: xml_conversations
-    source: mainUrl + "conversations"
+    source: ":/xml/conversations.xml"  // mainUrl + "conversations"
     query: "/conversations/child::element(conversation)"
 
  //   XmlRole { name: "number_new_messages"; query: "number_new_messages/string()" }
