@@ -14,7 +14,7 @@ Rectangle {
 
     Header {  id: header;  visible: false }
 
-    Login { id: loginScreen; objectName: "loginObj"; anchors.fill: parent; }
+    Login { id: loginScreen; objectName: "loginObj"; anchors.fill: parent; visible: true }
 
     Home { id: homeScreen; objectName: "homeObj"; visible: false; }
 
@@ -23,6 +23,8 @@ Rectangle {
     NewConvo { id: newConvoScreen; visible: false  }
 
     ContactScreen { id: contactScreen;  visible: false }
+
+    Record {id: recordScreen; anchors.fill: parent; visible: false}
 
     Rectangle{
         id: testScreen;
@@ -49,6 +51,7 @@ Rectangle {
 
         header.visible = true;
         homeScreen.visible = false;
+        recordScreen.visible = false;
         convoScreen.visible = false;
         newConvoScreen.visible = false;
         contactScreen.visible = false;

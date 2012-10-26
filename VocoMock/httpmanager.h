@@ -11,6 +11,9 @@
 #include <QStringList>
 #include <QString>
 #include <QPointer>
+#include <QFile>
+#include <QTextStream>
+#include <QDir>
 
 #include "cookiejar.h"
 
@@ -18,11 +21,20 @@ class HttpManager : public QObject
 {
 
     Q_OBJECT
+
+    // These declarations are used by the compiler to link c++ properties to be used in QML
     Q_PROPERTY(int progress
                READ progress
                WRITE setProgress
-               NOTIFY progressChanged )  // Makes available to QML
-    Q_PROPERTY(bool isLoading READ isLoading WRITE setLoading NOTIFY loadingChanged)
+               NOTIFY progressChanged )
+    Q_PROPERTY(bool isLoading
+               READ isLoading
+               WRITE setLoading
+               NOTIFY loadingChanged )
+    Q_PROPERTY(QUrl path
+               READ path
+               WRITE setPath
+               NOTIFY pathChanged )
 
 
 public:
@@ -33,12 +45,18 @@ public:
     int progress();
     bool isLoading();
     void setLoading(bool x);
+    QUrl path();
+    void setPath(QUrl path);
 
 signals:
     void loginSuccess();
     void loginFail();
+
+    /* The signals below are used by the QML meta object system to notify QML components
+     * of changes to the values they correspond to */
     void loadingChanged();
     void progressChanged();
+    void pathChanged();
     void test();
 
 public slots:
@@ -51,11 +69,12 @@ public slots:
 private:
     QNetworkAccessManager *manager;
     QNetworkRequest request;
-    QPointer<QNetworkReply> reply;
     CookieJar *jar;
-   // QList<QByteArray> *tmp;
+
+    // QML Accessible Properties
     int m_progress;
     bool m_isLoading;
+    QUrl xml_path;
 
 };
 

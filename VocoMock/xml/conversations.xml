@@ -2,7 +2,7 @@
 <conversations>
   <conversation>
     <id>1</id>
-    <title>This is a long title for testing purposes. Blah blah blah blah</title>
+    <title>Roomates</title>
     <user>
       <name>Pat</name>
       <image>/../qml/content/images/users/dood1.jpg</image>
@@ -28,7 +28,7 @@
   </conversation>
   <conversation>
     <id>2</id>
-    <title>OMG LIKE OMG</title>
+    <title>LOOK OUT!!</title>
     <user>
       <name>DoodRo</name>
       <image>/../qml/content/images/users/doodro.jpg</image>
@@ -38,7 +38,7 @@
   </conversation>
   <conversation>
     <id>3</id>
-    <title>123456789012345678901234567890</title>
+    <title>Wow, VocoLoco is grea</title>
     <user>
       <name>Dooder</name>
       <image>/../qml/content/images/users/dooder.jpg</image>

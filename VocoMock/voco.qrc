@@ -29,5 +29,7 @@
         <file>qml/content/images/users/doodro.jpg</file>
         <file>qml/content/images/convoNext.png</file>
         <file>qml/content/BusySpinner.qml</file>
+        <file>qml/content/images/OldRadioMicrophone6.png</file>
+        <file>qml/content/Record.qml</file>
     </qresource>
 </RCC>

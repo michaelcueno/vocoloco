@@ -7,6 +7,7 @@ HttpManager::HttpManager()
     manager = new QNetworkAccessManager(this);
     jar = new CookieJar();
     manager->setCookieJar(jar);
+    m_isLoading = false;
  //   tmp = new QList<QByteArray>();
  //   reply = new HttpReply();
     setProgress(0);
@@ -25,24 +26,26 @@ bool HttpManager::isLoading(){ return m_isLoading; }
 
 void HttpManager::setLoading(bool x){ m_isLoading = x; emit loadingChanged();}
 
+void HttpManager::setPath(QUrl path){ xml_path = path; emit pathChanged(); }
+
+QUrl HttpManager::path(){ return xml_path; }
+
 void HttpManager::setDownloadProgress(qint64 soFar, qint64 total){
     setProgress((soFar/total) * 100);
 }
 
 /*
- * Sends a request. Correct implementation will request vocoloco.herokuapp.com/raw where raw is the
+ * Sends a request. Correct implementation will request vocoloco.herokuapp.com/requested where requested is the
  * parameter passed in. This method is connected to the parse reply method which will run when the
- * request has finished (when it is fully loaded into the reply instance
+ * request has finished (when it is fully downloaded into the reply instance)
  */
-void HttpManager::requestXML(QString raw){
 
-    qDebug() << raw;
+void HttpManager::requestXML(QString requested ){
 
-    request = QNetworkRequest(QUrl("https://vocoloco.herokuapp.com/messages"));
-    QNetworkReply *localReply = manager->get(request);
-
-    connect(localReply, SIGNAL(finished()), this, SLOT(parseReply()));
-
+    request = QNetworkRequest(QUrl("https://vocoloco.herokuapp.com/" + requested ));
+    QNetworkReply *localreply = manager->get(request);
+    localreply->ignoreSslErrors();
+    connect(localreply, SIGNAL(readyRead()), this, SLOT(parseReply()));
 }
 
 /*
@@ -71,13 +74,12 @@ void HttpManager::postCredentials(QString credentials){
     postData.addQueryItem("username", usrn);
     postData.addQueryItem("password", pass);
     // Attempt Login
-    reply = manager->post(request, postData.encodedQuery());
+    QNetworkReply *reply = manager->post(request, postData.encodedQuery());
     reply->ignoreSslErrors();
 
     // When finished, jump to authenticate
     connect(reply, SIGNAL(finished()), this, SLOT(authenticate()));
 
-   // connect(reply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(setDownloadProgress(qint64,qint64)));
 }
 
 /*
@@ -86,7 +88,7 @@ void HttpManager::postCredentials(QString credentials){
  *      Also will allow a better way to check for successful login
  */
 void HttpManager::authenticate(){
-
+    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     QList<QByteArray> headers = reply->rawHeaderList();
     QList<QNetworkCookie> cookies = jar->getCookies();
     if (cookies.isEmpty()){
@@ -95,15 +97,29 @@ void HttpManager::authenticate(){
         emit loginSuccess();
     }
     setLoading(false);
+//    setPath(QUrl(":/xml/conversations.xml"));
 }
 
 /*
  * Dummy method for parsing a reply, not to be used in production
  */
 void HttpManager::parseReply(){
-/*
-    QByteArray data = reply->read(2048);
-    qDebug() << data;
-    qDebug() << reply->rawHeaderList();
-    */
+
+    QDir dir;
+    QString path = dir.absolutePath();
+    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+    QFile file(path + "/conversations.xml");
+    if ( file.open(QFile::WriteOnly) )
+    {
+        QTextStream stream( &file );
+        stream << reply->read(2048);
+    }
+    else
+    {
+        qDebug( "Could not create file %s", "filename" );
+    }
+
+    setPath(QUrl(path + "/conversations.xml"));
+    qDebug() << path + "/conversations.xml";
+    setPath(QUrl(path + "/xml/conversations.xml"));
 }

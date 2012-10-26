@@ -60,5 +60,6 @@ OTHER_FILES += \
     qml/content/ConversationXML.qml \
     qml/content/ConvoUsersXML.qml \
     qml/content/ConvoUsersDelegate.qml \
-    qml/content/BusySpinner.qml
+    qml/content/BusySpinner.qml \
+    qml/content/Record.qml
 

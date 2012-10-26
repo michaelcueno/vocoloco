@@ -5,7 +5,8 @@ Rectangle {
 
 
     signal postCredentials(string credentials)
-    signal submitted();     // Connects to TextBox, sets TextBox input
+    signal submitted()    // Connects to TextBox, sets TextBox input
+    signal requestXML(string xml)
     property bool isLoading
 
     Component.onCompleted: console.log(isLoading);
@@ -14,7 +15,8 @@ Rectangle {
         changeScreen(homeScreen)
  //       loginScreen.visible = false;
 //        homeLoader.source = ":/qml/content/Home.qml"
-        changeHeader("All Conversations");
+        changeHeader("All Conversations")
+        requestXML("conversations")
 
     }
 
