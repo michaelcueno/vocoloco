@@ -44,7 +44,7 @@ Rectangle {
             anchors.fill: parent
             onClicked: {
                 string = "Create New Conversation"
-                changeScreen(newConvoScreen)
+                changeScreen(recordScreen)
             }
         }
 

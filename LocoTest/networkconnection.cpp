@@ -11,38 +11,49 @@ NetworkConnection::NetworkConnection(QObject *parent) :
 
 }
 
-void NetworkConnection::getXmlWriteToFile(QString getUrl)
+
+
+void NetworkConnection::postForm(QString credentials)
 {
-    cout << "Entered getXml...." << endl;
-    url = QUrl(getUrl);
-    file = new QFile("./response.xml");
-    file->open(QIODevice::WriteOnly);
-    cout << "Created file object..." << endl;
-    reply = qnam.get(QNetworkRequest(url));
-    connect(reply, SIGNAL(readyRead()),
-            this, SLOT(httpReadyRead()));
-    connect(reply, SIGNAL(finished()),
-            this, SLOT(httpFinished()));
+    QUrl postData;
+    QString usrn;
+    QString pass;
+
+
+    QStringList list = credentials.split(" ");
+
+    if(list.size() != 2){    // Error Checking
+        emit loginFail();
+    }else{
+        usrn = list[0];
+        pass = list[1];
+    }
+
+    request = QNetworkRequest(QUrl("https://vocoloco.herokuapp.com/login"));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+    postData.addQueryItem("username", usrn);
+    postData.addQueryItem("password", pass);
+
+    // Attempt Login
+    reply = manager->post(request, postData.encodedQuery());
+
+    // When finished, jump to authenticate
+    connect(reply, SIGNAL(finished()), this, SLOT(authenticate()));
 }
 
-void NetworkConnection::postForm(QString postUrl)
-{
-    cout << "Entered postUrl" << endl;
-    QUrl postData;
-    postData.addQueryItem("username", "pburd2");
-    postData.addQueryItem("password", "burdpass");
-    QNetworkRequest request(postUrl);
-    request.setHeader(QNetworkRequest::ContentTypeHeader,
-        "application/x-www-form-urlencoded");
-    qnam.post(request, postData.encodedQuery());
-    connect(reply, SIGNAL(readyRead()),
-            this, SLOT(httpReadyRead()));
-    connect(reply, SIGNAL(finished()),
-            this, SLOT(httpFinished()));
+void NetworkConnection::authenticate(){
 
-    cout << "Now trying to get messages assumed we are logged in from loco" << endl;
+    QList<QByteArray> headers = reply->rawHeaderList();
 
-    //getXmlWriteToFile("http://vocoloco.herokuapp.com/messages");
+    if(headers.size() < 2){
+        emit loginFail();
+    } else {
+        if(headers[1] == "Set-Cookie")
+            emit loginSuccess();
+        else
+            emit loginFail();
+    }
 }
 
 

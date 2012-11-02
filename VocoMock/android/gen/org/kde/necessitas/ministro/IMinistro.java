@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: /home/mike/workspace/VocoMock/android/src/org/kde/necessitas/ministro/IMinistro.aidl
+ * Original file: /home/mike/workspace/VocoLoco/VocoMock/android/src/org/kde/necessitas/ministro/IMinistro.aidl
  */
 package org.kde.necessitas.ministro;
 public interface IMinistro extends android.os.IInterface

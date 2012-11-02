@@ -3,33 +3,72 @@ import QtQuick 1.1
 Rectangle {
     id: row
     width: parent.width
-    height: 130
+    height: 180
     color: "#ffffff"
 
-    Image { // User profile picture thumbnail
-        id: userthumb
-        source:userImage
-        width: 80; height: 80;
-        fillMode: Image.PreserveAspectFit
-        anchors.left: parent.left; anchors.top: parent.top; anchors.margins: 20
-    }
 
-    Text {  // Username of sender
-        id: conversationUser
-        width: 80
-        text: user;
-        font { bold: true; family: "Helvetica"; pixelSize: 16 }
-        anchors.top: userthumb.bottom; anchors.left: userthumb.left;
-        anchors.topMargin: 2;
+    //------------------------------- Non-Visual Logic Code -----------------------------//
+
+        property string convo_title;
+        function setTitle(){
+            var slicedTitle = title;   // XMLRole defined property
+
+            if(title.length > 19 ){
+                slicedTitle = title.slice(0,16).concat("...");
+            }
+
+            convo_title = slicedTitle;
+        }
+
+        Component.onCompleted: setTitle();
+    //------------------------------- End of Logic Code -----------------------------//
+
+    Rectangle {
+        id: convoUsers
+        width: parent.width * (9/20);
+        anchors {left: parent.left; top: parent.top; bottom:parent.bottom; topMargin: 5; bottomMargin: 5; leftMargin: 5;}
+        color: "#c0c9d1"
+        ListView {
+            id: convoUsersList
+            anchors.fill:parent
+            maximumFlickVelocity: 2502
+            clip: true;
+            orientation: ListView.Horizontal
+            delegate: ConvoUsersDelegate {}
+            model: ConvoUsersXML { conversationId: convo_id}
+        }
 
     }
+  /*  BorderImage {
+        anchors { fill: convoUsers; leftMargin: -6; topMargin: -6; rightMargin: -8; bottomMargin: -8 }
+        source: ':/qml/content/images/box-shadow.png'; smooth: true
+        border.left: 10; border.top: 10; border.right: 10; border.bottom: 10
+
+    } */
 
     Text {  // Message Title
         id: conversationTitle
+        y: parent.height / 2 - 12
+        anchors.left: convoUsers.right; anchors.leftMargin: 20;
+        text: convo_title; width: parent.width * (7/20); wrapMode: Text.WordWrap
+        font { bold: true; family: "Helvetica"; pixelSize: 25 }
 
-        text: title_of_newest_message; width: parent.width; wrapMode: Text.WordWrap
-        font { bold: true; family: "Helvetica"; pixelSize: 24 }
-        anchors.left: userthumb.right; anchors.leftMargin: 50; anchors.top: userthumb.top;
+    }
+
+/* TODO awaiting server side implementation */
+    Text {  // Number of new messages
+        id: numNewMessages
+        anchors.left: conversationTitle.right; anchors.leftMargin: 20;
+        y: parent.height / 2 - 20
+        text: new_messages;
+        font { bold: true; italic: true; family: "Calibri"; pixelSize: 40 }
+
+    }
+
+    Image {
+        source: ":/qml/content/images/convoNext.png"
+        anchors {left: numNewMessages.right; leftMargin: 15;  }
+        y: parent.height / 2 - 50
     }
 
     Rectangle { // Linebreak
@@ -40,15 +79,12 @@ Rectangle {
 
 // ----------------------------- Clickable Interactivity Code -----------------------//
     MouseArea {
-        anchors.fill: parent
-        onPressed: parent.state = "pressed"
-        onReleased: parent.state = "normal"
+        anchors { left: convoUsers.right; right:parent.right; top:parent.top; bottom:parent.bottom;}
+        onPressAndHold: parent.state = "pressed"
         onClicked: {
-            changeHeader(title_of_newest_message)
+            changeHeader(title)
             changeScreen(convoScreen)
-
         }
-
     }
 
     states: [

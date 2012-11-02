@@ -17,5 +17,19 @@
         <file>qml/content/images/box-shadow.png</file>
         <file>qml/content/images/cardboard.png</file>
         <file>qml/content/TextBox.qml</file>
+        <file>xml/conversations.xml</file>
+        <file>qml/content/ConvoUsersXML.qml</file>
+        <file>qml/content/ConvoUsersDelegate.qml</file>
+        <file>qml/content/images/users/dood1.jpg</file>
+        <file>qml/content/images/users/dood2.jpg</file>
+        <file>qml/content/images/users/dood4.jpg</file>
+        <file>qml/content/images/users/dood5.jpg</file>
+        <file>qml/content/images/users/dood6.jpg</file>
+        <file>qml/content/images/users/dooder.jpg</file>
+        <file>qml/content/images/users/doodro.jpg</file>
+        <file>qml/content/images/convoNext.png</file>
+        <file>qml/content/BusySpinner.qml</file>
+        <file>qml/content/images/OldRadioMicrophone6.png</file>
+        <file>qml/content/Record.qml</file>
     </qresource>
 </RCC>

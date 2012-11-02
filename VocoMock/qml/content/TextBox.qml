@@ -21,7 +21,7 @@ Rectangle {
     TextInput {
         id: textInput;
         text: label;
-        font { pixelSize: 25; italic:true; } color: "grey"
+        font { pixelSize: 30; italic:true; } color: "grey"
         anchors.centerIn: parent;
         smooth: true;
     }

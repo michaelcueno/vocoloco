@@ -1,53 +1,64 @@
 import QtQuick 1.1
-//import Network 1.0
-
 import 'content'
 
 
 // Main window of application -----------//
 Rectangle {
     id: window
-    width: 600; height: 780
+    width: 500; height: 700
+    objectName: "mainObj";
 
     property string mainUrl: "https://vocoloco.herokuapp.com/"
 
     //--- Visual components --------- |
 
-    Header {  id: header }
+    Header {  id: header;  visible: false }
 
-    Login { id: loginScreen; objectName: "loginObj"; anchors.fill: parent;  visible: true }
+    Login { id: loginScreen; objectName: "loginObj"; anchors.fill: parent; visible: true }
 
     Home { id: homeScreen; objectName: "homeObj"; visible: false; }
 
-    Convo { id: convoScreen; visible: false; }
+    Convo { id: convoScreen; visible: false  }
 
-    NewConvo { id: newConvoScreen; visible: false; }
+    NewConvo { id: newConvoScreen; visible: false  }
 
-    ContactScreen { id: contactScreen; visible: false; }
+    ContactScreen { id: contactScreen;  visible: false }
+
+    Record {id: recordScreen; anchors.fill: parent; visible: false}
+
+    Rectangle{
+        id: testScreen;
+        visible: false
+        anchors.centerIn: parent;
+        width: 100;
+        height: 100;
+        Text{
+            text:"got here"
+        }
+    }
 
     //---- End of visual comonents ----- |
 
-/*
-    // Element wrapper for network management
-    HttpManager { id: httpManager }
+    //--- Functions non visual ------------------ |
 
-    // Connections between slots and signals / c++ talking to QML
-    Component.onCompleted: {
-        loginScreen.authenticate.connect(httpManager.sendReqest);
+
+    function test(){
+        changeScreen(testScreen)
     }
 
-*/
-    //--- Functions non visual ------------------ |
 
     function changeScreen(screen){
 
+        header.visible = true;
         homeScreen.visible = false;
+        recordScreen.visible = false;
         convoScreen.visible = false;
         newConvoScreen.visible = false;
         contactScreen.visible = false;
         loginScreen.visible = false;
 
         screen.visible = true;
+
     }
 
     function changeHeader(msg){
