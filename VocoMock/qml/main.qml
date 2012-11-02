@@ -5,7 +5,7 @@ import 'content'
 // Main window of application -----------//
 Rectangle {
     id: window
-    width: 500; height: 700
+    width: 720; height: 1280
     objectName: "mainObj";
 
     property string mainUrl: "https://vocoloco.herokuapp.com/"
@@ -27,12 +27,13 @@ Rectangle {
     Record {id: recordScreen; anchors.fill: parent; visible: false}
 
     Rectangle{
-        id: testScreen;
+        id: testScreen
         visible: false
-        anchors.centerIn: parent;
-        width: 100;
-        height: 100;
+        anchors.centerIn: parent
+        width: 100
+        height: 100
         Text{
+            id: testText
             text:"got here"
         }
     }
@@ -42,10 +43,25 @@ Rectangle {
     //--- Functions non visual ------------------ |
 
 
+    // ------ Development test code -------|
     function test(){
         changeScreen(testScreen)
     }
 
+    // ------------- end of test code ----------|
+
+    //Uncomment next line for auto login from saved cookie TODO:
+    //Component.onCompleted: checkForSavedCookies()
+
+    //TODO not correct (There will always be a Cookie, must verify if it is valid)
+    function checkForSavedCookies(){
+        if(network.hasSavedCookie){
+            changeScreen(homeScreen);
+            changeHeader("All Conversations");
+            network.requestXML("conversations");
+            homeScreen.reload()
+        }
+    }
 
     function changeScreen(screen){
 
@@ -62,7 +78,7 @@ Rectangle {
     }
 
     function changeHeader(msg){
-        header.string = msg
+        header.headerTitle = msg
         header.visible = true;
     }
 }

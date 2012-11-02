@@ -1,13 +1,16 @@
 #include "httpmanager.h"
 
 
+static QString app = "https://vocoloco.herokuapp.com/";
+
 
 HttpManager::HttpManager()
 {
     manager = new QNetworkAccessManager(this);
-    jar = new CookieJar();
+    jar = new CookieJar(this);
     manager->setCookieJar(jar);
     m_isLoading = false;
+
  //   tmp = new QList<QByteArray>();
  //   reply = new HttpReply();
     setProgress(0);
@@ -16,6 +19,7 @@ HttpManager::HttpManager()
 HttpManager::~HttpManager()
 {
     delete manager;
+    delete jar;
 }
 
 int HttpManager::progress(){ return m_progress; }
@@ -34,12 +38,22 @@ void HttpManager::setDownloadProgress(qint64 soFar, qint64 total){
     setProgress((soFar/total) * 100);
 }
 
+QNetworkAccessManager* HttpManager::getNam(){ return manager; }
+
+bool HttpManager::hasSavedCookie(){
+    QSettings settings;
+    if(settings.contains("Cookies")){
+        return true;
+    }
+    else {return false;}
+}
+
+
 /*
  * Sends a request. Correct implementation will request vocoloco.herokuapp.com/requested where requested is the
  * parameter passed in. This method is connected to the parse reply method which will run when the
  * request has finished (when it is fully downloaded into the reply instance)
  */
-
 void HttpManager::requestXML(QString requested ){
 
     request = QNetworkRequest(QUrl("https://vocoloco.herokuapp.com/" + requested ));
@@ -91,13 +105,14 @@ void HttpManager::authenticate(){
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     QList<QByteArray> headers = reply->rawHeaderList();
     QList<QNetworkCookie> cookies = jar->getCookies();
+    jar->save();
+
     if (cookies.isEmpty()){
         emit loginFail();
     }else{
         emit loginSuccess();
     }
     setLoading(false);
-//    setPath(QUrl(":/xml/conversations.xml"));
 }
 
 /*
@@ -105,11 +120,12 @@ void HttpManager::authenticate(){
  */
 void HttpManager::parseReply(){
 
+    CookieJar *test = new CookieJar(this);
     QDir dir;
     QString path = dir.absolutePath();
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     QFile file(path + "/conversations.xml");
-    if ( file.open(QFile::WriteOnly) )
+    if ( file.open(QFile::ReadWrite) )
     {
         QTextStream stream( &file );
         stream << reply->read(2048);
@@ -119,7 +135,20 @@ void HttpManager::parseReply(){
         qDebug( "Could not create file %s", "filename" );
     }
 
-    setPath(QUrl(path + "/conversations.xml"));
-    qDebug() << path + "/conversations.xml";
-    setPath(QUrl(path + "/xml/conversations.xml"));
+    file.close();
+
+    setPath(QUrl(app + "conversations"));
+
+    /*QFile test(path + "/conversations.xml");
+    if (test.pos() == 0) {
+        qDebug() << "Empty";
+    } else {
+        qDebug() << "Not empty";
+    }
+    if ( file.open(QFile::ReadOnly)){
+        qDebug() << test.read(2048);
+    }
+    else{
+        qDebug() << "Could not open file";
+    }*/
 }

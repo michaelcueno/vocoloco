@@ -5,17 +5,15 @@ Item {
     width: 115
     height: parent.height
 
-
+    //TODO Naw.. I don't know
     Image {
         width:105;height:105;
         x:10;y:15;
-        /*
-        anchors.fill: parent;
-        anchors {topMargin:5; leftMargin:5; rightMargin:5; bottomMargin:20} */
-        source: image
+        source: "https://vocoloco.herokuapp.com/" + image // network.getImage("https://vocoloco.herokuapp.com" + image)
         fillMode: Image.Stretch;
 
     }
+
     Text {
         height:20;
         y:130;

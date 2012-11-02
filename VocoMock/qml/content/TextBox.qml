@@ -7,6 +7,7 @@ Rectangle {
     property string label     // Initial text in grey
     property bool isPassword  // sets field to use *** instead of chars
     property string input     // property for accessing user input
+    property int cornerRadius // rounded edges
 
     Connections {
         target: loginScreen
@@ -16,7 +17,7 @@ Rectangle {
 
     //width: textInput.width + 70; height: textInput.height + 18
     smooth: true;
-    radius: 25
+    radius: cornerRadius
 
     TextInput {
         id: textInput;

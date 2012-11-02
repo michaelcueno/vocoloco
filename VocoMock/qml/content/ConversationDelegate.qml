@@ -20,7 +20,12 @@ Rectangle {
             convo_title = slicedTitle;
         }
 
-        Component.onCompleted: setTitle();
+        function reloadUsersXml(){
+            convoUsersXML.reload()
+        }
+
+
+        Component.onCompleted: setTitle()
     //------------------------------- End of Logic Code -----------------------------//
 
     Rectangle {
@@ -35,7 +40,7 @@ Rectangle {
             clip: true;
             orientation: ListView.Horizontal
             delegate: ConvoUsersDelegate {}
-            model: ConvoUsersXML { conversationId: convo_id}
+            model: ConvoUsersXML { id: convoUsersXML; conversationId: convo_id}
         }
 
     }
@@ -60,7 +65,7 @@ Rectangle {
         id: numNewMessages
         anchors.left: conversationTitle.right; anchors.leftMargin: 20;
         y: parent.height / 2 - 20
-        text: new_messages;
+        text: "0" // new_messages;
         font { bold: true; italic: true; family: "Calibri"; pixelSize: 40 }
 
     }
@@ -84,6 +89,9 @@ Rectangle {
         onClicked: {
             changeHeader(title)
             changeScreen(convoScreen)
+            convoScreen.convo_id = convo_id
+            convoScreen.load()
+            header.hideBtns()
         }
     }
 

@@ -9,4 +9,5 @@ XmlListModel {
 
     XmlRole { name: "name"; query: "name/string()" }
     XmlRole { name: "image"; query: "url/string()" }
+
 }
