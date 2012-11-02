@@ -2,7 +2,6 @@
     <qresource prefix="/">
         <file>qml/main.qml</file>
         <file>qml/content/ScrollBar.qml</file>
-        <file>qml/content/ConversationXML.qml</file>
         <file>qml/content/images/busy.png</file>
         <file>qml/content/images/scrollbar.png</file>
         <file>qml/content/ConversationDelegate.qml</file>
@@ -31,5 +30,7 @@
         <file>qml/content/BusySpinner.qml</file>
         <file>qml/content/images/OldRadioMicrophone6.png</file>
         <file>qml/content/Record.qml</file>
+        <file>conversations.xml</file>
+        <file>qml/content/MessageDelegate.qml</file>
     </qresource>
 </RCC>

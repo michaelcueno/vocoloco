@@ -4,19 +4,28 @@
 #include "httpmanager.h"
 #include <QGraphicsObject>
 #include <QDeclarativeContext>
-
+#include "networkfactory.h"
+#include <QDeclarativeEngine>
+#include <QDebug>
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
+    QSettings settings("CS340", "VocoLoco");
+
    // qmlRegisterType<HttpManager>("Network", 1, 0, "HttpManager"); //TO make availalbe in QML
     HttpManager network;
 
     QmlApplicationViewer viewer;
+
+    NetworkFactory *factory = new NetworkFactory();
+    viewer.engine()->setNetworkAccessManagerFactory(factory);
+
     viewer.rootContext()->setContextProperty("network", &network);  // make network avaiable to QML
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationLockPortrait);
     viewer.setSource(QUrl(QLatin1String("qrc:/qml/main.qml")));
+
 
     // Locate and instantiate QML objects for connections
     QObject *rootObject = dynamic_cast<QObject*>(viewer.rootObject());
@@ -29,6 +38,7 @@ int main(int argc, char *argv[])
     QObject::connect(login, SIGNAL(requestXML(QString)), &network, SLOT(requestXML(QString)));
     QObject::connect(&network, SIGNAL(loginSuccess()), login, SLOT(onLoginSuccess()));
     QObject::connect(&network, SIGNAL(loginFail()), login, SLOT(onLoginFail()));
+
 
     // Tests
     QObject::connect(&network, SIGNAL(test()), main, SLOT(test()));

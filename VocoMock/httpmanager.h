@@ -23,6 +23,8 @@ class HttpManager : public QObject
     Q_OBJECT
 
     // These declarations are used by the compiler to link c++ properties to be used in QML
+    // !! IMPORTANT !!
+    //   These values must be changed by using set____, never changed directly!
     Q_PROPERTY(int progress
                READ progress
                WRITE setProgress
@@ -47,6 +49,10 @@ public:
     void setLoading(bool x);
     QUrl path();
     void setPath(QUrl path);
+
+    Q_INVOKABLE bool hasSavedCookie();
+
+    QNetworkAccessManager* getNam();
 
 signals:
     void loginSuccess();

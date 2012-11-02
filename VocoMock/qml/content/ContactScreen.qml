@@ -10,11 +10,4 @@ Rectangle {
     Text{
         text: "this is the Contact page"
     }
-    MouseArea{
-        anchors.fill: parent;
-        onClicked: {
-            changeScreen(homeScreen)
-            changeHeader("Your Messages")
-        }
-    }
 }

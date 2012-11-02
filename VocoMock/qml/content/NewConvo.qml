@@ -3,20 +3,14 @@ import QtQuick 1.1
 
 Rectangle {
 
-    signal showScreen( string msg )
-
     x: 0; y:window.height * (1/10); width: window.width; height: window.height * (9/10)  // Posistioning
 
-
-    Text{
-        text: "This is the new convo screen!"
-    }
-
-    MouseArea{
-        anchors.fill: parent;
-        onClicked: {
-            changeHeader("Your Conversations")
-            changeScreen(homeScreen)
-        }
+    TextBox{
+        id: convo_title
+        width: parent.width * (3/5); height: parent.height / 11
+        x: parent.width * (1/5); y: parent.height * (3/7)
+        isPassword: false;
+        label: "Title"
+        cornerRadius: 25
     }
 }

@@ -1,4 +1,69 @@
-					<username>t1000</username>
+<conversations>
+	
+		<conversation>
+			<id>1</id>
+			<title>Crazy partisan scream fest!</title>
+			<createdby>pburd2</createdby>
+			<date>2012-11-29 00:00:00.0</date>
+
+			<members>
+					
+					<member>
+						<username>bobama</username>
+						<name>Barrack Obama</name>
+						<url>/assets/images/bobama.jpg</url>
+					</member>
+					
+					<member>
+						<username>hal</username>
+						<name>hal</name>
+						<url>/assets/images/hal.jpg</url>
+					</member>
+					
+					<member>
+						<username>ooman</username>
+						<name>Alex Ooman</name>
+						<url>/assets/images/ooman.jpg</url>
+					</member>
+					
+					<member>
+						<username>pburd2</username>
+						<name>Pat Burd</name>
+						<url>/assets/images/pburd2.jpg</url>
+					</member>
+				
+			</members>
+
+		</conversation>
+	
+		<conversation>
+			<id>2</id>
+			<title>Freestyle Rap Battle!</title>
+			<createdby>pburd2</createdby>
+			<date>2012-12-24 00:00:00.0</date>
+
+			<members>
+					
+					<member>
+						<username>ricflair</username>
+						<name>Ric Flair</name>
+						<url>/assets/images/ricflair.jpg</url>
+					</member>
+					
+					<member>
+						<username>hal</username>
+						<name>hal</name>
+						<url>/assets/images/hal.jpg</url>
+					</member>
+					
+					<member>
+						<username>ooman</username>
+						<name>Alex Ooman</name>
+						<url>/assets/images/ooman.jpg</url>
+					</member>
+					
+					<member>
+						<username>t1000</username>
 						<name>Terminator</name>
 						<url>/assets/images/t1000.jpg</url>
 					</member>

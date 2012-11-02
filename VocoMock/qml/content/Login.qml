@@ -9,20 +9,19 @@ Rectangle {
     signal requestXML(string xml)
     property bool isLoading
 
-    Component.onCompleted: console.log(isLoading);
-
     function onLoginSuccess(){
+        requestXML("conversations")
         changeScreen(homeScreen)
  //       loginScreen.visible = false;
 //        homeLoader.source = ":/qml/content/Home.qml"
         changeHeader("All Conversations")
-        requestXML("conversations")
+
 
     }
 
     function onLoginFail(){
         loginFail.visible = true;
-        console.log(isLoading);
+        console.log("failure")
     }
 
     id: container
@@ -52,6 +51,7 @@ Rectangle {
         x: parent.width * (1/5); y: parent.height * (3/7)
         isPassword: false;
         label: "username"
+        cornerRadius: 25
     }
 
     // Password input field
@@ -61,6 +61,7 @@ Rectangle {
         x: parent.width * (1/5); y: parent.height * (4/7)
         isPassword: true;
         label: "password"
+        cornerRadius: 25
     }
 
     // Login Button
@@ -84,7 +85,6 @@ Rectangle {
                 login_btn.forceActiveFocus()
                 submitted() // needed to set Input fields for the textboxes
                 postCredentials(username.input + " "  + password.input) // connected to HttpManager::authenticate()
-                console.log(isLoading);
             }
         }
     }
@@ -103,8 +103,5 @@ Rectangle {
             font.bold: true; font.pointSize: 18
             text: "Incorrect Username or Password"
         }
-
-
-
     }
 }
