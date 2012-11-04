@@ -22,7 +22,7 @@ Rectangle {
 
     NewConvo { id: newConvoScreen; visible: false  }
 
-    ContactScreen { id: contactScreen;  visible: false }
+    Contacts { id: contactScreen;  visible: false }
 
     Record {id: recordScreen; anchors.fill: parent; visible: false}
 

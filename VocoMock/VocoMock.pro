@@ -63,5 +63,7 @@ OTHER_FILES += \
     qml/content/ConvoUsersDelegate.qml \
     qml/content/BusySpinner.qml \
     qml/content/Record.qml \
-    qml/content/MessageDelegate.qml
+    qml/content/MessageDelegate.qml \
+    qml/content/Contacts.qml \
+    qml/content/ContactsDelegate.qml
 
