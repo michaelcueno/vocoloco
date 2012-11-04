@@ -1,6 +1,22 @@
 #include "cookiejar.h"
 #include <QDebug>
 
+bool CookieJar::STAY_LOGGED_IN = true;  // Must be true until application destruction in order to preserve session while app is open
+
+CookieJar::CookieJar(QObject *parent) : QNetworkCookieJar(parent)
+{
+    load();
+    qDebug() << getCookies();
+}
+
+CookieJar::~CookieJar()
+{
+    if(CookieJar::STAY_LOGGED_IN)
+        save();
+    else{
+        clear();
+    }
+}
 
 QList<QNetworkCookie> CookieJar::getCookies(){
     return this->allCookies();
@@ -28,6 +44,13 @@ void CookieJar::load()
     QList<QNetworkCookie> cookies = this->getCookies();
 }
 
+void CookieJar::clear()
+{
+    QSettings settings;
+    settings.clear();
+}
+
 void CookieJar::PrintCookies(){
     qDebug() << getCookies();
 }
+

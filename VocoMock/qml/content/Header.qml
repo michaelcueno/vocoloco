@@ -88,6 +88,7 @@ Rectangle {
             onClicked: {
                headerTitle = "All Contacts"
                changeScreen(contactScreen)
+               contactScreen.load()
                hideBtns()
             }
         }
@@ -126,9 +127,9 @@ Rectangle {
         MouseArea{
             anchors.fill: parent
             onClicked: {
-               headerTitle = "All Conversations"
-               changeScreen(homeScreen)
                unHideBtns()
+               changeScreen(homeScreen)
+               homeScreen.reload()
             }
         }
         states: State { name: "ACTIVE"; PropertyChanges { target: backBtn; opacity: 1; x:0 } }

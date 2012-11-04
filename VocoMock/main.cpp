@@ -2,22 +2,29 @@
 #include <QDeclarativeComponent>
 #include "qmlapplicationviewer.h"
 #include "httpmanager.h"
+#include "ImageProvider.h"
 #include <QGraphicsObject>
 #include <QDeclarativeContext>
 #include "networkfactory.h"
 #include <QDeclarativeEngine>
+#include <QDeclarativeImageProvider>
 #include <QDebug>
 
 int main(int argc, char *argv[])
 {
+
     QApplication app(argc, argv);
 
     QSettings settings("CS340", "VocoLoco");
 
-   // qmlRegisterType<HttpManager>("Network", 1, 0, "HttpManager"); //TO make availalbe in QML
+    qmlRegisterType<HttpManager>("Network", 1, 0, "HttpManager"); //TO make availalbe in QML
     HttpManager network;
 
     QmlApplicationViewer viewer;
+
+  //  ImageProvider *imageProvider = new ImageProvider(network.getManager());
+
+  //  viewer.engine()->addImageProvider(QString("my_provider"), imageProvider);
 
     NetworkFactory *factory = new NetworkFactory();
     viewer.engine()->setNetworkAccessManagerFactory(factory);
@@ -38,6 +45,7 @@ int main(int argc, char *argv[])
     QObject::connect(login, SIGNAL(requestXML(QString)), &network, SLOT(requestXML(QString)));
     QObject::connect(&network, SIGNAL(loginSuccess()), login, SLOT(onLoginSuccess()));
     QObject::connect(&network, SIGNAL(loginFail()), login, SLOT(onLoginFail()));
+    QObject::connect(login, SIGNAL(stayLoggedIn(bool)), &viewer, SLOT(setStayLoggedIn(bool)));
 
 
     // Tests

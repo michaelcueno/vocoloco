@@ -50,16 +50,15 @@ Rectangle {
 
     // ------------- end of test code ----------|
 
-    //Uncomment next line for auto login from saved cookie TODO:
-    //Component.onCompleted: checkForSavedCookies()
+    //Uncomment next line for auto login from saved cookie
+    Component.onCompleted: checkForSavedCookies()
 
     //TODO not correct (There will always be a Cookie, must verify if it is valid)
-    function checkForSavedCookies(){
-        if(network.hasSavedCookie){
-            changeScreen(homeScreen);
-            changeHeader("All Conversations");
-            network.requestXML("conversations");
-            homeScreen.reload()
+    function checkForSavedCookies()
+    {
+        if(network.hasSavedCookie()){
+            network.requestXML("conversations")
+            changeScreen(homeScreen)
         }
     }
 
@@ -72,8 +71,12 @@ Rectangle {
         newConvoScreen.visible = false;
         contactScreen.visible = false;
         loginScreen.visible = false;
-
         screen.visible = true;
+
+        if(homeScreen.visible){
+            changeHeader("All Conversations");
+            homeScreen.load()
+        }
 
     }
 

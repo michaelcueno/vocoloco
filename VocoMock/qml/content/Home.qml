@@ -2,12 +2,15 @@
 import QtQuick 1.1
 
 Item{
+
+
+
     ListView {
         id: allConversations
         x: 0; y:window.height * (1/10); width: window.width; height: window.height * (9/10)  // Posistioning
         maximumFlickVelocity: 2502
         clip: true;
-        delegate: ConversationDelegate {id: conversationDelegate}
+        delegate: ConversationDelegate { id: convoDelegate }
         model: xml_conversations
     }
 
@@ -16,23 +19,22 @@ Item{
         anchors.right: allConversations.right; anchors.top: allConversations.top;
     }
 
-    function reload(){
+    function load(){
+        xml_conversations.source = mainUrl + "conversations"
         xml_conversations.reload()
-        conversationDelegate.reloadUsersXml()
+        convoDelegate.load()
     }
 
     XmlListModel {
 
         id: xml_conversations
-        source: network.path //  // mainUrl + "conversations"
+
         query: "/conversations/child::element(conversation)"
 
-       // XmlRole { name: "new_messages"; query: "number_new_messages/string()" }
+        // XmlRole { name: "new_messages"; query: "number_new_messages/string()" }
         XmlRole { name: "convo_id"; query: "id/string()" }
         XmlRole { name: "title"; query: "title/string()" }
         XmlRole { name: "createdby"; query: "createdby/string()" }
         XmlRole { name: "date"; query: "date/string()" }
-
     }
-
 }

@@ -6,7 +6,8 @@ SOURCES += main.cpp \
 HEADERS += \
     httpmanager.h \
     cookiejar.h \
-    networkfactory.h
+    networkfactory.h \
+    ImageProvider.h
 
 RESOURCES += voco.qrc
 
@@ -55,7 +56,6 @@ OTHER_FILES += \
     qml/content/Convo.qml \
     qml/content/NewConvo.qml \
     qml/content/Header.qml \
-    qml/content/ContactScreen.qml \
     qml/content/ConversationDelegate.qml \
     qml/content/Login.qml \
     qml/content/TextBox.qml \

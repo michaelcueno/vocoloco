@@ -13,13 +13,20 @@
 
 class CookieJar : public QNetworkCookieJar
 {
+
+    /* This variable is used to delete the cookies in the settings for the applicaiton. The QApplicationViewer will set this
+     * variable upon its destruction to either true or false depending on if the user checked the 'keep me logged in button'
+     */
+public: static bool STAY_LOGGED_IN;
+
 public:
-    CookieJar(QObject *parent) : QNetworkCookieJar(parent) { load(); }
-    ~CookieJar() { save(); }
+    CookieJar(QObject *parent);
+    ~CookieJar();
     void save();
     void load();
     QList<QNetworkCookie> getCookies();
     void PrintCookies();
+    void clear();
 };
 
 #endif // COOKIEJAR_H

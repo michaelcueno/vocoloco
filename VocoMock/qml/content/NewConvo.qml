@@ -13,4 +13,5 @@ Rectangle {
         label: "Title"
         cornerRadius: 25
     }
+
 }
