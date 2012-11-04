@@ -6,14 +6,14 @@ o Global
 o Login Screen
   [x] Create it
   [ ] link to register screen 
-  [ ] link to home screen
+  [x] link to home screen
 
 o Home screen 
-  [ ] Multiple contacts per conversation
-  [ ] ... after certain title length
+  [x] Multiple contacts per conversation
+  [x] ... after certain title length
   [ ] date sent in right hand side
   [x] Link presses to Conversation View
-  [ ] Fix sticky pressed
+  [x] Fix sticky pressed
   [ ] change username display to first name. Cap first, Bold
 
 o Register Screen 
@@ -25,21 +25,17 @@ o Conversation Screen
 
 o New Converstaion Screen
   [x] Create it
+  [ ] Title field
+  [ ] Add Users button --> Contacts selector widget
+  [ ] Format so that softkeyboard doesn't rezise everything. 
 
-
-o Add Contacts widget
+o Add Contacts widget (it's a 'widget' because I want it to animate up from the bottom and cover the whole screen)
   [ ] Create it
 
 o First Message Screen
   [ ] Create it
 
-o Contacts Screen
-  [x] Create it
-
-
-
-
-
-
-
-
+o Convo view ( after tapping on a conversation )
+  [ ] make it pretty
+  [ ] Post new message 
+  [ ] Signal to reload (for instant chat client) 

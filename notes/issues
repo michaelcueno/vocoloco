@@ -1,4 +1,4 @@
-o Bug in android on login, segmentation fault in passing reply between functions 
+[x] Bug in android on login, segmentation fault in passing reply between functions 
 
   Attempt one: Store reply in a temporary QByteArray or a QList<QByteArray (for the headers)
     that is defined in HttpManager and use this to pass information between functions
@@ -17,3 +17,15 @@ o Bug in android on login, segmentation fault in passing reply between functions
   Proposed solution: write an HttpManager that inherits QNetworkManager and reqwrite the get methods... (Hard)
 
   Proposed solution: Look into authenticator.
+  Solved| Ignore SSL errors
+
+[ ] QDeclarativeEngine is creating new threads for each request. Works fine, until we get to images.
+    Images are rendered by QPixmap and somehow there is a disconnect between the QNetworkAccessManager that
+    the engine->NetworkFactory is creating and the QDeclarativePixmapReader, for some reason they are 
+    created in different threads. 
+
+    1. Subclass QDeclarativeImageProvider and add it to the engine, then make this class handle the image downloading 
+        by using QImage instead of QPixmap (I think QImage is asynchronious where QPixmap is not. 
+
+    2. Send Image downloading to the HttpManager so it can download them to file, then have HttpManager send back the 
+        QUrl to the location of the image file. 
