@@ -1,7 +1,7 @@
 #include "httpmanager.h"
 
 
-static QString app = "https://vocoloco.herokuapp.com/";
+static QString app = "http://vocoloco.herokuapp.com/";
 
 
 HttpManager::HttpManager()
@@ -42,10 +42,11 @@ QNetworkAccessManager* HttpManager::getNam(){ return manager; }
 
 bool HttpManager::hasSavedCookie(){
     QSettings settings;
-    if(settings.contains("Cookies")){
+    QVariant cookie = settings.value("Cookies");
+    if(settings.contains("Cookies"))
         return true;
-    }
-    else {return false;}
+    else
+        return false;
 }
 
 
@@ -56,7 +57,7 @@ bool HttpManager::hasSavedCookie(){
  */
 void HttpManager::requestXML(QString requested ){
 
-    request = QNetworkRequest(QUrl("https://vocoloco.herokuapp.com/" + requested ));
+    request = QNetworkRequest(QUrl(app + requested ));
     QNetworkReply *localreply = manager->get(request);
     localreply->ignoreSslErrors();
     connect(localreply, SIGNAL(readyRead()), this, SLOT(parseReply()));
@@ -82,7 +83,7 @@ void HttpManager::postCredentials(QString credentials){
         pass = list[1];
     }
 
-    request = QNetworkRequest(QUrl("https://vocoloco.herokuapp.com/login"));
+    request = QNetworkRequest(QUrl(app + "login"));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 
     postData.addQueryItem("username", usrn);

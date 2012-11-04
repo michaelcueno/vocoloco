@@ -37,8 +37,15 @@ public:
 
     void showExpanded();
 
+public slots:
+    void setStayLoggedIn(bool x);
+
+signals:
+    void clearCookies();
+
 private:
     class QmlApplicationViewerPrivate *d;
+    bool stayLoggedIn;
 };
 
 QApplication *createApplication(int &argc, char **argv);

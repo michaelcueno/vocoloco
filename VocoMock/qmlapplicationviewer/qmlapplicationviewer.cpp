@@ -16,6 +16,9 @@
 #include <QDeclarativeComponent>
 #include <QDeclarativeEngine>
 #include <QDeclarativeContext>
+#include <QSettings>
+#include <QDebug>
+#include "cookiejar.h"
 
 #include <qplatformdefs.h> // MEEGO_EDITION_HARMATTAN
 
@@ -78,6 +81,7 @@ QmlApplicationViewer::QmlApplicationViewer(QWidget *parent)
 {
     connect(engine(), SIGNAL(quit()), SLOT(close()));
     setResizeMode(QDeclarativeView::SizeRootObjectToView);
+    stayLoggedIn = false;
 
     // Qt versions prior to 4.8.0 don't have QML/JS debugging services built in
 #if defined(QMLJSDEBUGGER) && QT_VERSION < 0x040800
@@ -93,7 +97,13 @@ QmlApplicationViewer::QmlApplicationViewer(QWidget *parent)
 QmlApplicationViewer::~QmlApplicationViewer()
 {
     delete d;
+    if (!stayLoggedIn){
+        CookieJar::STAY_LOGGED_IN = false;
+        qDebug() << "QMLAPPVIEWR changed stayLoggedin to false";
+    }
 }
+
+void QmlApplicationViewer::setStayLoggedIn(bool x){ stayLoggedIn = x; }
 
 QmlApplicationViewer *QmlApplicationViewer::create()
 {

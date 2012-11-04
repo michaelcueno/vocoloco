@@ -6,8 +6,34 @@ Rectangle {
 
     x: 0; y:window.height * (1/10); width: window.width; height: window.height * (9/10)  // Posistioning
 
-
-    Text{
-        text: "this is the Contact page"
+    ListView {
+        id: allContacts
+        x: 0; y:window.height * (1/10); width: window.width; height: window.height * (9/10)  // Posistioning
+        maximumFlickVelocity: 2502
+        clip: true;
+        delegate: ContactsDelegate {id: contactsDelegate}
+        model: xml_contacts
     }
+
+    ScrollBar {
+        scrollArea: allContacts; height: allContacts.height; width:10;
+        anchors.right: allContacts.right; anchors.top: allContacts.top;
+    }
+
+    function load(){
+        xml_contacts.source = mainUrl + "contacts"
+    }
+
+    XmlListModel {
+
+        id: xml_contacts
+        query: "/contacts/contact"
+
+        XmlRole { name: "username"; query: "username/string()" }
+        XmlRole { name: "name"; query: "name/string()" }
+        XmlRole { name: "image"; query: "url/string()" }
+
+    }
+
+
 }

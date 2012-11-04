@@ -49,6 +49,7 @@ public:
     void setLoading(bool x);
     QUrl path();
     void setPath(QUrl path);
+    QNetworkAccessManager* getManager(){return manager;}
 
     Q_INVOKABLE bool hasSavedCookie();
 

@@ -4,25 +4,21 @@ import QtQuick 1.1
 Rectangle {
 
 
-    signal postCredentials(string credentials)
+    signal postCredentials(string credentials)  // Connects to HttpManager::postCredentials
+    signal stayLoggedIn(bool saveSesh)  // Connected to qmlapplicationviewer (tells the destructor to not delete the session cookie)
     signal submitted()    // Connects to TextBox, sets TextBox input
-    signal requestXML(string xml)
+    signal requestXML(string xml)  // Connects to HttpManager::requestXML
     property bool isLoading
 
     function onLoginSuccess(){
-        requestXML("conversations")
         changeScreen(homeScreen)
- //       loginScreen.visible = false;
-//        homeLoader.source = ":/qml/content/Home.qml"
-        changeHeader("All Conversations")
-
-
+        homeScreen.load()
     }
 
     function onLoginFail(){
         loginFail.visible = true;
-        console.log("failure")
     }
+
 
     id: container
     color: "#144d97"
@@ -48,7 +44,7 @@ Rectangle {
     TextBox {
         id: username
         width: parent.width * (3/5); height: parent.height / 11
-        x: parent.width * (1/5); y: parent.height * (3/7)
+        x: parent.width * (1/5); y: parent.height * (2.5/7)
         isPassword: false;
         label: "username"
         cornerRadius: 25
@@ -58,10 +54,25 @@ Rectangle {
     TextBox {
         id: password
         width: parent.width * (3/5); height: parent.height / 11
-        x: parent.width * (1/5); y: parent.height * (4/7)
+        x: parent.width * (1/5); y: parent.height * (3.5/7)
         isPassword: true;
         label: "password"
         cornerRadius: 25
+    }
+
+    Rectangle {
+        id: stayLoggedInBtn
+        smooth: true
+        x: parent.width / 2 - 25; y: parent.height * (4.5/7);
+        width: 50; height: 50;
+        color: "white"
+        MouseArea{
+            anchors.fill: parent
+            onClicked: {
+                parent.color = "green"
+                stayLoggedIn(true)
+            }
+        }
     }
 
     // Login Button

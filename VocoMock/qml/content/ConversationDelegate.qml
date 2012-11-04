@@ -9,24 +9,24 @@ Rectangle {
 
     //------------------------------- Non-Visual Logic Code -----------------------------//
 
-        property string convo_title;
-        function setTitle(){
-            var slicedTitle = title;   // XMLRole defined property
+    property string convo_title;
+    function setTitle(){
+        var slicedTitle = title;   // XMLRole defined property
 
-            if(title.length > 19 ){
-                slicedTitle = title.slice(0,16).concat("...");
-            }
-
-            convo_title = slicedTitle;
+        if(title.length > 19 ){
+            slicedTitle = title.slice(0,16).concat("...");
         }
 
-        function reloadUsersXml(){
-            convoUsersXML.reload()
-        }
+        convo_title = slicedTitle;
+    }
 
+    function load(){
+        convoUsersXML.load()
+    }
 
-        Component.onCompleted: setTitle()
-    //------------------------------- End of Logic Code -----------------------------//
+    Component.onCompleted: setTitle()
+
+    //------------------------------- End of Logic Code ---------------------------------//
 
     Rectangle {
         id: convoUsers
@@ -42,14 +42,8 @@ Rectangle {
             delegate: ConvoUsersDelegate {}
             model: ConvoUsersXML { id: convoUsersXML; conversationId: convo_id}
         }
-
     }
-  /*  BorderImage {
-        anchors { fill: convoUsers; leftMargin: -6; topMargin: -6; rightMargin: -8; bottomMargin: -8 }
-        source: ':/qml/content/images/box-shadow.png'; smooth: true
-        border.left: 10; border.top: 10; border.right: 10; border.bottom: 10
 
-    } */
 
     Text {  // Message Title
         id: conversationTitle
@@ -85,7 +79,7 @@ Rectangle {
 // ----------------------------- Clickable Interactivity Code -----------------------//
     MouseArea {
         anchors { left: convoUsers.right; right:parent.right; top:parent.top; bottom:parent.bottom;}
-        onPressAndHold: parent.state = "pressed"
+       // onPressAndHold: parent.state = "pressed"
         onClicked: {
             changeHeader(title)
             changeScreen(convoScreen)

@@ -5,12 +5,12 @@ Item {
     width: 115
     height: parent.height
 
-    //TODO Naw.. I don't know
     Image {
         width:105;height:105;
         x:10;y:15;
-        source: "https://vocoloco.herokuapp.com/" + image // network.getImage("https://vocoloco.herokuapp.com" + image)
+        source: "http://vocoloco.herokuapp.com/" + image
         fillMode: Image.Stretch;
+        asynchronous: true
 
     }
 

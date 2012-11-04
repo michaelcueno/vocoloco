@@ -46,11 +46,9 @@ Rectangle {
         XmlRole { name: "date"; query: "date/string()" }
     }
 
+    // Call this function onClick in Home (when clicking on a conversation)
     function load(){
-      //  network.requestXML("conversation/" + convo_id)
-        message_xml.source = "https://vocoloco.herokuapp.com/conversation/" + convo_id
+        message_xml.source = "http://vocoloco.herokuapp.com/conversation/" + convo_id
         message_xml.reload()
-        console.log("Should have loaded")
-        console.log(message_xml.source)
     }
 }
