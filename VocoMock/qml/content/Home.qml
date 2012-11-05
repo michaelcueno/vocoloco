@@ -8,8 +8,8 @@ Item{
     Image {
         id: background
         anchors.fill: parent
-        fillMode: Image.TileVertically
-        source: ":/images/background.png"
+        fillMode: Image.Tile
+        source: ":/images/carbon_fibre.png"
     }
 
     ListView {

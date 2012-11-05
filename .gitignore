@@ -8,3 +8,5 @@ mysterious-atoll-2036/.DS_Store
 mysterious-atoll-2036/app/.DS_Store
 mysterious-atoll-2036/public/.DS_Store
 mysterious-atoll-2036/dist
+VocoMock-build*
+VocoMock/VocoMock.pro.user*

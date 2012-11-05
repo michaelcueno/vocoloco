@@ -34,7 +34,6 @@
         <file>qml/content/Contacts.qml</file>
         <file>qml/content/ContactsDelegate.qml</file>
         <file>images/background.png</file>
-        <file>images/contacts_10.gif</file>
         <file>images/contacts_btn.gif</file>
         <file>images/Distance_from_left.gif</file>
         <file>images/distance_from_top.gif</file>
@@ -42,5 +41,8 @@
         <file>images/un_checked_box.gif</file>
         <file>images/users_side.png</file>
         <file>images/users_side.gif</file>
+        <file>images/checked_box.gif</file>
+        <file>images/black_linen_v2.png</file>
+        <file>images/carbon_fibre.png</file>
     </qresource>
 </RCC>
