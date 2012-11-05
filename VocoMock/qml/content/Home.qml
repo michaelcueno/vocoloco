@@ -3,16 +3,24 @@ import QtQuick 1.1
 
 Item{
 
+    x: 0; y:window.height * (1/10); width: window.width; height: window.height * (9/10)  // Posistioning
 
+    Image {
+        id: background
+        anchors.fill: parent
+        fillMode: Image.TileVertically
+        source: ":/images/background.png"
+    }
 
     ListView {
         id: allConversations
-        x: 0; y:window.height * (1/10); width: window.width; height: window.height * (9/10)  // Posistioning
+        x: 0; y:0; width: window.width; height: parent.height  // Posistioning
         maximumFlickVelocity: 2502
         clip: true;
-        delegate: ConversationDelegate { id: convoDelegate }
+        delegate: ConversationDelegate {}
         model: xml_conversations
     }
+
 
     ScrollBar {
         scrollArea: allConversations; height: allConversations.height; width:10;
@@ -21,8 +29,7 @@ Item{
 
     function load(){
         xml_conversations.source = mainUrl + "conversations"
-        xml_conversations.reload()
-        convoDelegate.load()
+        xml_conversations.reload()     
     }
 
     XmlListModel {

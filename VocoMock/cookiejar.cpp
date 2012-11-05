@@ -6,7 +6,7 @@ bool CookieJar::STAY_LOGGED_IN = true;  // Must be true until application destru
 CookieJar::CookieJar(QObject *parent) : QNetworkCookieJar(parent)
 {
     load();
-    qDebug() << getCookies();
+    PrintCookies();
 }
 
 CookieJar::~CookieJar()
@@ -14,7 +14,7 @@ CookieJar::~CookieJar()
     if(CookieJar::STAY_LOGGED_IN)
         save();
     else{
-        clear();
+       // do not save
     }
 }
 
@@ -42,12 +42,6 @@ void CookieJar::load()
     setAllCookies(QNetworkCookie::parseCookies(data));
     settings.sync();
     QList<QNetworkCookie> cookies = this->getCookies();
-}
-
-void CookieJar::clear()
-{
-    QSettings settings;
-    settings.clear();
 }
 
 void CookieJar::PrintCookies(){

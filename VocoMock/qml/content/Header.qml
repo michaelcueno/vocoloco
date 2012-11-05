@@ -7,16 +7,7 @@ Rectangle {
     property string headerTitle: "Your Conversations"
 
     x: 0; y: 0; width: window.width; height: window.height * (1/10);
-    gradient: Gradient {
-        GradientStop {
-            position: 0.00;
-            color: "#339ab3";
-        }
-        GradientStop {
-            position: 1.00;
-            color: "#275375";
-        }
-    }
+    color: "#ded4b9"
 
     Text {
         id: header_string
@@ -129,7 +120,7 @@ Rectangle {
             onClicked: {
                unHideBtns()
                changeScreen(homeScreen)
-               homeScreen.reload()
+               homeScreen.load()
             }
         }
         states: State { name: "ACTIVE"; PropertyChanges { target: backBtn; opacity: 1; x:0 } }

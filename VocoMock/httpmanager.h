@@ -52,8 +52,10 @@ public:
     QNetworkAccessManager* getManager(){return manager;}
 
     Q_INVOKABLE bool hasSavedCookie();
+    Q_INVOKABLE void logout();
 
     QNetworkAccessManager* getNam();
+
 
 signals:
     void loginSuccess();

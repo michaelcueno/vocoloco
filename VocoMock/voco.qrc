@@ -33,5 +33,14 @@
         <file>qml/content/MessageDelegate.qml</file>
         <file>qml/content/Contacts.qml</file>
         <file>qml/content/ContactsDelegate.qml</file>
+        <file>images/background.png</file>
+        <file>images/contacts_10.gif</file>
+        <file>images/contacts_btn.gif</file>
+        <file>images/Distance_from_left.gif</file>
+        <file>images/distance_from_top.gif</file>
+        <file>images/list_background.gif</file>
+        <file>images/un_checked_box.gif</file>
+        <file>images/users_side.png</file>
+        <file>images/users_side.gif</file>
     </qresource>
 </RCC>

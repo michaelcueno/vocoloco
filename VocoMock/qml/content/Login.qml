@@ -60,21 +60,6 @@ Rectangle {
         cornerRadius: 25
     }
 
-    Rectangle {
-        id: stayLoggedInBtn
-        smooth: true
-        x: parent.width / 2 - 25; y: parent.height * (4.5/7);
-        width: 50; height: 50;
-        color: "white"
-        MouseArea{
-            anchors.fill: parent
-            onClicked: {
-                parent.color = "green"
-                stayLoggedIn(true)
-            }
-        }
-    }
-
     // Login Button
     Rectangle {
         id: login_btn

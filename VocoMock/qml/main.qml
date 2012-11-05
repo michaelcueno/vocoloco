@@ -38,6 +38,22 @@ Rectangle {
         }
     }
 
+    Rectangle {
+        color: "red"
+        width: parent.width
+        height: 40
+        anchors.bottom: parent.bottom
+        Text{
+            text: "logout"
+            anchors.centerIn: parent
+            font.pixelSize: 30
+        }
+        MouseArea{
+            anchors.fill: parent
+            onClicked: logout()
+        }
+    }
+
     //---- End of visual comonents ----- |
 
     //--- Functions non visual ------------------ |
@@ -53,12 +69,12 @@ Rectangle {
     //Uncomment next line for auto login from saved cookie
     Component.onCompleted: checkForSavedCookies()
 
-    //TODO not correct (There will always be a Cookie, must verify if it is valid)
     function checkForSavedCookies()
     {
         if(network.hasSavedCookie()){
             network.requestXML("conversations")
             changeScreen(homeScreen)
+            // TODO BUG: deletes cookie on second opening of application.
         }
     }
 
@@ -83,5 +99,12 @@ Rectangle {
     function changeHeader(msg){
         header.headerTitle = msg
         header.visible = true;
+    }
+
+    // TODO Would be better if this goes to login screen but.. Getting a seg fault with next login so for now just quit app
+    function logout(){
+        network.logout()
+      //  changeScreen(loginScreen)
+        Qt.quit()
     }
 }

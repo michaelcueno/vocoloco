@@ -88,13 +88,14 @@ void HttpManager::postCredentials(QString credentials){
 
     postData.addQueryItem("username", usrn);
     postData.addQueryItem("password", pass);
+
     // Attempt Login
     QNetworkReply *reply = manager->post(request, postData.encodedQuery());
+
     reply->ignoreSslErrors();
 
     // When finished, jump to authenticate
     connect(reply, SIGNAL(finished()), this, SLOT(authenticate()));
-
 }
 
 /*
@@ -114,6 +115,15 @@ void HttpManager::authenticate(){
         emit loginSuccess();
     }
     setLoading(false);
+}
+
+void HttpManager::logout(){
+    QSettings settings;
+    settings.clear();
+    CookieJar::STAY_LOGGED_IN = false;
+    delete jar;
+    jar = new CookieJar(this);
+   // CookieJar::STAY_LOGGED_IN = true;  // Will need to be set back to implement logout to login screen instead of Qt.quit
 }
 
 /*

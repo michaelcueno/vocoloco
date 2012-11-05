@@ -26,7 +26,6 @@ public:
     void load();
     QList<QNetworkCookie> getCookies();
     void PrintCookies();
-    void clear();
 };
 
 #endif // COOKIEJAR_H

@@ -6,9 +6,16 @@ Rectangle {
 
     x: 0; y:window.height * (1/10); width: window.width; height: window.height * (9/10)  // Posistioning
 
+    Image {
+        id: background
+        anchors.fill: parent
+        fillMode: Image.TileVertically
+        source: ":/images/background.png"
+    }
+
     ListView {
         id: allContacts
-        x: 0; y:window.height * (1/10); width: window.width; height: window.height * (9/10)  // Posistioning
+        x: 0; y:0; width: window.width; height: parent.height  // Posistioning
         maximumFlickVelocity: 2502
         clip: true;
         delegate: ContactsDelegate {id: contactsDelegate}
@@ -34,6 +41,8 @@ Rectangle {
         XmlRole { name: "image"; query: "url/string()" }
 
     }
+
+
 
 
 }

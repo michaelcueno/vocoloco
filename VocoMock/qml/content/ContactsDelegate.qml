@@ -7,14 +7,31 @@ Rectangle {
     color: "#ffffff"
 
     Image {
+        id: list_background
+        source: ":/images/list_background.gif"
+    }
+
+    Image {
         id: user_img
         source: "http://vocoloco.herokuapp.com/" + image
-        anchors.margins: 30;
+        width: 105; height: 105
+        x: 30; y: 38;
     }
 
     Text {  // Contact Name
-        text: "name";
-        font { bold: true; family: "Helvetica"; pixelSize: 25 }
+        id: contact_name
+        text: name;
+        font { bold: true; family: "Helvetica"; pixelSize: 35 }
+        anchors { left: user_img.right; leftMargin: 40;}
+        color: "#46433a"
+        y: 70;
+    }
+
+    Image {
+        id: check_box
+        source: ":/images/un_checked_box.gif"
+        anchors { right: parent.right; }
+        y: 38; x: parent.width - 56;
     }
 
 }

@@ -24,15 +24,22 @@ Rectangle {
         convoUsersXML.load()
     }
 
-    Component.onCompleted: setTitle()
+    Component.onCompleted: {setTitle(); load()}
 
     //------------------------------- End of Logic Code ---------------------------------//
+
+    Image {
+        id: list_background
+        source: ":/images/list_background.gif"
+    }
+
+
 
     Rectangle {
         id: convoUsers
         width: parent.width * (9/20);
-        anchors {left: parent.left; top: parent.top; bottom:parent.bottom; topMargin: 5; bottomMargin: 5; leftMargin: 5;}
-        color: "#c0c9d1"
+        anchors {left: parent.left; top: parent.top; bottom:parent.bottom; topMargin: 10; bottomMargin: 10; leftMargin: 5;}
+        color: "#d3c8aa"
         ListView {
             id: convoUsersList
             anchors.fill:parent
@@ -44,6 +51,12 @@ Rectangle {
         }
     }
 
+    Image {
+        id: users_side
+        source: ":/images/users_side.png"
+        anchors.right: convoUsers.right
+        anchors.top: convoUsers.top
+    }
 
     Text {  // Message Title
         id: conversationTitle
@@ -51,7 +64,6 @@ Rectangle {
         anchors.left: convoUsers.right; anchors.leftMargin: 20;
         text: convo_title; width: parent.width * (7/20); wrapMode: Text.WordWrap
         font { bold: true; family: "Helvetica"; pixelSize: 25 }
-
     }
 
 /* TODO awaiting server side implementation */
@@ -61,7 +73,6 @@ Rectangle {
         y: parent.height / 2 - 20
         text: "0" // new_messages;
         font { bold: true; italic: true; family: "Calibri"; pixelSize: 40 }
-
     }
 
     Image {
