@@ -1,0 +1,34 @@
+@(room:String, user: String)(implicit request: RequestHeader)
+
+@main("Vocoloco") {
+    
+    @helper.javascriptRouter("jsRoutes")(
+        routes.javascript.Application.say1
+    )
+    
+    <h1>@room</h1>
+    
+    <p>
+        <input type="text" id="msg"> 
+        <input type="button" value="Say" id="say1">
+    </p>
+    
+    <div id="messages"></div>
+    
+    <script type="text/javascript" charset="utf-8">
+        var message = function(msg) {
+            $('#messages').append('<p>'+ "@user" +" "+ msg + '</p>')
+        }
+        
+        $("#say1").click(function() {
+            jsRoutes.controllers.Application.say1("@room",$('#msg').val()).ajax({
+                success: function() {
+                    
+                }
+            })
+        })
+    </script>
+    
+    <iframe src="@routes.Application.stream1(room, user)" style="display:none"></iframe>
+    
+}
