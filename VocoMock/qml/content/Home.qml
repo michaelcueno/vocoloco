@@ -1,9 +1,15 @@
-// import QtQuick 1.0 // to target S60 5th Edition or Maemo 5
+/*
+ * This is the view of the conversations, I called it "home" since it is the first screen a user
+ * will see when they log in, also all screens are one away from this screen and they all go back
+ * to this screen.
+ */
+
 import QtQuick 1.1
 
 Item{
 
-    x: 0; y:window.height * (1/10); width: window.width; height: window.height * (9/10)  // Posistioning
+    id: container
+    x: 0; y:window.screenHieght * (1/10); width: window.screenWidth; height: window.screenHieght * (9/10)  // Posistioning
 
     Image {
         id: background
@@ -27,19 +33,20 @@ Item{
         anchors.right: allConversations.right; anchors.top: allConversations.top;
     }
 
-    function load(){
+    function loadXML(){
         xml_conversations.source = mainUrl + "conversations"
-        xml_conversations.reload()     
+        xml_conversations.reload()
+        console.log("homescreen reloaded")
     }
 
     XmlListModel {
 
         id: xml_conversations
 
-        query: "/conversations/child::element(conversation)"
+        query: "/conversations/conversation"
 
         // XmlRole { name: "new_messages"; query: "number_new_messages/string()" }
-        XmlRole { name: "convo_id"; query: "id/string()" }
+        XmlRole { name: "convo_id"; query: "string(@id)" }
         XmlRole { name: "title"; query: "title/string()" }
         XmlRole { name: "createdby"; query: "createdby/string()" }
         XmlRole { name: "date"; query: "date/string()" }

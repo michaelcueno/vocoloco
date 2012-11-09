@@ -9,12 +9,14 @@ Rectangle {
     objectName: "mainObj";
 
     property string mainUrl: "https://vocoloco.herokuapp.com/"
+    property int screenWidth
+    property int screenHieght
 
     //--- Visual components --------- |
 
     Header {  id: header;  visible: false }
 
-    Login { id: loginScreen; objectName: "loginObj"; anchors.fill: parent; visible: true }
+    Login { id: loginScreen; objectName: "loginObj"; visible: true }
 
     Home { id: homeScreen; objectName: "homeObj"; visible: false; }
 
@@ -26,19 +28,8 @@ Rectangle {
 
     Record {id: recordScreen; anchors.fill: parent; visible: false}
 
-    Rectangle{
-        id: testScreen
-        visible: false
-        anchors.centerIn: parent
-        width: 100
-        height: 100
-        Text{
-            id: testText
-            text:"got here"
-        }
-    }
-
     Rectangle {
+        id: logoutBtn
         color: "red"
         width: parent.width
         height: 40
@@ -67,13 +58,17 @@ Rectangle {
     // ------------- end of test code ----------|
 
     //Uncomment next line for auto login from saved cookie
-    Component.onCompleted: checkForSavedCookies()
+    Component.onCompleted: {
+        setDimensions()
+        checkForSavedCookies()
+    }
 
     function checkForSavedCookies()
     {
         if(network.hasSavedCookie()){
             network.requestXML("conversations")
             changeScreen(homeScreen)
+            loadXML()
             // TODO BUG: deletes cookie on second opening of application.
         }
     }
@@ -91,7 +86,7 @@ Rectangle {
 
         if(homeScreen.visible){
             changeHeader("All Conversations");
-            homeScreen.load()
+            header.unHideBtns()
         }
 
     }
@@ -101,10 +96,27 @@ Rectangle {
         header.visible = true;
     }
 
+    function loadXML(){
+        homeScreen.loadXML()
+        contactScreen.loadXML()
+        newConvoScreen.loadXML()
+    }
+
+    // Set screen width and height for some static properties that will not resize on soft keyboard invokation
+    function setDimensions(){
+        screenHieght = window.height
+        screenWidth = window.width
+        console.log(screenHieght)
+        console.log(screenWidth)
+    }
+
     // TODO Would be better if this goes to login screen but.. Getting a seg fault with next login so for now just quit app
     function logout(){
         network.logout()
-      //  changeScreen(loginScreen)
+        console.log(window.y)
+        console.log(window.width)
+      // changeScreen(loginScreen)
         Qt.quit()
+
     }
 }

@@ -1,9 +1,15 @@
 import QtQuick 1.1
 
 Rectangle {
+
+    property string first
+    property string last
+
+    Component.onCompleted: setFirstLast()
+
     id: row
     width: parent.width
-    height: 180
+    height: 150
     color: "#ffffff"
 
     Image {
@@ -15,23 +21,37 @@ Rectangle {
         id: user_img
         source: "http://vocoloco.herokuapp.com/" + image
         width: 105; height: 105
-        x: 30; y: 38;
+        x: 30; y: 22;
     }
 
     Text {
-        id: contact_name
-        text: name;
+        id:first_name
+        text: first;
         font { bold: true; family: "Helvetica"; pixelSize: 35 }
         anchors { left: user_img.right; leftMargin: 40;}
+        color: "black"
+        y: 50;
+    }
+    Text {
+        id: last_name
+        text: last;
+        font { bold: true; family: "Helvetica"; pixelSize: 35 }
+        anchors { left: first_name.right; leftMargin: 10;}
         color: "#46433a"
-        y: 70;
+        y: 50;
+    }
+    Text {
+        id: usrName
+        text: "username: "+ username
+        font { pixelSize: 20 }
+        anchors { top: first_name.bottom; topMargin: 10; left: first_name.left}
+        color: "#46433a"
     }
 
-    // Check Box --------------------------------------------------------------------____|
+    // Check Box -------------------------------------------------------------------------|
     Rectangle {
         id: check_box
-        anchors { right: parent.right; }
-        y: 38; x: parent.width - 56;
+        y: 24; x: parent.width - 140;
         width: 111; height: 93
         MouseArea {
             id: mouseArea
@@ -67,11 +87,26 @@ Rectangle {
        opacity: 0
     }
 
-    function contacts_checked(){
-        console.log (check_box.state)
-        if(check_box.state == "")
+    function contacts_checked()
+    {
+        if(check_box.state == ""){
             check_box.state = "checked"
-        else
+            network.addNewConvoUser(username)
+        }else{
             check_box.state = ""
+            network.removeNewConvoUser(username)
+        }
+    }
+
+    function unCheck(){
+        check_box.state = ""
+    }
+
+    function setFirstLast(){
+        var whole = name;
+        whole = whole.split(" ")
+        first = whole[0]
+        if (whole[1])
+            last = whole[1]
     }
 }

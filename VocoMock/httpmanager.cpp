@@ -10,6 +10,7 @@ HttpManager::HttpManager()
     jar = new CookieJar(this);
     manager->setCookieJar(jar);
     m_isLoading = false;
+    new_convo = new PostNewConversation();
 
  //   tmp = new QList<QByteArray>();
  //   reply = new HttpReply();
@@ -34,11 +35,55 @@ void HttpManager::setPath(QUrl path){ xml_path = path; emit pathChanged(); }
 
 QUrl HttpManager::path(){ return xml_path; }
 
+QNetworkAccessManager* HttpManager::getNam(){ return manager; }
+
 void HttpManager::setDownloadProgress(qint64 soFar, qint64 total){
     setProgress((soFar/total) * 100);
 }
 
-QNetworkAccessManager* HttpManager::getNam(){ return manager; }
+// Sets the title for a new conversation that will later be pushed to the server
+void HttpManager::setNewConvoTitle(QString title)
+{
+    new_convo->setTitle(title);
+}
+
+// Adds a user to the conversation that will be sent to the server vai POST
+void HttpManager::addNewConvoUser(QString user)
+{
+    new_convo->addUser(user);
+}
+
+void HttpManager::removeNewConvoUser(QString user)
+{
+    new_convo->removeUser(user);
+}
+
+void HttpManager::clearNewConvoUsers()
+{
+    new_convo->clearUsers();
+}
+
+// Sends the post request to the server at POST /conversations
+bool HttpManager::postNewConvo()
+{
+    // Error Check (Check for no users added, or no title
+    if( new_convo->noTitle() || new_convo->noUsers() ){
+        return false;
+    }
+
+    // Start Post Request
+    request = QNetworkRequest(QUrl(app + "conversation" ));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "text/xml");
+
+
+    // Attempt Login
+    QNetworkReply *reply = manager->post(request, new_convo->getXML().toAscii());
+
+    reply->ignoreSslErrors();
+
+    connect(reply, SIGNAL(finished()), this, SLOT(parseReply()));
+    return true;
+}
 
 bool HttpManager::hasSavedCookie(){
     QSettings settings;
@@ -135,6 +180,11 @@ void HttpManager::parseReply(){
     QDir dir;
     QString path = dir.absolutePath();
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+
+   // qDebug() << reply->read(2048);
+
+    /*
+
     QFile file(path + "/conversations.xml");
     if ( file.open(QFile::ReadWrite) )
     {

@@ -14,7 +14,7 @@ o Home screen
   [ ] date sent in right hand side
   [x] Link presses to Conversation View
   [x] Fix sticky pressed
-  [ ] change username display to first name. Cap first, Bold
+  [x] change username display to first name. Cap first, Bold
 
 o Register Screen 
   [ ] Create it
@@ -25,9 +25,10 @@ o Conversation Screen
 
 o New Converstaion Screen
   [x] Create it
-  [ ] Title field
-  [ ] Add Users button --> Contacts selector widget
+  [x] Title field
+  [x] Add Users button --> Contacts selector widget
   [ ] Format so that softkeyboard doesn't rezise everything. 
+  [ ] check that convo has title and at least one user. if not then send signal back to QML and do not allow creation
 
 o Add Contacts widget (it's a 'widget' because I want it to animate up from the bottom and cover the whole screen)
   [ ] Create it

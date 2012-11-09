@@ -44,5 +44,13 @@
         <file>images/checked_box.gif</file>
         <file>images/black_linen_v2.png</file>
         <file>images/carbon_fibre.png</file>
+        <file>qml/content/SearchBox.qml</file>
+        <file>qml/content/images/clear.png</file>
+        <file>qml/content/images/lineedit-bg.png</file>
+        <file>qml/content/images/lineedit-bg-focus.png</file>
+        <file>images/back_black.png</file>
+        <file>images/back_grey.png</file>
+        <file>images/clear.png</file>
+        <file>images/forward.png</file>
     </qresource>
 </RCC>

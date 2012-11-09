@@ -21,7 +21,7 @@ Rectangle {
     }
 
     function load(){
-        convoUsersXML.load()
+        convoUsersXML.loadXML()
     }
 
     Component.onCompleted: {setTitle(); load()}
@@ -76,7 +76,8 @@ Rectangle {
     }
 
     Image {
-        source: ":/qml/content/images/convoNext.png"
+        id: forwardArrow
+        source: ":/images/forward.png"
         anchors {left: numNewMessages.right; leftMargin: 15;  }
         y: parent.height / 2 - 50
     }
@@ -95,7 +96,7 @@ Rectangle {
             changeHeader(title)
             changeScreen(convoScreen)
             convoScreen.convo_id = convo_id
-            convoScreen.load()
+            convoScreen.loadXML()
             header.hideBtns()
         }
     }

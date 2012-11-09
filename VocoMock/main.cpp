@@ -35,6 +35,7 @@ int main(int argc, char *argv[])
     // Initailize and build QML
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationLockPortrait);
     viewer.setSource(QUrl(QLatin1String("qrc:/qml/main.qml")));
+ //   viewer.ResizeMode(QDeclarativeView::SizeRootObjectToView);
 
 
     // Locate and instantiate QML objects for connections
@@ -53,6 +54,6 @@ int main(int argc, char *argv[])
     // Tests
     QObject::connect(&network, SIGNAL(test()), main, SLOT(test()));
 
-    viewer.showExpanded();
+    viewer.showExpanded();  // TODO: change to showFullScreen somehow grab the width and hieght of the application and resize QML
     return app.exec();
 }

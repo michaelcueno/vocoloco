@@ -11,7 +11,6 @@ Item {
         source: "http://vocoloco.herokuapp.com/" + image
         fillMode: Image.Stretch;
         asynchronous: true
-
     }
 
     Text {

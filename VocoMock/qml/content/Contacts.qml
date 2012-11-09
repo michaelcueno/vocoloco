@@ -4,7 +4,7 @@ Rectangle {
 
     signal showScreen(string msg)
 
-    x: 0; y:window.height * (1/10); width: window.width; height: window.height * (9/10)  // Posistioning
+    x: 0; y:window.screenHieght * (1/10); width: window.screenWidth; height: window.screenHieght * (9/10)  // Posistioning
 
     Image {
         id: background
@@ -27,10 +27,6 @@ Rectangle {
         anchors.right: allContacts.right; anchors.top: allContacts.top;
     }
 
-    function load(){
-        xml_contacts.source = mainUrl + "contacts"
-    }
-
     XmlListModel {
 
         id: xml_contacts
@@ -39,10 +35,17 @@ Rectangle {
         XmlRole { name: "username"; query: "username/string()" }
         XmlRole { name: "name"; query: "name/string()" }
         XmlRole { name: "image"; query: "url/string()" }
-
     }
 
+    function loadXML(){
+        xml_contacts.source = mainUrl + "contacts"
+    }
 
-
-
+    function clearCheckBoxes(){
+        for(var i = 0; i < allContacts.count; i++){
+            allContacts.currentIndex = i;
+            allContacts.currentItem.unCheck()
+        }
+    }
 }
+

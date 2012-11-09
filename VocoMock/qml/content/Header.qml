@@ -1,4 +1,4 @@
-// import QtQuick 1.0 // to target S60 5th Edition or Maemo 5
+
 import QtQuick 1.1
 
 // Header, this is on almost every screen
@@ -6,7 +6,7 @@ Rectangle {
 
     property string headerTitle: "Your Conversations"
 
-    x: 0; y: 0; width: window.width; height: window.height * (1/10);
+    x: 0; y: 0; width: window.screenWidth; height: window.screenHieght * (1/10);
     color: "#ded4b9"
 
     Text {
@@ -74,12 +74,12 @@ Rectangle {
             width: 64
             height: 64
         }
+
         MouseArea{
             anchors.fill: parent
             onClicked: {
                headerTitle = "All Contacts"
                changeScreen(contactScreen)
-               contactScreen.load()
                hideBtns()
             }
         }
@@ -92,8 +92,6 @@ Rectangle {
             from: ''; to: "HIDDEN"
             PropertyAnimation { properties: "opacity"; easing.type: Easing.InQuad; easing.period: 2.5}
         }
-
-
     }
 
     // Back Button -----------------------------------------------------------------------------------------------------
@@ -108,11 +106,10 @@ Rectangle {
 
         Image{
             id: backBtn_img
-            source: "images/convoNext.png"
+            source: ":/images/back_black.png"
             anchors.centerIn: parent
-            width: 30
-            height: 64
-
+            width: 40
+            height: 70
         }
 
         MouseArea{
@@ -120,7 +117,7 @@ Rectangle {
             onClicked: {
                unHideBtns()
                changeScreen(homeScreen)
-               homeScreen.load()
+                homeScreen.loadXML()
             }
         }
         states: State { name: "ACTIVE"; PropertyChanges { target: backBtn; opacity: 1; x:0 } }

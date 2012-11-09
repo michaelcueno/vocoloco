@@ -1,13 +1,15 @@
 SOURCES += main.cpp \ 
            httpmanager.cpp \  
     cookiejar.cpp \
-    networkfactory.cpp
+    networkfactory.cpp \
+    postnewconversation.cpp
 
 HEADERS += \
     httpmanager.h \
     cookiejar.h \
     networkfactory.h \
-    ImageProvider.h
+    ImageProvider.h \
+    postnewconversation.h
 
 RESOURCES += voco.qrc
 
@@ -65,5 +67,6 @@ OTHER_FILES += \
     qml/content/Record.qml \
     qml/content/MessageDelegate.qml \
     qml/content/Contacts.qml \
-    qml/content/ContactsDelegate.qml
+    qml/content/ContactsDelegate.qml \
+    qml/content/SearchBox.qml
 

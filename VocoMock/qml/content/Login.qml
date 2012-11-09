@@ -2,6 +2,10 @@
 import QtQuick 1.1
 
 Rectangle {
+    id: container
+    color: "#144d97"
+    x: 0; y:0
+    width: screenWidth; height: screenHieght
 
 
     signal postCredentials(string credentials)  // Connects to HttpManager::postCredentials
@@ -10,22 +14,12 @@ Rectangle {
     signal requestXML(string xml)  // Connects to HttpManager::requestXML
     property bool isLoading
 
-    function onLoginSuccess(){
-        changeScreen(homeScreen)
-        homeScreen.load()
-    }
-
-    function onLoginFail(){
-        loginFail.visible = true;
-    }
 
 
-    id: container
-    color: "#144d97"
 
     // Masthead
     Text {
-        y: parent.height * (1/7)
+        y: parent.height * (1/10)
         anchors.horizontalCenter: parent.horizontalCenter;
         font.bold: true
         font.italic: true
@@ -35,16 +29,15 @@ Rectangle {
 
     BusySpinner {
         on: network.isLoading;
-        y: parent.height * (2/7)
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors { horizontalCenter: parent.horizontalCenter; top: parent.top; topMargin: 40}
     }
 
 
     // Username input field
     TextBox {
         id: username
-        width: parent.width * (3/5); height: parent.height / 11
-        x: parent.width * (1/5); y: parent.height * (2.5/7)
+        width: parent.width * (3/5); height: 80
+        x: parent.width * (1/5); y: parent.height * (2/10)
         isPassword: false;
         label: "username"
         cornerRadius: 25
@@ -53,8 +46,8 @@ Rectangle {
     // Password input field
     TextBox {
         id: password
-        width: parent.width * (3/5); height: parent.height / 11
-        x: parent.width * (1/5); y: parent.height * (3.5/7)
+        width: parent.width * (3/5); height: 80
+        x: parent.width * (1/5); y: parent.height * (3/10)
         isPassword: true;
         label: "password"
         cornerRadius: 25
@@ -66,7 +59,7 @@ Rectangle {
         smooth: true;
         radius: 20
         width: parent.width * (3/5); height: 80
-        x: parent.width * (1/5); y: parent.height * (5/7)
+        x: parent.width * (1/5); y: parent.height * (4/10)
         Text {
             anchors.centerIn: parent;
             font.bold: true; font.pointSize: 20
@@ -85,7 +78,6 @@ Rectangle {
         }
     }
 
-
     // Login Fail notification
     Rectangle {
         id: loginFail
@@ -93,11 +85,21 @@ Rectangle {
         smooth: true
         visible: false
         width: parent.width * (4/5); height: 80
-        x: parent.width * (0.5/5); y: parent.height * (6/7)
+        x: parent.width * (0.5/5); y: 20
         Text {
             anchors.centerIn: parent;
             font.bold: true; font.pointSize: 18
             text: "Incorrect Username or Password"
         }
+    }
+
+    function onLoginSuccess(){
+        changeScreen(homeScreen)
+        loadXML()
+        homeScreen.loadXML()
+    }
+
+    function onLoginFail(){
+        loginFail.visible = true;
     }
 }

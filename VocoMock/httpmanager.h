@@ -16,6 +16,7 @@
 #include <QDir>
 
 #include "cookiejar.h"
+#include "postnewconversation.h"
 
 class HttpManager : public QObject
 {
@@ -53,6 +54,11 @@ public:
 
     Q_INVOKABLE bool hasSavedCookie();
     Q_INVOKABLE void logout();
+    Q_INVOKABLE void setNewConvoTitle(QString title);
+    Q_INVOKABLE void addNewConvoUser(QString user);
+    Q_INVOKABLE void removeNewConvoUser(QString user);
+    Q_INVOKABLE void clearNewConvoUsers();
+    Q_INVOKABLE bool postNewConvo();  // Returns false if new_convo doesn't have a title or any users
 
     QNetworkAccessManager* getNam();
 
@@ -84,6 +90,7 @@ private:
     int m_progress;
     bool m_isLoading;
     QUrl xml_path;
+    PostNewConversation *new_convo;
 
 };
 
