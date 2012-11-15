@@ -13,14 +13,14 @@ Rectangle {
         id: header_string
         text: headerTitle
         font.pixelSize: 35; font.bold: true
-        anchors.top: parent.top; anchors.left: parent.left; anchors.margins: 30
+        anchors { verticalCenter: parent.verticalCenter; left: parent.left; }
     }
 
     // Using nested image here because I don't know another way to get transparency. I want the gradient to come through
     Image {
         id: newConvoBtn
         x: window.width * (2/3); y: 20
-      //  anchors.top: parent.top; anchors.bottom: parent.bottom
+        anchors.verticalCenter: parent.verticalCenter
         width: ((window.width * (1/3) * (1/2)) - 1)
         height: 64
         Image {
@@ -61,7 +61,7 @@ Rectangle {
     // Contacts Button at top right hand corner
     Image {
         id: contactsBtn
-
+        anchors.verticalCenter: parent.verticalCenter
         x:window.width-100
         y: 20
         width: 64
@@ -103,6 +103,7 @@ Rectangle {
         width: 64
         height: 64
         opacity: 0
+        anchors.verticalCenter: parent.verticalCenter
 
         Image{
             id: backBtn_img

@@ -7,8 +7,11 @@ Rectangle {
 
     x: 0; y:window.height * (1/10); width: window.width; height: window.height * (9/10)  // Posistioning
 
-    Text{
-        text: "this is the conversations page"
+    Image {
+        id: background
+        anchors.fill: parent
+        fillMode: Image.Tile
+        source: ":/images/carbon_fibre.png"
     }
 
     MouseArea{
@@ -24,7 +27,7 @@ Rectangle {
         anchors.fill: parent  // Posistioning
         maximumFlickVelocity: 2502
         clip: true;
-        delegate: MessageDelegate {}
+        delegate: MessageDelegate {id: message_delegate}
         model: message_xml
     }
 
@@ -46,9 +49,40 @@ Rectangle {
         XmlRole { name: "date"; query: "date/string()" }
     }
 
+    Rectangle {
+        id: new_message_input
+        anchors.bottom: parent.bottom
+        width: window.screenWidth
+        height: window.screenHieght * (1/10)
+        color: "grey"
+
+        SearchBox {
+            id: message_input
+            anchors { left: parent.left; leftMargin: 30; verticalCenter: parent.verticalCenter }
+            width: parent.width * (3/4)
+            height: parent.height * (5/6)
+        }
+
+        Rectangle {
+            id: send
+            anchors { left: message_input.right; verticalCenter: parent.verticalCenter; leftMargin: 15 }
+            width: parent.width * (1/5) - 40
+            height: parent.height * (5/6)
+            color: "green"
+            Text {
+                text: "Send"
+                font.pixelSize: window.normalFont
+                anchors.centerIn: parent
+            }
+
+
+        }
+    }
+
     // Call this function onClick in Home (when clicking on a conversation)
     function loadXML(){
         message_xml.source = "http://vocoloco.herokuapp.com/conversation/" + convo_id
         message_xml.reload()
     }
+
 }

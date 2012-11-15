@@ -17,6 +17,7 @@
 
 #include "cookiejar.h"
 #include "postnewconversation.h"
+#include "newmessage.h"
 
 class HttpManager : public QObject
 {
@@ -38,6 +39,11 @@ class HttpManager : public QObject
                READ path
                WRITE setPath
                NOTIFY pathChanged )
+    Q_PROPERTY(QString username
+               READ username
+               WRITE setUsername
+               NOTIFY usernameChanged )
+
 
 
 public:
@@ -50,15 +56,24 @@ public:
     void setLoading(bool x);
     QUrl path();
     void setPath(QUrl path);
+    QString username();
+    void setUsername(QString name);
     QNetworkAccessManager* getManager(){return manager;}
 
     Q_INVOKABLE bool hasSavedCookie();
     Q_INVOKABLE void logout();
+
+    // For creating, posting, deleting a conversation
     Q_INVOKABLE void setNewConvoTitle(QString title);
     Q_INVOKABLE void addNewConvoUser(QString user);
     Q_INVOKABLE void removeNewConvoUser(QString user);
     Q_INVOKABLE void clearNewConvoUsers();
     Q_INVOKABLE bool postNewConvo();  // Returns false if new_convo doesn't have a title or any users
+    Q_INVOKABLE void deleteConvo(QString convo_id);
+
+    // For creating and posting a new message
+    Q_INVOKABLE void setNewMessageContent(QString content);
+    Q_INVOKABLE bool postNewMessage();  // Returns false if new_convo doesn't have a title or any users
 
     QNetworkAccessManager* getNam();
 
@@ -72,6 +87,7 @@ signals:
     void loadingChanged();
     void progressChanged();
     void pathChanged();
+    void usernameChanged();
     void test();
 
 public slots:
@@ -90,7 +106,9 @@ private:
     int m_progress;
     bool m_isLoading;
     QUrl xml_path;
+    QString m_username;
     PostNewConversation *new_convo;
+    NewMessage *new_message;
 
 };
 

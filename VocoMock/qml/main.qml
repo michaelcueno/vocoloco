@@ -9,8 +9,12 @@ Rectangle {
     objectName: "mainObj";
 
     property string mainUrl: "https://vocoloco.herokuapp.com/"
+
     property int screenWidth
     property int screenHieght
+
+    property int smallFont: 20
+    property int normalFont: 30
 
     //--- Visual components --------- |
 
@@ -88,7 +92,6 @@ Rectangle {
             changeHeader("All Conversations");
             header.unHideBtns()
         }
-
     }
 
     function changeHeader(msg){

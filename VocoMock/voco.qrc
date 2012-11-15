@@ -52,5 +52,7 @@
         <file>images/back_grey.png</file>
         <file>images/clear.png</file>
         <file>images/forward.png</file>
+        <file>images/shade.png</file>
+        <file>audio/ALARM.WAV</file>
     </qresource>
 </RCC>

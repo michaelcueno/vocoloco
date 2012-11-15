@@ -11,6 +11,7 @@ HttpManager::HttpManager()
     manager->setCookieJar(jar);
     m_isLoading = false;
     new_convo = new PostNewConversation();
+    new_message = new NewMessage();
 
  //   tmp = new QList<QByteArray>();
  //   reply = new HttpReply();
@@ -23,10 +24,18 @@ HttpManager::~HttpManager()
     delete jar;
 }
 
+/**
+ * @brief progress of a current http request
+ */
 int HttpManager::progress(){ return m_progress; }
 
 void HttpManager::setProgress(int prog){ m_progress = prog; emit progressChanged(); }
 
+/**
+ * @brief Boolean given to QML to mark if a request is loading
+ *
+ * This is used by the spinner at the login screen for example.
+ */
 bool HttpManager::isLoading(){ return m_isLoading; }
 
 void HttpManager::setLoading(bool x){ m_isLoading = x; emit loadingChanged();}
@@ -35,11 +44,17 @@ void HttpManager::setPath(QUrl path){ xml_path = path; emit pathChanged(); }
 
 QUrl HttpManager::path(){ return xml_path; }
 
+void HttpManager::setUsername(QString name){ m_username = name; emit usernameChanged();}
+
+QString HttpManager::username(){ return m_username; }
+
 QNetworkAccessManager* HttpManager::getNam(){ return manager; }
 
 void HttpManager::setDownloadProgress(qint64 soFar, qint64 total){
     setProgress((soFar/total) * 100);
 }
+
+////////////////////////////////////////////////////////////////////////////////// Interaction invoving Conversations //////////////////////////////////////////
 
 // Sets the title for a new conversation that will later be pushed to the server
 void HttpManager::setNewConvoTitle(QString title)
@@ -85,6 +100,21 @@ bool HttpManager::postNewConvo()
     return true;
 }
 
+void HttpManager::deleteConvo(QString convo_id)
+{
+    qDebug() << "TODO: imlement deleteConvo(" + convo_id + ") In HttpManager";
+}
+
+//////////////////////////////////////////////////////////  Methods For Posting a New Message ///////////////////////////////
+
+void HttpManager::setNewMessageContent(QString content){
+    qDebug() << "TODO: implement setNewMessageContent in HttpManager.cpp";
+}
+
+bool HttpManager::postNewMessage(){
+    return false;
+}
+
 bool HttpManager::hasSavedCookie(){
     QSettings settings;
     QVariant cookie = settings.value("Cookies");
@@ -119,6 +149,8 @@ void HttpManager::postCredentials(QString credentials){
     QString usrn;
     QString pass;
 
+    QSettings settings;
+
     QStringList list = credentials.split(" ");
 
     if(list.size() != 2){    // Error Checking
@@ -128,6 +160,7 @@ void HttpManager::postCredentials(QString credentials){
         pass = list[1];
     }
 
+    settings.setValue("Username", usrn);
     request = QNetworkRequest(QUrl(app + "login"));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 
@@ -152,12 +185,14 @@ void HttpManager::authenticate(){
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     QList<QByteArray> headers = reply->rawHeaderList();
     QList<QNetworkCookie> cookies = jar->getCookies();
+    QSettings settings;
     jar->save();
 
     if (cookies.isEmpty()){
         emit loginFail();
     }else{
         emit loginSuccess();
+        setUsername(settings.value("Username").toString());
     }
     setLoading(false);
 }
@@ -168,7 +203,7 @@ void HttpManager::logout(){
     CookieJar::STAY_LOGGED_IN = false;
     delete jar;
     jar = new CookieJar(this);
-   // CookieJar::STAY_LOGGED_IN = true;  // Will need to be set back to implement logout to login screen instead of Qt.quit
+   // CookieJar::STAY_LOGGED_IN = true;  // Will need to be set back to implement to login screen instead of Qt.quit
 }
 
 /*

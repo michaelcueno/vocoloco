@@ -33,12 +33,6 @@ Item{
         anchors.right: allConversations.right; anchors.top: allConversations.top;
     }
 
-    function loadXML(){
-        xml_conversations.source = mainUrl + "conversations"
-        xml_conversations.reload()
-        console.log("homescreen reloaded")
-    }
-
     XmlListModel {
 
         id: xml_conversations
@@ -50,5 +44,47 @@ Item{
         XmlRole { name: "title"; query: "title/string()" }
         XmlRole { name: "createdby"; query: "createdby/string()" }
         XmlRole { name: "date"; query: "date/string()" }
+    }
+
+
+    Image {
+        id: shader
+        source: ":/images/shade.png"
+        anchors.fill: parent
+        fillMode: Image.Tile
+        visible: false
+    }
+
+    Rectangle {
+        id: deleteConvo
+        anchors.centerIn: parent
+        color: "red"
+        width: 100
+        height: 50
+        Text{ text: "delete?" }
+        visible: false
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                network.deleteConvo(convoToDelete)
+                shader.visible = false
+                deleteConvo.visible = false
+            }
+        }
+    }
+
+    function pressed_convo(convo_id){
+        shader.visible = true
+        deleteConvo.visible = true
+        convoToDelete = convo_id
+    }
+
+    property string convoToDelete   // needed so that convo_id can be passed along to the mouse area on the delete button
+
+    function loadXML(){
+        xml_conversations.source = mainUrl + "conversations"
+        xml_conversations.reload()
+        console.log(network.username)
     }
 }

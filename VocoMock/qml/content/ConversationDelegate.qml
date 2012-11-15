@@ -24,6 +24,9 @@ Rectangle {
         convoUsersXML.loadXML()
     }
 
+    signal convo_pressed()
+    signal convo_normal()
+
     Component.onCompleted: {setTitle(); load()}
 
     //------------------------------- End of Logic Code ---------------------------------//
@@ -32,8 +35,6 @@ Rectangle {
         id: list_background
         source: ":/images/list_background.gif"
     }
-
-
 
     Rectangle {
         id: convoUsers
@@ -88,10 +89,16 @@ Rectangle {
     }
 
 
+
+
 // ----------------------------- Clickable Interactivity Code -----------------------//
     MouseArea {
         anchors { left: convoUsers.right; right:parent.right; top:parent.top; bottom:parent.bottom;}
-       // onPressAndHold: parent.state = "pressed"
+        onPressAndHold: {
+            parent.state = "pressed"
+            homeScreen.pressed_convo(convo_id)
+        }
+
         onClicked: {
             changeHeader(title)
             changeScreen(convoScreen)
@@ -108,7 +115,8 @@ Rectangle {
         },
         State {
             name: "pressed"
-            PropertyChanges { target: row; color: "lightsteelblue"}
+          /*  PropertyChanges { target: row; color: "lightsteelblue"}
+            PropertyChanges { target: list_background; source: ""} */
         }
     ]
 
@@ -120,5 +128,4 @@ Rectangle {
         }
     ]
 //-------------------------------End of Clickable code -----------------------------//
-
 }

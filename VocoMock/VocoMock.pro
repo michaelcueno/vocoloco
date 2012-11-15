@@ -2,22 +2,35 @@ SOURCES += main.cpp \
            httpmanager.cpp \  
     cookiejar.cpp \
     networkfactory.cpp \
-    postnewconversation.cpp
+    postnewconversation.cpp \
+    newmessage.cpp \
+    mainwindow.cpp \
+  #  androidmediaplayer.cpp
 
 HEADERS += \
     httpmanager.h \
     cookiejar.h \
     networkfactory.h \
     ImageProvider.h \
-    postnewconversation.h
+    postnewconversation.h \
+    newmessage.h \
+    mainwindow.h \
+   # andoidmediaplayer.h
 
 RESOURCES += voco.qrc
 
 QT += network
 
+INCLUDEPATH += /usr/lib/jni # /home/mike/necessitas/android-ndk/platforms/android-14/arch-arm/usr/include/
+
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
+
+android {
+    SOURCES += androidmediaplayer.cpp
+    HEADERS += androidmediaplayer.h
+}
 
 OTHER_FILES += \
     android/version.xml \
@@ -26,6 +39,7 @@ OTHER_FILES += \
     android/src/org/kde/necessitas/ministro/IMinistro.aidl \
     android/src/org/kde/necessitas/origo/QtApplication.java \
     android/src/org/kde/necessitas/origo/QtActivity.java \
+    android/src/org/kde/necessitas/orgio/QtApplication.java \
     android/res/values-ru/strings.xml \
     android/res/values-nb/strings.xml \
     android/res/drawable-hdpi/icon.png \

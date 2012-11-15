@@ -9,6 +9,10 @@
 #include <QDeclarativeEngine>
 #include <QDeclarativeImageProvider>
 #include <QDebug>
+#include <QMenuBar>
+#include "mainwindow.h"
+//#include <jni.h>
+//#include "androidmediaplayer.h"
 
 int main(int argc, char *argv[])
 {
@@ -20,6 +24,7 @@ int main(int argc, char *argv[])
 
     HttpManager network;
     QmlApplicationViewer viewer;
+    //AndroidMediaPlayer player;
 
                      //  ImageProvider *imageProvider = new ImageProvider(network.getManager());
 
@@ -35,7 +40,12 @@ int main(int argc, char *argv[])
     // Initailize and build QML
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationLockPortrait);
     viewer.setSource(QUrl(QLatin1String("qrc:/qml/main.qml")));
- //   viewer.ResizeMode(QDeclarativeView::SizeRootObjectToView);
+
+    //   viewer.ResizeMode(QDeclarativeView::SizeRootObjectToView);
+
+
+    MainWindow logoutbtn;
+    logoutbtn.setOrientation(MainWindow::ScreenOrientationAuto);
 
 
     // Locate and instantiate QML objects for connections
@@ -54,6 +64,10 @@ int main(int argc, char *argv[])
     // Tests
     QObject::connect(&network, SIGNAL(test()), main, SLOT(test()));
 
+    //logoutbtn.show();
+
     viewer.showExpanded();  // TODO: change to showFullScreen somehow grab the width and hieght of the application and resize QML
+
+
     return app.exec();
 }
