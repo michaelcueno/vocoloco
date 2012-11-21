@@ -18,6 +18,8 @@
 #include "cookiejar.h"
 #include "postnewconversation.h"
 #include "newmessage.h"
+#include "androidmediaobject.h"  // Defined in the .pro file (automatically happens when build is switched)
+
 
 class HttpManager : public QObject
 {
@@ -75,6 +77,11 @@ public:
     Q_INVOKABLE void setNewMessageContent(QString content);
     Q_INVOKABLE bool postNewMessage();  // Returns false if new_convo doesn't have a title or any users
 
+    // For the QML player
+    Q_INVOKABLE void play();
+    Q_INVOKABLE void record();
+    Q_INVOKABLE void downloadAudio(QString url);  // Plays the audio after downloading
+    Q_INVOKABLE void stopRecording();
     QNetworkAccessManager* getNam();
 
 
@@ -91,11 +98,11 @@ signals:
     void test();
 
 public slots:
-    void requestXML(QString request);
     void postCredentials(QString credentials);
     void setDownloadProgress(qint64 soFar,qint64 total);
     void authenticate();
-    void parseReply();
+    void writeAudioToFile(); // Plays the file at the end of the method TODO: Should be private
+
 
 private:
     QNetworkAccessManager *manager;
@@ -109,7 +116,7 @@ private:
     QString m_username;
     PostNewConversation *new_convo;
     NewMessage *new_message;
-
+    AndroidMediaObject *player;
 };
 
 #endif // HTTPMANAGER_H

@@ -1,11 +1,11 @@
 SOURCES += main.cpp \ 
-           httpmanager.cpp \  
+    httpmanager.cpp \
     cookiejar.cpp \
     networkfactory.cpp \
     postnewconversation.cpp \
     newmessage.cpp \
     mainwindow.cpp \
-  #  androidmediaplayer.cpp
+    dummydesktopplayer.cpp
 
 HEADERS += \
     httpmanager.h \
@@ -15,21 +15,32 @@ HEADERS += \
     postnewconversation.h \
     newmessage.h \
     mainwindow.h \
-   # andoidmediaplayer.h
+    dummydesktopplayer.h
+
 
 RESOURCES += voco.qrc
 
 QT += network
 
-INCLUDEPATH += /usr/lib/jni # /home/mike/necessitas/android-ndk/platforms/android-14/arch-arm/usr/include/
+linux-g++ {
+    INCLUDEPATH +=  "/usr/lib/jvm/java-1.6.0-openjdk/include"   \ # path to jni on linux
+    DEFINES += MEDIA_PLAYER=\\\"dummymediaplayer.h\\\"
+    DEFINES += MEDIA_PLAYER_OBJECT=DummyMediaPlayer
+}
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
 
 android {
-    SOURCES += androidmediaplayer.cpp
-    HEADERS += androidmediaplayer.h
+    SOURCES += androidmediaobject.cpp
+
+    HEADERS += androidmediaobject.h
+
+    INCLUDEPATH +=  /usr/lib/jni  #  path to jni for android
+    DEFINES += MEDIA_PLAYER=\\\"androidmediaobject.h\\\"
+    DEFINES += MEDIA_PLAYER_OBJECT=AndroidMediaObject
+
 }
 
 OTHER_FILES += \
@@ -82,5 +93,6 @@ OTHER_FILES += \
     qml/content/MessageDelegate.qml \
     qml/content/Contacts.qml \
     qml/content/ContactsDelegate.qml \
-    qml/content/SearchBox.qml
+    qml/content/SearchBox.qml \
+    qml/TestScreen.qml
 

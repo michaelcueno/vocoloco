@@ -32,6 +32,8 @@ Rectangle {
 
     Record {id: recordScreen; anchors.fill: parent; visible: false}
 
+    TestScreen {id: audioTest; anchors.fill: parent; visible: true}
+
     Rectangle {
         id: logoutBtn
         color: "red"

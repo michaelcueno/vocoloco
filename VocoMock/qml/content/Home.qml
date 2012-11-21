@@ -2,6 +2,10 @@
  * This is the view of the conversations, I called it "home" since it is the first screen a user
  * will see when they log in, also all screens are one away from this screen and they all go back
  * to this screen.
+ *
+ * CONTAINED IN THIS FILE:
+ *  1. All conversations beloging to the logged in user in a list view
+ *  2. The delete Conversation button, when a conversation is pressed and held this will become visible
  */
 
 import QtQuick 1.1
@@ -55,7 +59,7 @@ Item{
         visible: false
     }
 
-    Rectangle {
+    Rectangle {     // -------------------- Delete Button that pops up on conversation pressed -------|
         id: deleteConvo
         anchors.centerIn: parent
         color: "red"
@@ -74,6 +78,10 @@ Item{
         }
     }
 
+    /**
+      This function darkens the covo view and brings up the delete button
+      TODO: Should make all functionality of normal homescreen inactive.
+    */
     function pressed_convo(convo_id){
         shader.visible = true
         deleteConvo.visible = true

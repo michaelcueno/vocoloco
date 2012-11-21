@@ -1,8 +1,7 @@
 #include "httpmanager.h"
 
-
-static QString app = "http://vocoloco.herokuapp.com/";
-
+QDir dir;
+static QString APP = "http://vocoloco.herokuapp.com/";
 
 HttpManager::HttpManager()
 {
@@ -12,6 +11,10 @@ HttpManager::HttpManager()
     m_isLoading = false;
     new_convo = new PostNewConversation();
     new_message = new NewMessage();
+
+
+    // QML Player
+    player = 0;
 
  //   tmp = new QList<QByteArray>();
  //   reply = new HttpReply();
@@ -23,6 +26,99 @@ HttpManager::~HttpManager()
     delete manager;
     delete jar;
 }
+
+/////////////////////////////////////// TEMP FOR AUDIO PLAYER
+
+/*
+ * Sends a request to "url". This method will then download the audio file
+ * that is hosted at "url" and call the slot writeAudioToFile().
+ */
+void HttpManager::downloadAudio(QString url){
+
+    request = QNetworkRequest(QUrl( url ));
+    QNetworkReply *localreply = manager->get(request);
+    localreply->ignoreSslErrors();
+    connect(localreply, SIGNAL(finished()), this, SLOT(writeAudioToFile()));
+}
+
+/**
+ * @brief Plays audio file in local storage at TMP_AUDIO_PATH
+ */
+void HttpManager::play(){
+
+    QString TMP_AUDIO_PATH = dir.absolutePath() + "/tmpAudio";
+
+    QByteArray latin = TMP_AUDIO_PATH.toLatin1();
+
+    qDebug() << latin;
+
+    player = new AndroidMediaObject("player");
+    if (!player->playerSetUrl(latin))
+    {
+        qDebug() << "Error: couldn't load file";
+    }
+    if (!player->play()) {
+        qDebug() << "Error: couldn't play file";
+    }
+
+    delete player;
+
+}
+
+/**
+ * Writes the audio file to local storage.
+ */
+void HttpManager::writeAudioToFile(){
+
+    QString TMP_AUDIO_PATH = dir.absolutePath() + "/tmpAudio";
+
+    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+
+    QFile file(TMP_AUDIO_PATH);
+    if ( file.open(QFile::ReadWrite) )
+    {
+        QTextStream stream( &file );
+        stream << reply->readAll();
+    }
+    else
+    {
+        qDebug( "Could not create file %s", TMP_AUDIO_PATH );
+    }
+
+    file.close();
+
+    QFile contents(TMP_AUDIO_PATH);
+
+    if ( contents.open(QFile::ReadWrite) )
+    {
+        qDebug() << contents.read(2048);
+    }
+    else
+    {
+        qDebug( "Could not open file %s", TMP_AUDIO_PATH );
+    }
+
+    this->play();
+}
+
+void HttpManager::record()
+{
+    QString TMP_AUDIO_PATH = dir.absolutePath() + "/tmpAudio.3gp";
+    QByteArray latin = TMP_AUDIO_PATH.toLatin1();
+    player = new AndroidMediaObject("recorder");
+    player->recorderSetUrl(latin);
+     qDebug() << latin;
+    player->record();
+}
+
+void HttpManager::stopRecording()
+{
+    if(player){
+        player->recorderStop();
+    }
+}
+
+/////////////////////////////////////////////////////// End of Audio Player stuff
 
 /**
  * @brief progress of a current http request
@@ -87,7 +183,7 @@ bool HttpManager::postNewConvo()
     }
 
     // Start Post Request
-    request = QNetworkRequest(QUrl(app + "conversation" ));
+    request = QNetworkRequest(QUrl(APP + "conversation" ));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "text/xml");
 
 
@@ -124,20 +220,6 @@ bool HttpManager::hasSavedCookie(){
         return false;
 }
 
-
-/*
- * Sends a request. Correct implementation will request vocoloco.herokuapp.com/requested where requested is the
- * parameter passed in. This method is connected to the parse reply method which will run when the
- * request has finished (when it is fully downloaded into the reply instance)
- */
-void HttpManager::requestXML(QString requested ){
-
-    request = QNetworkRequest(QUrl(app + requested ));
-    QNetworkReply *localreply = manager->get(request);
-    localreply->ignoreSslErrors();
-    connect(localreply, SIGNAL(readyRead()), this, SLOT(parseReply()));
-}
-
 /*
  * This method Posts login credentails to server @ vocoloco.herokuapp.com/login
  */
@@ -161,7 +243,7 @@ void HttpManager::postCredentials(QString credentials){
     }
 
     settings.setValue("Username", usrn);
-    request = QNetworkRequest(QUrl(app + "login"));
+    request = QNetworkRequest(QUrl(APP + "login"));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 
     postData.addQueryItem("username", usrn);
@@ -206,45 +288,3 @@ void HttpManager::logout(){
    // CookieJar::STAY_LOGGED_IN = true;  // Will need to be set back to implement to login screen instead of Qt.quit
 }
 
-/*
- * Dummy method for parsing a reply, not to be used in production
- */
-void HttpManager::parseReply(){
-
-    CookieJar *test = new CookieJar(this);
-    QDir dir;
-    QString path = dir.absolutePath();
-    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
-
-   // qDebug() << reply->read(2048);
-
-    /*
-
-    QFile file(path + "/conversations.xml");
-    if ( file.open(QFile::ReadWrite) )
-    {
-        QTextStream stream( &file );
-        stream << reply->read(2048);
-    }
-    else
-    {
-        qDebug( "Could not create file %s", "filename" );
-    }
-
-    file.close();
-
-    setPath(QUrl(app + "conversations"));
-
-    /*QFile test(path + "/conversations.xml");
-    if (test.pos() == 0) {
-        qDebug() << "Empty";
-    } else {
-        qDebug() << "Not empty";
-    }
-    if ( file.open(QFile::ReadOnly)){
-        qDebug() << test.read(2048);
-    }
-    else{
-        qDebug() << "Could not open file";
-    }*/
-}

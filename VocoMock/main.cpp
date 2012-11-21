@@ -11,8 +11,8 @@
 #include <QDebug>
 #include <QMenuBar>
 #include "mainwindow.h"
-//#include <jni.h>
-//#include "androidmediaplayer.h"
+#include <jni.h>
+
 
 int main(int argc, char *argv[])
 {
@@ -24,7 +24,6 @@ int main(int argc, char *argv[])
 
     HttpManager network;
     QmlApplicationViewer viewer;
-    //AndroidMediaPlayer player;
 
                      //  ImageProvider *imageProvider = new ImageProvider(network.getManager());
 
@@ -36,7 +35,6 @@ int main(int argc, char *argv[])
 
     // make network avaiable to QML
     viewer.rootContext()->setContextProperty("network", &network);
-
     // Initailize and build QML
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationLockPortrait);
     viewer.setSource(QUrl(QLatin1String("qrc:/qml/main.qml")));

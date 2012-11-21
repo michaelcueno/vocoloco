@@ -54,5 +54,6 @@
         <file>images/forward.png</file>
         <file>images/shade.png</file>
         <file>audio/ALARM.WAV</file>
+        <file>qml/TestScreen.qml</file>
     </qresource>
 </RCC>
