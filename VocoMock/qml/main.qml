@@ -5,7 +5,7 @@ import 'content'
 // Main window of application -----------//
 Rectangle {
     id: window
-    width: 720; height: 1280
+    width: 720; height: 1280;
     objectName: "mainObj";
 
     property string mainUrl: "https://vocoloco.herokuapp.com/"
@@ -32,7 +32,7 @@ Rectangle {
 
     Record {id: recordScreen; anchors.fill: parent; visible: false}
 
-    TestScreen {id: audioTest; anchors.fill: parent; visible: true}
+   // TestScreen {id: audioTest; anchors.fill: parent; visible: true}
 
     Rectangle {
         id: logoutBtn

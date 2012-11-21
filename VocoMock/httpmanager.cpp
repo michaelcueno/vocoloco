@@ -52,7 +52,7 @@ void HttpManager::play(){
 
     qDebug() << latin;
 
-    player = new AndroidMediaObject("player");
+    player = new DummyDesktopPlayer("player");
     if (!player->playerSetUrl(latin))
     {
         qDebug() << "Error: couldn't load file";
@@ -82,7 +82,7 @@ void HttpManager::writeAudioToFile(){
     }
     else
     {
-        qDebug( "Could not create file %s", TMP_AUDIO_PATH );
+        qDebug( "Could not create file %s" );
     }
 
     file.close();
@@ -95,7 +95,7 @@ void HttpManager::writeAudioToFile(){
     }
     else
     {
-        qDebug( "Could not open file %s", TMP_AUDIO_PATH );
+        qDebug( "Could not open file %s" );
     }
 
     this->play();
@@ -105,7 +105,7 @@ void HttpManager::record()
 {
     QString TMP_AUDIO_PATH = dir.absolutePath() + "/tmpAudio.3gp";
     QByteArray latin = TMP_AUDIO_PATH.toLatin1();
-    player = new AndroidMediaObject("recorder");
+    player = new DummyDesktopPlayer("recorder");
     player->recorderSetUrl(latin);
      qDebug() << latin;
     player->record();

@@ -6,12 +6,20 @@
 class DummyDesktopPlayer
 {
 public:
-    DummyDesktopPlayer();
+    DummyDesktopPlayer(QString type);
     ~DummyDesktopPlayer();
-    bool setUrl(const QString &url);
+    bool playerSetUrl(const QString &url);
     bool play();
-    bool pause();
-    bool stop();
+    bool playerPause();
+    bool playerStop();
+
+    // Recorder functions
+    bool recorderSetUrl(const QString &url);
+    bool record();
+    bool recorderStop();
+
+    static QString type;
+
 
 };
 
