@@ -8,6 +8,9 @@ CookieJar::CookieJar(QObject *parent) : QNetworkCookieJar(parent)
     load();
 }
 
+/**
+ * Destructor that will save the cookie to local storage if boolean STAY_LOGGED_IN is true
+ */
 CookieJar::~CookieJar()
 {
     if(CookieJar::STAY_LOGGED_IN)
@@ -21,6 +24,9 @@ QList<QNetworkCookie> CookieJar::getCookies(){
     return this->allCookies();
 }
 
+/**
+ * Saves cookie to QSettings object which is stored in the directory where the binaries are kept.
+ */
 void CookieJar::save()
 {
     QList<QNetworkCookie> list = allCookies();
@@ -34,13 +40,17 @@ void CookieJar::save()
     settings.sync();
 }
 
+/**
+ * If a cookie is saved in the QSettings then this will load that cookie into the cookiejar for all
+ * cookie jars accross the application
+ */
 void CookieJar::load()
 {
     QSettings settings;
     QByteArray data = settings.value("Cookies").toByteArray();
     setAllCookies(QNetworkCookie::parseCookies(data));
     settings.sync();
-    QList<QNetworkCookie> cookies = this->getCookies();
+   // QList<QNetworkCookie> cookies = this->getCookies();
 }
 
 void CookieJar::PrintCookies(){

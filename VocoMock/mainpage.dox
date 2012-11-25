@@ -1,0 +1,18 @@
+/**
+ \mainpage
+  VocoLoco is a messaging android application with an emphasis on group messaging and the use of audio. 
+  The goal is to create an instant, group voice-mail without having to wait for the end of a missed call to leave a message.
+ 
+<B>STRUCTURE</B>
+
+  The application is written primarily in Qt's QML (Qt Markup Language) which was meant for mobile applications. 
+  It is a very useful declarative language with much more functionality than most markup languages. With conditionals, 
+  Qt's signals and slots functionality, and the integration of javascript, QML is a well rounded language. But 
+  somethings were not possible using just QML itself. Fortunately, it allows for extension via c++. 
+
+  <B>C++ EXTENSION</B>
+
+  The QML engine allows a c++ class to be set as a root context. This allows that class and it's methods to be 
+  called directly from the QML. We leveraged this by using the HttpManager which serves as the backend controller 
+  of the application (written in c++). 
+ */

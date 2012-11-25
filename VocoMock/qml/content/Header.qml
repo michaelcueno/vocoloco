@@ -9,21 +9,35 @@ Rectangle {
     x: 0; y: 0; width: window.screenWidth; height: window.screenHieght * (1/10);
     color: "#ded4b9"
 
-    Text {
+    Image {
+        id: background
+        anchors.fill: parent
+        fillMode: Image.Tile
+        source: ":/images/egg_shell.png"
+    }
+
+    Text { // Header title
         id: header_string
         text: headerTitle
         font.pixelSize: 35; font.bold: true
         anchors { verticalCenter: parent.verticalCenter; left: parent.left; }
     }
 
-    // Using nested image here because I don't know another way to get transparency. I want the gradient to come through
-    Image {
+    Rectangle { // Line break in header
+        id: header_linebreak1
+        anchors.top: parent.top; anchors.bottom: parent.bottom; anchors.right: newConvoBtn.left; anchors.rightMargin: 0;
+        width: 2
+        opacity: .6
+        color: "black"
+    }
+
+    Image {  // New Coversation Button (top right of header)
         id: newConvoBtn
-        x: window.width * (2/3); y: 20
         anchors.verticalCenter: parent.verticalCenter
+        anchors.right: header_linebreak.left; anchors.rightMargin: 10;
         width: ((window.width * (1/3) * (1/2)) - 1)
         height: 64
-        Image {
+        Image {  // Using nested image here because I don't know another way to get transparency. I want the gradient to come through
            id: plus_img
            source: "images/plus.png"
            anchors.centerIn: parent
@@ -32,6 +46,7 @@ Rectangle {
 
         }
         MouseArea{
+            id: new_convo_mouse_area
             anchors.fill: parent
             onClicked: {
                 headerTitle = "Create New Conversation"
@@ -50,32 +65,33 @@ Rectangle {
         }
 
     }
-    Rectangle {
+
+    Rectangle { // Line break in header
         id: header_linebreak
-        anchors.top: parent.top; anchors.bottom: parent.bottom; anchors.left: newConvoBtn.right
+        anchors.top: parent.top; anchors.bottom: parent.bottom; anchors.right: contactsBtn.left; anchors.rightMargin: 25;
         width: 2
         opacity: .6
-        color: "white"
+        color: "black"
     }
 
-    // Contacts Button at top right hand corner
-    Image {
+    Image { // Contacts Button at top right hand corner
         id: contactsBtn
         anchors.verticalCenter: parent.verticalCenter
-        x:window.width-100
+        x:window.width-115
         y: 20
-        width: 64
-        height: 64
+        width: 100
+        height: 100
 
         Image{
             id: contacts_img
-            source: "images/contacts.png"
+            source: ":/images/contacts.png"
             anchors.centerIn: parent
-            width: 64
-            height: 64
+            width: 100
+            height: 100
         }
 
         MouseArea{
+            id: contacts_mouse_area
             anchors.fill: parent
             onClicked: {
                headerTitle = "All Contacts"
@@ -94,9 +110,7 @@ Rectangle {
         }
     }
 
-    // Back Button -----------------------------------------------------------------------------------------------------
-
-    Image {
+    Image { // Back Button
         id: backBtn
         x: -40
         y: 20
@@ -118,7 +132,6 @@ Rectangle {
             onClicked: {
                unHideBtns()
                changeScreen(homeScreen)
-                homeScreen.loadXML()
             }
         }
         states: State { name: "ACTIVE"; PropertyChanges { target: backBtn; opacity: 1; x:0 } }
@@ -135,6 +148,9 @@ Rectangle {
         backBtn.state = "ACTIVE"
         header_string.anchors.leftMargin = 60
         header_linebreak.visible = false
+        header_linebreak1.visible = false
+        new_convo_mouse_area.enabled = false
+        contacts_mouse_area.enabled = false
     }
 
     function unHideBtns(){
@@ -143,5 +159,8 @@ Rectangle {
         backBtn.state = ""
         header_string.anchors.leftMargin = 30
         header_linebreak.visible = true
+        header_linebreak1.visible = true
+        new_convo_mouse_area.enabled = true
+        contacts_mouse_area.enabled = true
     }
 }

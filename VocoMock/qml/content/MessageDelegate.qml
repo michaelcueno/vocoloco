@@ -2,6 +2,8 @@ import QtQuick 1.1
 
 Item {
 
+    rotation: 180
+
     height: 200; width: window.width
     id: messageDelegate
 
@@ -14,7 +16,8 @@ Item {
         id: user_img
         source: "http://vocoloco.herokuapp.com/" + userpic
         width: 105; height: 105
-        x: 30; y: 22;
+        x: owner === network.username ? (window.screenWidth - (user_img.width + 30)) : 30
+        y: 22;
     }
 
     Text {
@@ -26,16 +29,22 @@ Item {
 
     Text {
         id: content;
-     anchors { left: user_img.right; leftMargin: 20; }
-        text:message
+        anchors.leftMargin: 20;
+        height: parent.height
+        anchors.right: owner === network.username ? user_img.left : undefined;
+        anchors.left: owner === network.username ? undefined : user_img.right;
+        text: message
+        verticalAlignment: Text.AlignVCenter
         wrapMode: Text.WordWrap
         font.pixelSize: window.normalFont
     }
 
     Text {
         id: timestamp
-        anchors{ bottom: parent.bottom; right: parent.right; margins: 30 }
+        anchors.bottom: parent.bottom;
+        anchors.margins: 30
+        anchors.right: owner === network.username ? undefined : parent.right;
+        anchors.left: owner === network.username ? parent.left : undefined;
         text:date
     }
-
 }

@@ -15,8 +15,6 @@ Rectangle {
     property bool isLoading
 
 
-
-
     // Masthead
     Text {
         y: parent.height * (1/10)
@@ -31,7 +29,6 @@ Rectangle {
         on: network.isLoading;
         anchors { horizontalCenter: parent.horizontalCenter; top: parent.top; topMargin: 40}
     }
-
 
     // Username input field
     TextBox {

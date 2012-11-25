@@ -69,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -88,6 +88,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">CookieJar Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="cookiejar_8h_source.html">cookiejar.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for CookieJar:</div>
 <div class="dyncontent">
@@ -102,11 +104,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9d8362bfcc4d3fb2c5317de3305635a7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9d8362bfcc4d3fb2c5317de3305635a7"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>CookieJar</b> (QObject *parent)</td></tr>
 <tr class="separator:a9d8362bfcc4d3fb2c5317de3305635a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa36822f501cf36baf4984ce9920bfb75"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa36822f501cf36baf4984ce9920bfb75"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>save</b> ()</td></tr>
+<tr class="memitem:ada1a5607a27433955f2b985c6d10bd0a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCookieJar.html#ada1a5607a27433955f2b985c6d10bd0a">~CookieJar</a> ()</td></tr>
+<tr class="separator:ada1a5607a27433955f2b985c6d10bd0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa36822f501cf36baf4984ce9920bfb75"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCookieJar.html#aa36822f501cf36baf4984ce9920bfb75">save</a> ()</td></tr>
 <tr class="separator:aa36822f501cf36baf4984ce9920bfb75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab58f94721665cfcf1eb24b140abe53f8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab58f94721665cfcf1eb24b140abe53f8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>load</b> ()</td></tr>
+<tr class="memitem:ab58f94721665cfcf1eb24b140abe53f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCookieJar.html#ab58f94721665cfcf1eb24b140abe53f8">load</a> ()</td></tr>
 <tr class="separator:ab58f94721665cfcf1eb24b140abe53f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa887fb809d2206d4d03e623310fba49a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa887fb809d2206d4d03e623310fba49a"></a>
 QList&lt; QNetworkCookie &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getCookies</b> ()</td></tr>
@@ -117,10 +119,83 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>PrintCookies</b> ()</
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:a73f0b1e75f689e85ab833b0f1d680827"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73f0b1e75f689e85ab833b0f1d680827"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>STAY_LOGGED_IN</b> = true</td></tr>
+<tr class="memitem:a73f0b1e75f689e85ab833b0f1d680827"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCookieJar.html#a73f0b1e75f689e85ab833b0f1d680827">STAY_LOGGED_IN</a> = true</td></tr>
 <tr class="separator:a73f0b1e75f689e85ab833b0f1d680827"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Allows for a permanent cookie jar by saving cookies on delete to QSettings and then loading from QSettings on creation </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ada1a5607a27433955f2b985c6d10bd0a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CookieJar::~CookieJar </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Destructor that will save the cookie to local storage if boolean STAY_LOGGED_IN is true </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ab58f94721665cfcf1eb24b140abe53f8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CookieJar::load </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>If a cookie is saved in the QSettings then this will load that cookie into the cookiejar for all cookie jars accross the application </p>
+
+</div>
+</div>
+<a class="anchor" id="aa36822f501cf36baf4984ce9920bfb75"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CookieJar::save </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Saves cookie to QSettings object which is stored in the directory where the binaries are kept. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a73f0b1e75f689e85ab833b0f1d680827"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CookieJar::STAY_LOGGED_IN = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>This variable is used to delete the cookies in the settings for the applicaiton. The QApplicationViewer will set this variable upon its destruction to either true or false depending on if the user checked the 'keep me logged in button' </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="cookiejar_8h_source.html">cookiejar.h</a></li>
 <li>cookiejar.cpp</li>
@@ -128,7 +203,7 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>STAY_LOGGED_IN
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 15 2012 16:14:58 for VocoLoco by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Nov 25 2012 12:59:25 for VocoLoco by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

@@ -20,7 +20,13 @@
 #include "newmessage.h"
 #include "dummydesktopplayer.h"  // Defined in the .pro file (automatically happens when build is switched)
 
-
+/**
+ * @brief This class acts as the backend controller for the QML engine viewer.
+ *
+ *  The httpmanager is responsible for providing all the networking functionality and backend
+ *  c++ computation needed for the application. It handles everything from making login requests
+ *  and storing username information to posting messages and new conversations to the server.
+ */
 class HttpManager : public QObject
 {
 
@@ -72,6 +78,7 @@ public:
     Q_INVOKABLE void clearNewConvoUsers();
     Q_INVOKABLE bool postNewConvo();  // Returns false if new_convo doesn't have a title or any users
     Q_INVOKABLE void deleteConvo(QString convo_id);
+    Q_INVOKABLE int newConvoId();
 
     // For creating and posting a new message
     Q_INVOKABLE void setNewMessageContent(QString content);

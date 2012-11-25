@@ -37,7 +37,7 @@ Item{
         anchors.right: allConversations.right; anchors.top: allConversations.top;
     }
 
-    XmlListModel {
+    XmlListModel { // Provides data for conversation listmodel
 
         id: xml_conversations
 
@@ -50,8 +50,7 @@ Item{
         XmlRole { name: "date"; query: "date/string()" }
     }
 
-
-    Image {
+    Image {  // Shader for when delete button comes up
         id: shader
         source: ":/images/shade.png"
         anchors.fill: parent
@@ -62,37 +61,87 @@ Item{
     Rectangle {     // -------------------- Delete Button that pops up on conversation pressed -------|
         id: deleteConvo
         anchors.centerIn: parent
-        color: "red"
-        width: 100
-        height: 50
-        Text{ text: "delete?" }
+        color: "#1a7fdd"
+        width: screenWidth * 2/3
+        height: screenHieght * 1/4
         visible: false
 
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                network.deleteConvo(convoToDelete)
-                shader.visible = false
-                deleteConvo.visible = false
+        Text {
+            id: you_sure
+            style: Text.Raised; font.pointSize: 30
+            text: "Do you want to delete"
+            anchors.leftMargin: 10
+        }
+        Text {
+            anchors.top: you_sure.bottom;
+            text: convoToDelete_title
+            horizontalAlignment: Text.AlignHCenter
+            font.pixelSize: 30
+            anchors.leftMargin: 10
+        }
+
+        Rectangle {
+            id: deleteBtn
+            width: parent.width * .45
+            height: 70;
+            color: "#d32020"
+
+            anchors { left: parent.left; leftMargin: 10; bottom: parent.bottom; bottomMargin: 10}
+            Text {
+                anchors.centerIn: parent
+                text: "Delete"
+                font.pixelSize: 30
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    network.deleteConvo(convoToDelete_id)
+                    shader.visible = false
+                    deleteConvo.visible = false
+                }
             }
         }
+
+        Rectangle {
+            id: cancle
+            width: parent.width * .45
+            height: 70;
+            color: "#b1c0c8"
+            anchors { right: parent.right; rightMargin: 10; bottom: parent.bottom; bottomMargin: 10}
+            Text {
+                anchors.centerIn: parent
+                text: "Cancle"
+                font.pixelSize: 30
+            }
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    shader.visible = false
+                    deleteConvo.visible = false
+                }
+            }
+        }
+
+
     }
 
     /**
       This function darkens the covo view and brings up the delete button
       TODO: Should make all functionality of normal homescreen inactive.
     */
-    function pressed_convo(convo_id){
+    function pressed_convo(convo_id, convo_title){
         shader.visible = true
         deleteConvo.visible = true
-        convoToDelete = convo_id
+        convoToDelete_id = convo_id
+        convoToDelete_title = convo_title
     }
 
-    property string convoToDelete   // needed so that convo_id can be passed along to the mouse area on the delete button
+    property string convoToDelete_id   // needed so that convo_id can be passed along to the mouse area on the delete button
+    property string convoToDelete_title
 
     function loadXML(){
         xml_conversations.source = mainUrl + "conversations"
         xml_conversations.reload()
-        console.log(network.username)
     }
 }

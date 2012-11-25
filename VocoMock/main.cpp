@@ -54,7 +54,6 @@ int main(int argc, char *argv[])
 
     // Signals to slots between QML and c++
     QObject::connect(login, SIGNAL(postCredentials(QString)), &network, SLOT(postCredentials(QString)));
-    QObject::connect(login, SIGNAL(requestXML(QString)), &network, SLOT(requestXML(QString)));
     QObject::connect(&network, SIGNAL(loginSuccess()), login, SLOT(onLoginSuccess()));
     QObject::connect(&network, SIGNAL(loginFail()), login, SLOT(onLoginFail()));
 

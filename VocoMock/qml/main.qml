@@ -32,8 +32,19 @@ Rectangle {
 
     Record {id: recordScreen; anchors.fill: parent; visible: false}
 
+    // Shadow underneath header
+    Image {
+        id: header_shadow
+        width: window.screenWidth
+        source: ":/qml/content/images/header-shadow.png"
+        anchors.top: header.bottom
+        fillMode: Image.TileHorizontally
+        visible: false
+    }
+
    // TestScreen {id: audioTest; anchors.fill: parent; visible: true}
 
+    /*   // Logout button (Not for production)
     Rectangle {
         id: logoutBtn
         color: "red"
@@ -49,7 +60,7 @@ Rectangle {
             anchors.fill: parent
             onClicked: logout()
         }
-    }
+    }  */
 
     //---- End of visual comonents ----- |
 
@@ -72,14 +83,25 @@ Rectangle {
     function checkForSavedCookies()
     {
         if(network.hasSavedCookie()){
-            network.requestXML("conversations")
             changeScreen(homeScreen)
             loadXML()
             // TODO BUG: deletes cookie on second opening of application.
         }
     }
 
-    function changeScreen(screen){
+    function hideHeaderShadow() // For use when widgets come up and cover the whole screen (otherwise this will show through)
+    {
+        header_shadow.visible = false;
+    }
+    function showHeaderShadow()  // to restore state
+    {
+        header_shadow.visible = true;
+    }
+
+    function changeScreen(screen, id){
+
+        if(newConvoScreen.visible)
+            var fromNewConvo = true
 
         header.visible = true;
         homeScreen.visible = false;
@@ -90,9 +112,20 @@ Rectangle {
         loginScreen.visible = false;
         screen.visible = true;
 
+        header_shadow.visible = true;
+
         if(homeScreen.visible){
             changeHeader("All Conversations");
             header.unHideBtns()
+        }
+
+        if(newConvoScreen.visible){
+            newConvoScreen.setFocus()
+        }
+
+        if(convoScreen.visible && fromNewConvo){
+            convoScreen.convo_id = id
+            convoScreen.loadXML()
         }
     }
 
@@ -109,7 +142,7 @@ Rectangle {
 
     // Set screen width and height for some static properties that will not resize on soft keyboard invokation
     function setDimensions(){
-        screenHieght = window.height
+        screenHieght = window.height - 140
         screenWidth = window.width
         console.log(screenHieght)
         console.log(screenWidth)

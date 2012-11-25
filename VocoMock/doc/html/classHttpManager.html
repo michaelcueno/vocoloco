@@ -69,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -90,6 +90,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">HttpManager Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This class acts as the backend controller for the QML engine viewer.  
+ <a href="classHttpManager.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="httpmanager_8h_source.html">httpmanager.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for HttpManager:</div>
 <div class="dyncontent">
@@ -101,9 +106,6 @@ Inheritance diagram for HttpManager:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
 Public Slots</h2></td></tr>
-<tr class="memitem:a3079b9d369e775ed7bd0a3c86a7a5650"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3079b9d369e775ed7bd0a3c86a7a5650"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>requestXML</b> (QString request)</td></tr>
-<tr class="separator:a3079b9d369e775ed7bd0a3c86a7a5650"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1e6cdef1723a7b28a348b3046ddfe86"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac1e6cdef1723a7b28a348b3046ddfe86"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>postCredentials</b> (QString credentials)</td></tr>
 <tr class="separator:ac1e6cdef1723a7b28a348b3046ddfe86"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -113,9 +115,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setDownloadProgress</
 <tr class="memitem:a7dd56984ebb6adbad298a755c0b4d66a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7dd56984ebb6adbad298a755c0b4d66a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>authenticate</b> ()</td></tr>
 <tr class="separator:a7dd56984ebb6adbad298a755c0b4d66a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae32365e36d3f1c435438531d7d20441a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae32365e36d3f1c435438531d7d20441a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>parseReply</b> ()</td></tr>
-<tr class="separator:ae32365e36d3f1c435438531d7d20441a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a810bffa61e583780bfdaca7e85a9fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpManager.html#a5a810bffa61e583780bfdaca7e85a9fd">writeAudioToFile</a> ()</td></tr>
+<tr class="separator:a5a810bffa61e583780bfdaca7e85a9fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
 Signals</h2></td></tr>
@@ -179,8 +180,7 @@ Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><b>logout</b
 <tr class="memitem:abc77a75cfec070dc986707bdab152c49"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc77a75cfec070dc986707bdab152c49"></a>
 Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><b>setNewConvoTitle</b> (QString title)</td></tr>
 <tr class="separator:abc77a75cfec070dc986707bdab152c49"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac345aafb8d298dd34573971f3a7ad242"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac345aafb8d298dd34573971f3a7ad242"></a>
-Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><b>addNewConvoUser</b> (QString user)</td></tr>
+<tr class="memitem:ac345aafb8d298dd34573971f3a7ad242"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpManager.html#ac345aafb8d298dd34573971f3a7ad242">addNewConvoUser</a> (QString user)</td></tr>
 <tr class="separator:ac345aafb8d298dd34573971f3a7ad242"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc880ea260ad8d393259f44762799278"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc880ea260ad8d393259f44762799278"></a>
 Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><b>removeNewConvoUser</b> (QString user)</td></tr>
@@ -188,18 +188,33 @@ Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><b>removeNew
 <tr class="memitem:aa8bf26e7de4b36c0e96ee06baccfd933"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa8bf26e7de4b36c0e96ee06baccfd933"></a>
 Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><b>clearNewConvoUsers</b> ()</td></tr>
 <tr class="separator:aa8bf26e7de4b36c0e96ee06baccfd933"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1abaa98249ae82e1742b3ffbcf33fa4f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1abaa98249ae82e1742b3ffbcf33fa4f"></a>
-Q_INVOKABLE bool&#160;</td><td class="memItemRight" valign="bottom"><b>postNewConvo</b> ()</td></tr>
+<tr class="memitem:a1abaa98249ae82e1742b3ffbcf33fa4f"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpManager.html#a1abaa98249ae82e1742b3ffbcf33fa4f">postNewConvo</a> ()</td></tr>
 <tr class="separator:a1abaa98249ae82e1742b3ffbcf33fa4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97d6513de9a9c490dcd982921d320104"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a97d6513de9a9c490dcd982921d320104"></a>
 Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><b>deleteConvo</b> (QString convo_id)</td></tr>
 <tr class="separator:a97d6513de9a9c490dcd982921d320104"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a974c08cbe0f522aab3bf0ff51ca37296"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a974c08cbe0f522aab3bf0ff51ca37296"></a>
+Q_INVOKABLE int&#160;</td><td class="memItemRight" valign="bottom"><b>newConvoId</b> ()</td></tr>
+<tr class="separator:a974c08cbe0f522aab3bf0ff51ca37296"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78b37f4dc5025c91072a4ab073adc7f0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a78b37f4dc5025c91072a4ab073adc7f0"></a>
 Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><b>setNewMessageContent</b> (QString content)</td></tr>
 <tr class="separator:a78b37f4dc5025c91072a4ab073adc7f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a695213e7f8b379811f09846e979fd50e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a695213e7f8b379811f09846e979fd50e"></a>
 Q_INVOKABLE bool&#160;</td><td class="memItemRight" valign="bottom"><b>postNewMessage</b> ()</td></tr>
 <tr class="separator:a695213e7f8b379811f09846e979fd50e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d7a7272de96966d3bcf40c4448ed55f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5d7a7272de96966d3bcf40c4448ed55f"></a>
+Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpManager.html#a5d7a7272de96966d3bcf40c4448ed55f">play</a> ()</td></tr>
+<tr class="memdesc:a5d7a7272de96966d3bcf40c4448ed55f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plays audio file in local storage at TMP_AUDIO_PATH. <br/></td></tr>
+<tr class="separator:a5d7a7272de96966d3bcf40c4448ed55f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc162b753bd1ca62d74672e96a4775e2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adc162b753bd1ca62d74672e96a4775e2"></a>
+Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><b>record</b> ()</td></tr>
+<tr class="separator:adc162b753bd1ca62d74672e96a4775e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9baefea195b0e488348adeb82a0d80e1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9baefea195b0e488348adeb82a0d80e1"></a>
+Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><b>downloadAudio</b> (QString url)</td></tr>
+<tr class="separator:a9baefea195b0e488348adeb82a0d80e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80653bae4b0a66f9eda4c372d144c1be"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a80653bae4b0a66f9eda4c372d144c1be"></a>
+Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><b>stopRecording</b> ()</td></tr>
+<tr class="separator:a80653bae4b0a66f9eda4c372d144c1be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b5be6b80df7be50e135181ded11e5b5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4b5be6b80df7be50e135181ded11e5b5"></a>
 QNetworkAccessManager *&#160;</td><td class="memItemRight" valign="bottom"><b>getNam</b> ()</td></tr>
 <tr class="separator:a4b5be6b80df7be50e135181ded11e5b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -220,6 +235,67 @@ QUrl&#160;</td><td class="memItemRight" valign="bottom"><b>path</b></td></tr>
 QString&#160;</td><td class="memItemRight" valign="bottom"><b>username</b></td></tr>
 <tr class="separator:a7d7b4a614a7e7a7950710e16e3790638"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This class acts as the backend controller for the QML engine viewer. </p>
+<p>The httpmanager is responsible for providing all the networking functionality and backend c++ computation needed for the application. It handles everything from making login requests and storing username information to posting messages and new conversations to the server. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ac345aafb8d298dd34573971f3a7ad242"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HttpManager::addNewConvoUser </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>user</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Adds a user to the conversation that will be sent to the server vai POST </p>
+
+</div>
+</div>
+<a class="anchor" id="a1abaa98249ae82e1742b3ffbcf33fa4f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool HttpManager::postNewConvo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sends the post request to the server at POST /conversations </p>
+
+</div>
+</div>
+<a class="anchor" id="a5a810bffa61e583780bfdaca7e85a9fd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HttpManager::writeAudioToFile </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Writes the audio file to local storage. </p>
+
+</div>
+</div>
 <h2 class="groupheader">Property Documentation</h2>
 <a class="anchor" id="aa2f331facd6aeaff68c6f424f10bbce5"></a>
 <div class="memitem">
@@ -251,7 +327,7 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><b>username</b></td><
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 15 2012 16:14:58 for VocoLoco by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Nov 25 2012 12:59:25 for VocoLoco by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

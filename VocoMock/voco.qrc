@@ -55,5 +55,8 @@
         <file>images/shade.png</file>
         <file>audio/ALARM.WAV</file>
         <file>qml/TestScreen.qml</file>
+        <file>qml/content/images/header-shadow.png</file>
+        <file>images/contacts.png</file>
+        <file>images/egg_shell.png</file>
     </qresource>
 </RCC>

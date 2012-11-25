@@ -10,4 +10,5 @@ mysterious-atoll-2036/public/.DS_Store
 mysterious-atoll-2036/dist
 VocoMock-build*
 VocoMock/VocoMock.pro.user*
-VocoMock/android/bin/*
+VocoMock/android/bin/
+VocoMock/doc/

@@ -31,16 +31,17 @@ Rectangle {
 
     //------------------------------- End of Logic Code ---------------------------------//
 
-    Image {
-        id: list_background
-        source: ":/images/list_background.gif"
-    }
-
     Rectangle {
         id: convoUsers
         width: parent.width * (9/20);
         anchors {left: parent.left; top: parent.top; bottom:parent.bottom; topMargin: 10; bottomMargin: 10; leftMargin: 5;}
-        color: "#d3c8aa"
+
+        Image {
+            anchors.fill: parent;
+            source: ":/images/egg_shell.png"
+            fillMode: Image.Tile
+        }
+
         ListView {
             id: convoUsersList
             anchors.fill:parent
@@ -94,9 +95,13 @@ Rectangle {
 // ----------------------------- Clickable Interactivity Code -----------------------//
     MouseArea {
         anchors { left: convoUsers.right; right:parent.right; top:parent.top; bottom:parent.bottom;}
+
+//        onPressed: parent.state = "pressed"
+//        onReleased: parent.state = "normal"
+
         onPressAndHold: {
-            parent.state = "pressed"
-            homeScreen.pressed_convo(convo_id)
+            parent.state = "normal"
+            homeScreen.pressed_convo(convo_id, title)
         }
 
         onClicked: {
@@ -115,16 +120,16 @@ Rectangle {
         },
         State {
             name: "pressed"
-          /*  PropertyChanges { target: row; color: "lightsteelblue"}
-            PropertyChanges { target: list_background; source: ""} */
+            PropertyChanges { target: row; color: "lightsteelblue"}
+            PropertyChanges { target: list_background; source: ""}
         }
     ]
 
     transitions: [
         Transition {
-            from: "pressed"
-            to: "normal"
-            ColorAnimation { target: row; duration: 300}
+            from: "normal"
+            to: "pressed"
+            ColorAnimation {from: "white"; to: "lightsteelblue"; duration: 3000}
         }
     ]
 //-------------------------------End of Clickable code -----------------------------//

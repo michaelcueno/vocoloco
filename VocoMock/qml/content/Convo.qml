@@ -5,7 +5,8 @@ Rectangle {
 
     property string convo_id
 
-    x: 0; y:window.height * (1/10); width: window.width; height: window.height * (9/10)  // Posistioning
+    x: 0; y:window.screenHieght * (1/10); width: window.screenWidth; height: window.screenHieght * (9/10)  // Posistioning
+
 
     Image {
         id: background
@@ -23,8 +24,10 @@ Rectangle {
     }
 
     ListView {
+        rotation: 180;
         id: convo_messages
-        anchors.fill: parent  // Posistioning
+        width: window.screenWidth
+        height: parent.height - new_message_input.height
         maximumFlickVelocity: 2502
         clip: true;
         delegate: MessageDelegate {id: message_delegate}
@@ -74,8 +77,6 @@ Rectangle {
                 font.pixelSize: window.normalFont
                 anchors.centerIn: parent
             }
-
-
         }
     }
 
@@ -84,5 +85,4 @@ Rectangle {
         message_xml.source = "http://vocoloco.herokuapp.com/conversation/" + convo_id
         message_xml.reload()
     }
-
 }

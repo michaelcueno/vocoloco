@@ -3,6 +3,10 @@
 #include <QString>
 #include <QDebug>
 
+/**
+ * This class is meant only as a mediator for the desktop build so that the complier doesn't complain
+ *  about not having the correct functions for dealing with audio files
+ */
 class DummyDesktopPlayer
 {
 public:

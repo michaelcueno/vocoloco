@@ -1,6 +1,14 @@
 // import QtQuick 1.0 // to target S60 5th Edition or Maemo 5
 import QtQuick 1.1
 
+/*
+ * This file holds the markup for the creating a new conversation. On openeing this screen, the software keyboard
+ *  Will come up and you can eneter a title. Then add users and create. If the title or users is empty, then an
+ *  error will come up and the post to the server will not be made. Upon creation of a valid converstaion, the user
+ *  is brought to that conversations focused view and is able to start creating messages within the conversation.
+*/
+
+
 Rectangle {
 
      x: 0; y:window.screenHieght * (1/10); width: window.screenWidth; height: window.screenHieght * (9/10)  // Posistioning
@@ -16,8 +24,8 @@ Rectangle {
     SearchBox { id: newConvoTitle; x: 60; y: 30; width: 600; height: 80; }
 
     Rectangle { id: addUsersBtn; x: (parent.width / 2) - (addUsersBtn.width / 2); y: 160;
-        color: "#e07c7c"
-        width: 200; height: 80
+        color: "#c04b4b"
+        width: window.screenWidth * 4/5; height: 80
         Text {
             anchors.centerIn: parent
             text: "Add Users"
@@ -31,8 +39,8 @@ Rectangle {
     }
 
     Rectangle { id: submitBtn; x: (parent.width / 2) - (addUsersBtn.width / 2); y: 320;
-        color: "blue"
-        width: 200; height: 80
+        color: "#1bd73d"
+        width: window.screenWidth * 4/5; height: 80
         Text {
             anchors.centerIn: parent
             text: "Create"
@@ -113,11 +121,16 @@ Rectangle {
         contactsListWidget.loadXML()
     }
 
+    function setFocus(){
+        newConvoTitle.setFocus()
+    }
+
     function cancleWidget() {
         contactsWidget.state = ""
         network.clearNewConvoUsers()
         contactsListWidget.clearCheckBoxes()
         changeScreen(homeScreen)
+        showHeaderShadow()
     }
 
     function setTitle(){
@@ -126,21 +139,22 @@ Rectangle {
 
     function bringUpContacts(){
         contactsWidget.state = "ACTIVE"
+        hideHeaderShadow()
     }
 
     function widgetDone(){
         contactsWidget.state = ""
+        showHeaderShadow()
     }
 
+    // Should post to server, wait for response, go to created conversatino focused view
     function postToServer(){
         newConvoTitle.updateTitle()
         setTitle()
         if( network.postNewConvo() ){
-            changeScreen(homeScreen)
-            homeScreen.loadXML()
+            changeScreen(convoScreen, network.newConvoId())
         } else {
             error.visible = true
         }
     }
-
 }

@@ -158,7 +158,9 @@ void HttpManager::setNewConvoTitle(QString title)
     new_convo->setTitle(title);
 }
 
-// Adds a user to the conversation that will be sent to the server vai POST
+/**
+ * Adds a user to the conversation that will be sent to the server vai POST
+ */
 void HttpManager::addNewConvoUser(QString user)
 {
     new_convo->addUser(user);
@@ -174,7 +176,9 @@ void HttpManager::clearNewConvoUsers()
     new_convo->clearUsers();
 }
 
-// Sends the post request to the server at POST /conversations
+/**
+ * Sends the post request to the server at POST /conversations
+ */
 bool HttpManager::postNewConvo()
 {
     // Error Check (Check for no users added, or no title
@@ -187,7 +191,7 @@ bool HttpManager::postNewConvo()
     request.setHeader(QNetworkRequest::ContentTypeHeader, "text/xml");
 
 
-    // Attempt Login
+    // Attempt Post
     QNetworkReply *reply = manager->post(request, new_convo->getXML().toAscii());
 
     reply->ignoreSslErrors();
@@ -199,6 +203,11 @@ bool HttpManager::postNewConvo()
 void HttpManager::deleteConvo(QString convo_id)
 {
     qDebug() << "TODO: imlement deleteConvo(" + convo_id + ") In HttpManager";
+}
+
+int HttpManager::newConvoId()
+{
+    return 1;
 }
 
 //////////////////////////////////////////////////////////  Methods For Posting a New Message ///////////////////////////////
@@ -214,10 +223,12 @@ bool HttpManager::postNewMessage(){
 bool HttpManager::hasSavedCookie(){
     QSettings settings;
     QVariant cookie = settings.value("Cookies");
-    if(settings.contains("Cookies"))
+    if(settings.contains("Cookies")){
+        setUsername(settings.value("Username").toString());
         return true;
-    else
+    }else{
         return false;
+    }
 }
 
 /*
@@ -242,6 +253,7 @@ void HttpManager::postCredentials(QString credentials){
         pass = list[1];
     }
 
+    setUsername(usrn);
     settings.setValue("Username", usrn);
     request = QNetworkRequest(QUrl(APP + "login"));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");

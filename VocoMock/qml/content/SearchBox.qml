@@ -96,10 +96,6 @@ FocusScope {
         }
     }
 
-    function updateTitle(){
-        title = textInput.text
-    }
-
     states: State {
         name: "hasText"; when: textInput.text != ''
         PropertyChanges { target: typeSomething; opacity: 0 }
@@ -116,4 +112,13 @@ FocusScope {
             NumberAnimation { properties: "opacity" }
         }
     ]
+
+    function updateTitle(){
+        title = textInput.text
+    }
+
+    function setFocus(){
+        focusScope.focus = true;
+        textInput.openSoftwareInputPanel();
+    }
 }
