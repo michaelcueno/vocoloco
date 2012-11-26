@@ -5,7 +5,7 @@ import 'content'
 // Main window of application -----------//
 Rectangle {
     id: window
-    width: 720; height: 1280;
+    width: 720; height: 700;
     objectName: "mainObj";
 
     property string mainUrl: "https://vocoloco.herokuapp.com/"
@@ -44,7 +44,7 @@ Rectangle {
 
    // TestScreen {id: audioTest; anchors.fill: parent; visible: true}
 
-    /*   // Logout button (Not for production)
+     // Logout button (Not for production)
     Rectangle {
         id: logoutBtn
         color: "red"
@@ -60,7 +60,7 @@ Rectangle {
             anchors.fill: parent
             onClicked: logout()
         }
-    }  */
+    }
 
     //---- End of visual comonents ----- |
 

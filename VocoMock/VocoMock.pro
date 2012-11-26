@@ -22,6 +22,8 @@ RESOURCES += voco.qrc
 
 QT += network
 
+QML_IMPORT_PATH = ["/home/mike/necessitas/QtCreator/Qt/imports/desktop/components/plugin"]
+
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()

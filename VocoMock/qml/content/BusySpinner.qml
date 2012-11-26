@@ -1,6 +1,5 @@
 import QtQuick 1.1
 
-
 Image {
     id: container
     property bool on: false

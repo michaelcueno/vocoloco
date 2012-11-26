@@ -3,10 +3,15 @@ import QtQuick 1.1
 
 Rectangle {
     id: container
-    color: "#144d97"
+    color: "white"
     x: 0; y:0
     width: screenWidth; height: screenHieght
 
+    Image {
+        id:background
+        source: ":/images/Switchboard.png"
+        anchors.fill: parent
+    }
 
     signal postCredentials(string credentials)  // Connects to HttpManager::postCredentials
     signal stayLoggedIn(bool saveSesh)  // Connected to qmlapplicationviewer (tells the destructor to not delete the session cookie)
@@ -17,12 +22,12 @@ Rectangle {
 
     // Masthead
     Text {
-        y: parent.height * (1/10)
+        y:0
         anchors.horizontalCenter: parent.horizontalCenter;
         font.bold: true
-        font.italic: true
-        font.pointSize: 40
-        text: "VocoLoco"
+        font.pointSize: 50
+        text: "Hi!\nThis is VocoLoco"
+        color: "white"
     }
 
     BusySpinner {
@@ -38,6 +43,7 @@ Rectangle {
         isPassword: false;
         label: "username"
         cornerRadius: 25
+        opacity: .7
     }
 
     // Password input field
@@ -48,6 +54,8 @@ Rectangle {
         isPassword: true;
         label: "password"
         cornerRadius: 25
+        opacity: .7
+        onTextEntered: brightenLoginBtn();
     }
 
     // Login Button
@@ -62,8 +70,9 @@ Rectangle {
             font.bold: true; font.pointSize: 20
             text: "login"
         }
-        color: "#9cbcff"
+        color: "#bac2d3"
         border.color: "#0d0101"
+        opacity: .7
 
         MouseArea {
             anchors.fill: parent;
@@ -90,6 +99,9 @@ Rectangle {
         }
     }
 
+   //  Component.onCompleted: username.setFocus()
+    //  Component.onCompleted: username.setFocus()
+
     function onLoginSuccess(){
         changeScreen(homeScreen)
         loadXML()
@@ -98,5 +110,11 @@ Rectangle {
 
     function onLoginFail(){
         loginFail.visible = true;
+    }
+
+    function brightenLoginBtn(){
+        console.log("Got Here")
+        login_btn.color = "#3baaea"
+        login_btn.opacity = 1
     }
 }

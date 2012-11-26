@@ -12,7 +12,6 @@ import QtQuick 1.1
 Rectangle {
 
      x: 0; y:window.screenHieght * (1/10); width: window.screenWidth; height: window.screenHieght * (9/10)  // Posistioning
-   // x: 0; y:window.height * (1/10); width: window.width; height: window.height * (9/10)  // Posistioning
 
     Image {
         id: background
@@ -140,6 +139,7 @@ Rectangle {
     function bringUpContacts(){
         contactsWidget.state = "ACTIVE"
         hideHeaderShadow()
+        newConvoTitle.unFocus()
     }
 
     function widgetDone(){

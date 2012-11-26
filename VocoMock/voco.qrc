@@ -58,5 +58,6 @@
         <file>qml/content/images/header-shadow.png</file>
         <file>images/contacts.png</file>
         <file>images/egg_shell.png</file>
+        <file>images/Switchboard.png</file>
     </qresource>
 </RCC>

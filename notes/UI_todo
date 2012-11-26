@@ -1,7 +1,7 @@
 o Global
   [x] Add header menu 
   [x] Header string should be set via c++ using signals and slots 
-
+  [ ] Logout btn should be in menu hard button 
 
 o Login Screen
   [x] Create it
@@ -11,10 +11,11 @@ o Login Screen
 o Home screen 
   [x] Multiple contacts per conversation
   [x] ... after certain title length
-  [ ] date sent in right hand side
+  [x] date sent in right hand side
   [x] Link presses to Conversation View
   [x] Fix sticky pressed
   [x] change username display to first name. Cap first, Bold
+  [ ] Loading animation and such for while xml loads 
 
 o Register Screen 
   [ ] Create it
@@ -27,14 +28,14 @@ o New Converstaion Screen
   [x] Create it
   [x] Title field
   [x] Add Users button --> Contacts selector widget
-  [ ] Format so that softkeyboard doesn't rezise everything. 
-  [ ] check that convo has title and at least one user. if not then send signal back to QML and do not allow creation
+  [x] Format so that softkeyboard doesn't rezise everything. 
+  [x] check that convo has title and at least one user. if not then send signal back to QML and do not allow creation
 
 o Add Contacts widget (it's a 'widget' because I want it to animate up from the bottom and cover the whole screen)
-  [ ] Create it
+  [x] Create it
 
 o First Message Screen
-  [ ] Create it
+  [x] Create it
 
 o Convo view ( after tapping on a conversation )
   [ ] make it pretty

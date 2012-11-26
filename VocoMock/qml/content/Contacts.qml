@@ -1,5 +1,7 @@
 import QtQuick 1.1
 
+
+
 Rectangle {
 
     signal showScreen(string msg)

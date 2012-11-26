@@ -9,6 +9,8 @@ Rectangle {
     property string input     // property for accessing user input
     property int cornerRadius // rounded edges
 
+    signal textEntered
+
     Connections {
         target: loginScreen
         onSubmitted: setInput();
@@ -22,9 +24,10 @@ Rectangle {
     TextInput {
         id: textInput;
         text: label;
-        font { pixelSize: 30; italic:true; } color: "grey"
+        font { pixelSize: 30; italic:true; } color: "black"
         anchors.centerIn: parent;
         smooth: true;
+        onActiveFocusChanged: textEntered()
     }
 
     // Border that is visible on clicked
@@ -59,4 +62,8 @@ Rectangle {
         input = textInput.text;
     }
 
+    function setFocus(){
+        textInput.focus = true;
+        textInput.openSoftwareInputPanel();
+    }
 }

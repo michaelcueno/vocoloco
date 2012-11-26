@@ -63,7 +63,6 @@ Rectangle {
             from: ''; to: "HIDDEN"
             PropertyAnimation { properties: "opacity"; easing.type: Easing.InQuad; easing.period: 2.5}
         }
-
     }
 
     Rectangle { // Line break in header

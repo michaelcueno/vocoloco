@@ -1,6 +1,11 @@
 import QtQuick 1.1
 
 Item {
+
+    property string first
+    property string last
+    Component.onCompleted: setFirstLast()
+
     id: column
     width: 115
     height: parent.height
@@ -18,8 +23,16 @@ Item {
         y:130;
         anchors {left: parent.left; right:parent.right;}
         horizontalAlignment: Text.AlignHCenter;
-        text: name
+        text: first
         font.pixelSize: 22;
         font.bold: true
+    }
+
+    function setFirstLast(){
+        var whole = name;
+        whole = whole.split(" ")
+        first = whole[0]
+        if (whole[1])
+            last = whole[1]
     }
 }

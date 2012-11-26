@@ -80,6 +80,12 @@ Rectangle {
         }
     }
 
+    BusySpinner {
+        id: convoSpinner
+        on: message_xml.status == XmlListModel.Loading
+        anchors.centerIn: parent
+    }
+
     // Call this function onClick in Home (when clicking on a conversation)
     function loadXML(){
         message_xml.source = "http://vocoloco.herokuapp.com/conversation/" + convo_id

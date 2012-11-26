@@ -58,6 +58,12 @@ Item{
         visible: false
     }
 
+    BusySpinner {
+        id: homeSpinner
+        on: xml_conversations.status == XmlListModel.Loading
+        anchors.centerIn: parent
+    }
+
     Rectangle {     // -------------------- Delete Button that pops up on conversation pressed -------|
         id: deleteConvo
         anchors.centerIn: parent

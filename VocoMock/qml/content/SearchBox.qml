@@ -121,4 +121,9 @@ FocusScope {
         focusScope.focus = true;
         textInput.openSoftwareInputPanel();
     }
+
+    function unFocus(){
+        focusScope.focus = false;
+        textInput.closeSoftwareInputPanel();
+    }
 }
