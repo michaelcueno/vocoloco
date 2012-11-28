@@ -11,7 +11,9 @@ import QtQuick 1.1
 
 Rectangle {
 
-     x: 0; y:window.screenHieght * (1/10); width: window.screenWidth; height: window.screenHieght * (9/10)  // Posistioning
+    property int newConvoId
+
+    x: 0; y:window.screenHieght * (1/10); width: window.screenWidth; height: window.screenHieght * (9/10)  // Posistioning
 
     Image {
         id: background
@@ -65,7 +67,13 @@ Rectangle {
         }
     }
 
+    // Busy Spinner on until reply finishes
+    BusySpinner {
+        id: newConvoSpinner
+        on: network.isLoading
+        anchors.centerIn: parent
 
+    }
 
     // Contacts Widget
     Rectangle {
@@ -113,8 +121,9 @@ Rectangle {
         transitions: Transition {
             NumberAnimation { properties: "y"; easing.type: Easing.OutExpo; duration: 1000 }
         }
-
     }
+
+
 
     function loadXML(){
         contactsListWidget.loadXML()
@@ -124,10 +133,14 @@ Rectangle {
         newConvoTitle.setFocus()
     }
 
-    function cancleWidget() {
+    function clearWidget() {
         contactsWidget.state = ""
         network.clearNewConvoUsers()
         contactsListWidget.clearCheckBoxes()
+    }
+
+    function cancleWidget() {
+        clearWidget()
         changeScreen(homeScreen)
         showHeaderShadow()
     }
@@ -151,10 +164,13 @@ Rectangle {
     function postToServer(){
         newConvoTitle.updateTitle()
         setTitle()
-        if( network.postNewConvo() ){
-            changeScreen(convoScreen, network.newConvoId())
-        } else {
-            error.visible = true
-        }
+        network.postNewConvo() // Send request to server. c++ signals will be triggered on completion and call goToConvo()
+    }
+
+    function goToConvo(){
+        newConvoId =  network.newConvoId
+        console.log(newConvoId)
+        changeScreen(convoScreen, newConvoId)
+        clearWidget()
     }
 }

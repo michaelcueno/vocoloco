@@ -4,6 +4,14 @@
 #include <QString>
 #include <QDebug>
 
+/**
+ * @brief This class connects to the JVM on android for audio
+ *
+ *  This class connects the c++ of the backend to our application to the Java Virtual Machine registered with
+ *  the android device. It sets up calls to record, play, pause and stop (ect) all referencing one file location.
+ *  This means that every audio file recorded, downloaded and played, all reside in one audio file that is
+ *  coninually rewritten.
+ */
 class AndroidMediaObject
 {
 public:

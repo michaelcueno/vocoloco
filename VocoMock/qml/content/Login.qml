@@ -30,10 +30,7 @@ Rectangle {
         color: "white"
     }
 
-    BusySpinner {
-        on: network.isLoading;
-        anchors { horizontalCenter: parent.horizontalCenter; top: parent.top; topMargin: 40}
-    }
+
 
     // Username input field
     TextBox {
@@ -84,6 +81,11 @@ Rectangle {
         }
     }
 
+    BusySpinner {
+        on: network.isLoading;
+        anchors { horizontalCenter: parent.horizontalCenter; top:login_btn.bottom; topMargin: 40;}
+    }
+
     // Login Fail notification
     Rectangle {
         id: loginFail
@@ -91,9 +93,9 @@ Rectangle {
         smooth: true
         visible: false
         width: parent.width * (4/5); height: 80
-        x: parent.width * (0.5/5); y: 20
+        anchors {horizontalCenter: parent.horizontalCenter; top: login_btn.bottom; topMargin: 50 }
         Text {
-            anchors.centerIn: parent;
+            anchors.centerIn: parent
             font.bold: true; font.pointSize: 18
             text: "Incorrect Username or Password"
         }

@@ -1,21 +1,21 @@
-SOURCES += main.cpp \
-    httpmanager.cpp \
-    cookiejar.cpp \
-    networkfactory.cpp \
-    postnewconversation.cpp \
-    newmessage.cpp \
-    mainwindow.cpp \
-    dummydesktopplayer.cpp
+SOURCES += src/main.cpp \
+    src/httpmanager.cpp \
+    src/cookiejar.cpp \
+    src/networkfactory.cpp \
+    src/postnewconversation.cpp \
+    src/newmessage.cpp \
+    src/mainwindow.cpp \
+    src/dummydesktopplayer.cpp
 
 HEADERS += \
-    httpmanager.h \
-    cookiejar.h \
-    networkfactory.h \
-    ImageProvider.h \
-    postnewconversation.h \
-    newmessage.h \
-    mainwindow.h \
-    dummydesktopplayer.h
+    src/httpmanager.h \
+    src/cookiejar.h \
+    src/networkfactory.h \
+    src/ImageProvider.h \
+    src/postnewconversation.h \
+    src/newmessage.h \
+    src/mainwindow.h \
+    src/dummydesktopplayer.h
 
 
 RESOURCES += voco.qrc
@@ -36,9 +36,9 @@ linux-g++ {
 }
 
 android {
-    SOURCES += androidmediaobject.cpp
+    SOURCES += src/androidmediaobject.cpp
 
-    HEADERS += androidmediaobject.h
+    HEADERS += src/androidmediaobject.h
 
     INCLUDEPATH +=  /usr/lib/jni  #  path to jni for android
     DEFINES += MEDIA_PLAYER=\\\"androidmediaobject.h\\\"

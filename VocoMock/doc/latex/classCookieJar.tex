@@ -3,6 +3,11 @@
 }
 
 
+Allows for a permanent cookie jar by saving cookies on delete to Q\-Settings and then loading from Q\-Settings on creation.  
+
+
+
+
 {\ttfamily \#include $<$cookiejar.\-h$>$}
 
 Inheritance diagram for Cookie\-Jar\-:\begin{figure}[H]
@@ -37,7 +42,9 @@ static bool \hyperlink{classCookieJar_a73f0b1e75f689e85ab833b0f1d680827}{S\-T\-A
 
 
 \subsection{Detailed Description}
-Allows for a permanent cookie jar by saving cookies on delete to Q\-Settings and then loading from Q\-Settings on creation 
+Allows for a permanent cookie jar by saving cookies on delete to Q\-Settings and then loading from Q\-Settings on creation. 
+
+Allows for a permanent cookie jar by saving cookies on delete to Q\-Settings and then loading from Q\-Settings on creation. The Q\-M\-L engine requires this functionality because it sends a new request for all contents it recieves from the server (conversations, messages, contacts...ect). Each one of these requests is created in a different thread and instantiates its own Q\-Network\-Access\-Manager. This means it creates a new cookie jar. By using this cookie jar for each instantiation, cookies are able to be reused, thus the user is able to stay logged in across the application. 
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classCookieJar_ada1a5607a27433955f2b985c6d10bd0a}{\index{Cookie\-Jar@{Cookie\-Jar}!$\sim$\-Cookie\-Jar@{$\sim$\-Cookie\-Jar}}

@@ -2,6 +2,10 @@
 #include <QNetworkAccessManager>
 #include <QDebug>
 
+
+/**
+ * @brief This may not be needed!
+ */
 class ImageProvider: public QDeclarativeImageProvider
 {
 public:

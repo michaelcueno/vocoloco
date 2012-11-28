@@ -89,6 +89,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>Allows for a permanent cookie jar by saving cookies on delete to QSettings and then loading from QSettings on creation.  
+ <a href="classCookieJar.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="cookiejar_8h_source.html">cookiejar.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for CookieJar:</div>
@@ -123,7 +126,8 @@ Static Public Attributes</h2></td></tr>
 <tr class="separator:a73f0b1e75f689e85ab833b0f1d680827"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Allows for a permanent cookie jar by saving cookies on delete to QSettings and then loading from QSettings on creation </p>
+<div class="textblock"><p>Allows for a permanent cookie jar by saving cookies on delete to QSettings and then loading from QSettings on creation. </p>
+<p>Allows for a permanent cookie jar by saving cookies on delete to QSettings and then loading from QSettings on creation. The QML engine requires this functionality because it sends a new request for all contents it recieves from the server (conversations, messages, contacts...ect). Each one of these requests is created in a different thread and instantiates its own QNetworkAccessManager. This means it creates a new cookie jar. By using this cookie jar for each instantiation, cookies are able to be reused, thus the user is able to stay logged in across the application. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ada1a5607a27433955f2b985c6d10bd0a"></a>
 <div class="memitem">
@@ -203,7 +207,7 @@ Static Public Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 25 2012 12:59:25 for VocoLoco by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 27 2012 13:33:09 for VocoLoco by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

@@ -51,7 +51,10 @@ class HttpManager : public QObject
                READ username
                WRITE setUsername
                NOTIFY usernameChanged )
-
+    Q_PROPERTY(int newConvoId
+               READ newConvoId
+               WRITE setNewConvoId
+               NOTIFY newConvoIdChanged )
 
 
 public:
@@ -66,6 +69,8 @@ public:
     void setPath(QUrl path);
     QString username();
     void setUsername(QString name);
+    void setNewConvoId(int id);
+    int newConvoId();
     QNetworkAccessManager* getManager(){return manager;}
 
     Q_INVOKABLE bool hasSavedCookie();
@@ -78,7 +83,6 @@ public:
     Q_INVOKABLE void clearNewConvoUsers();
     Q_INVOKABLE bool postNewConvo();  // Returns false if new_convo doesn't have a title or any users
     Q_INVOKABLE void deleteConvo(QString convo_id);
-    Q_INVOKABLE int newConvoId();
 
     // For creating and posting a new message
     Q_INVOKABLE void setNewMessageContent(QString content);
@@ -102,19 +106,25 @@ signals:
     void progressChanged();
     void pathChanged();
     void usernameChanged();
-    void test();
+    void newConvoIdChanged();
+    void error();
+    void replyFinished();
+    void convoCreatedSignal();
+    void reloadHome();
 
 public slots:
     void postCredentials(QString credentials);
     void setDownloadProgress(qint64 soFar,qint64 total);
     void authenticate();
     void writeAudioToFile(); // Plays the file at the end of the method TODO: Should be private
-
+    void replyDone();
+    void convoCreatedSlot();
 
 private:
     QNetworkAccessManager *manager;
     QNetworkRequest request;
     CookieJar *jar;
+    int m_newConvoId;
 
     // QML Accessible Properties
     int m_progress;

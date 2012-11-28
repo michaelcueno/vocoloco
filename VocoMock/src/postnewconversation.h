@@ -3,8 +3,8 @@
 
 #include <QString>
 #include <QList>
-/* This class will model the data used to send a post to the server. It will handle the creation of the XML
- *  that the server can understand
+/**
+ * @brief This class is used to model the data of a conversation before it is posted to the server
  */
 
 class PostNewConversation

@@ -7,6 +7,9 @@ namespace Ui {
     class MainWindow;
 }
 
+/**
+ * @brief TODO: attempt at putting logout btn in the native settings btn on android
+ */
 class MainWindow : public QMainWindow
 {
     Q_OBJECT

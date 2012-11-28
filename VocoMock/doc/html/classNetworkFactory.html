@@ -88,6 +88,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">NetworkFactory Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This class is fed to the QML engine so that it uses this class on each new server request.  
+ <a href="classNetworkFactory.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="networkfactory_8h_source.html">networkfactory.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for NetworkFactory:</div>
 <div class="dyncontent">
@@ -115,14 +120,17 @@ Public Member Functions</h2></td></tr>
 virtual QNetworkAccessManager *&#160;</td><td class="memItemRight" valign="bottom"><b>create</b> (QObject *parent=0)</td></tr>
 <tr class="separator:a3d48936e4b8f27a60b8277bc52b2eb9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This class is fed to the QML engine so that it uses this class on each new server request. </p>
+<p>This class inherits from QDeclarativeNetworkAccessManagerFactory, and adds some neccessary functionality. First we needed to ingore SSL errors because necessitas doesn't handle them correctly. Also the constructor creates and uses our <a class="el" href="classCookieJar.html" title="Allows for a permanent cookie jar by saving cookies on delete to QSettings and then loading from QSet...">CookieJar</a> implementation so that the user can stay logged in. This is also necessary for requests to function properly (the QML engine must send the cookie with each request). </p>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="networkfactory_8h_source.html">networkfactory.h</a></li>
 <li>networkfactory.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 25 2012 12:59:26 for VocoLoco by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 27 2012 13:33:10 for VocoLoco by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

@@ -29,7 +29,6 @@
         <file>qml/content/BusySpinner.qml</file>
         <file>qml/content/images/OldRadioMicrophone6.png</file>
         <file>qml/content/Record.qml</file>
-        <file>conversations.xml</file>
         <file>qml/content/MessageDelegate.qml</file>
         <file>qml/content/Contacts.qml</file>
         <file>qml/content/ContactsDelegate.qml</file>
@@ -59,5 +58,6 @@
         <file>images/contacts.png</file>
         <file>images/egg_shell.png</file>
         <file>images/Switchboard.png</file>
+        <file>images/spinner.png</file>
     </qresource>
 </RCC>

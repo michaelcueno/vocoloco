@@ -12,6 +12,7 @@ HttpManager::HttpManager()
     new_convo = new PostNewConversation();
     new_message = new NewMessage();
 
+    m_newConvoId = 1;
 
     // QML Player
     player = 0;
@@ -144,11 +145,25 @@ void HttpManager::setUsername(QString name){ m_username = name; emit usernameCha
 
 QString HttpManager::username(){ return m_username; }
 
+void HttpManager::setNewConvoId(int id) { m_newConvoId = id; emit newConvoIdChanged(); }
+
+int HttpManager::newConvoId() { return m_newConvoId; }
+
 QNetworkAccessManager* HttpManager::getNam(){ return manager; }
 
 void HttpManager::setDownloadProgress(qint64 soFar, qint64 total){
     setProgress((soFar/total) * 100);
 }
+
+/**
+ * @brief Sets the loading variable to done so that qml can stop the loading animation
+ */
+void HttpManager::replyDone()
+{
+    setLoading(false);
+    emit reloadHome();
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////// Interaction invoving Conversations //////////////////////////////////////////
 
@@ -193,21 +208,47 @@ bool HttpManager::postNewConvo()
 
     // Attempt Post
     QNetworkReply *reply = manager->post(request, new_convo->getXML().toAscii());
+    setLoading(true);
 
     reply->ignoreSslErrors();
 
-    connect(reply, SIGNAL(finished()), this, SLOT(parseReply()));
+    connect(reply, SIGNAL(finished()), this, SLOT(convoCreatedSlot()));
     return true;
 }
 
 void HttpManager::deleteConvo(QString convo_id)
 {
-    qDebug() << "TODO: imlement deleteConvo(" + convo_id + ") In HttpManager";
+    request = QNetworkRequest(QUrl(APP + "conversation/delete/" + convo_id ));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+    // attempt delete
+    QNetworkReply *reply = manager->get(request);
+    setLoading(true);
+
+    connect(reply, SIGNAL(finished()), this, SLOT(replyDone()));
 }
 
-int HttpManager::newConvoId()
+/**
+ * @brief Sets loading variable to false, and emits convoCreatedSignal for the qml to trigger the screen change
+ */
+void HttpManager::convoCreatedSlot()
 {
-    return 1;
+    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+    setLoading(false);
+
+    // Get new convo id from reply
+    QByteArray convoId = reply->readAll();
+
+    // type cast to int
+    int i_convoId = convoId.toInt();
+    if (i_convoId == -1) {
+        emit error();
+    } else {
+        setNewConvoId(i_convoId);
+    }
+
+    emit convoCreatedSignal();
+    emit reloadHome();
 }
 
 //////////////////////////////////////////////////////////  Methods For Posting a New Message ///////////////////////////////
@@ -231,7 +272,7 @@ bool HttpManager::hasSavedCookie(){
     }
 }
 
-/*
+/**
  * This method Posts login credentails to server @ vocoloco.herokuapp.com/login
  */
 void HttpManager::postCredentials(QString credentials){
@@ -270,7 +311,7 @@ void HttpManager::postCredentials(QString credentials){
     connect(reply, SIGNAL(finished()), this, SLOT(authenticate()));
 }
 
-/*
+/**
  * This method determines if the login post was a success or failure and emits the corresponding signals
  * TODO: Implement custom class inheriting QCookieJar for loacal storage in order to do single sign on,
  *      Also will allow a better way to check for successful login

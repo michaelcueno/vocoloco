@@ -5,7 +5,7 @@ import 'content'
 // Main window of application -----------//
 Rectangle {
     id: window
-    width: 720; height: 700;
+    width: 720; height: 1280;
     objectName: "mainObj";
 
     property string mainUrl: "https://vocoloco.herokuapp.com/"
@@ -26,7 +26,7 @@ Rectangle {
 
     Convo { id: convoScreen; visible: false  }
 
-    NewConvo { id: newConvoScreen; visible: false  }
+    NewConvo { id: newConvoScreen; objectName: "newConvoObj"; visible: false  }
 
     Contacts { id: contactScreen;  visible: false }
 
@@ -44,7 +44,7 @@ Rectangle {
 
    // TestScreen {id: audioTest; anchors.fill: parent; visible: true}
 
-     // Logout button (Not for production)
+    /* Logout button (Not for production)
     Rectangle {
         id: logoutBtn
         color: "red"
@@ -61,6 +61,7 @@ Rectangle {
             onClicked: logout()
         }
     }
+    */
 
     //---- End of visual comonents ----- |
 
@@ -99,6 +100,7 @@ Rectangle {
     }
 
     function changeScreen(screen, id){
+
 
         if(newConvoScreen.visible)
             var fromNewConvo = true

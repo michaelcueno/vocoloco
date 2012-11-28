@@ -1,6 +1,15 @@
 \hypertarget{classNetworkFactory}{\section{Network\-Factory Class Reference}
 \label{classNetworkFactory}\index{Network\-Factory@{Network\-Factory}}
 }
+
+
+This class is fed to the Q\-M\-L engine so that it uses this class on each new server request.  
+
+
+
+
+{\ttfamily \#include $<$networkfactory.\-h$>$}
+
 Inheritance diagram for Network\-Factory\-:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -26,6 +35,11 @@ Inheritance diagram for Network\-Factory\-:\begin{figure}[H]
 
 \end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+This class is fed to the Q\-M\-L engine so that it uses this class on each new server request. 
+
+This class inherits from Q\-Declarative\-Network\-Access\-Manager\-Factory, and adds some neccessary functionality. First we needed to ingore S\-S\-L errors because necessitas doesn't handle them correctly. Also the constructor creates and uses our \hyperlink{classCookieJar}{Cookie\-Jar} implementation so that the user can stay logged in. This is also necessary for requests to function properly (the Q\-M\-L engine must send the cookie with each request). 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 

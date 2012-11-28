@@ -5,8 +5,11 @@ Rectangle {
 
     property string convo_id
 
-    x: 0; y:window.screenHieght * (1/10); width: window.screenWidth; height: window.screenHieght * (9/10)  // Posistioning
-
+    //x: 0; y:window.screenHieght * (1/10); width: window.screenWidth; height: window.screenHieght * (9/10)  // Posistioning
+    anchors.bottom: parent.bottom
+    anchors.top: parent.top
+    anchors.topMargin: window.screenHieght * (1/10)
+    anchors { right: parent.right; left: parent.left }
 
     Image {
         id: background
@@ -77,6 +80,10 @@ Rectangle {
                 font.pixelSize: window.normalFont
                 anchors.centerIn: parent
             }
+            MouseArea {
+                anchors.fill: parent;
+                onClicked: postMessage()
+            }
         }
     }
 
@@ -90,5 +97,17 @@ Rectangle {
     function loadXML(){
         message_xml.source = "http://vocoloco.herokuapp.com/conversation/" + convo_id
         message_xml.reload()
+    }
+
+    // Sets the message content in the c++ object in httpManager
+    function prepareMessage() {
+        message_input.updateTitle()
+        network.setNewMessageContent(message_input.title)
+    }
+
+    // Post message to server
+    function postMessage(){
+        prepareMessage()
+        network.postNewMessage();
     }
 }

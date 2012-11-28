@@ -68,12 +68,11 @@ Rectangle {
         font { bold: true; family: "Helvetica"; pixelSize: 25 }
     }
 
-/* TODO awaiting server side implementation */
     Text {  // Number of new messages
         id: numNewMessages
         anchors.left: conversationTitle.right; anchors.leftMargin: 20;
         y: parent.height / 2 - 20
-        text: "0" // new_messages;
+        text: new_messages;
         font { bold: true; italic: true; family: "Calibri"; pixelSize: 40 }
     }
 

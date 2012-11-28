@@ -50,16 +50,19 @@ int main(int argc, char *argv[])
     QObject *rootObject = dynamic_cast<QObject*>(viewer.rootObject());
     QObject *login = rootObject->findChild<QObject*>("loginObj");
     QObject *home = rootObject->findChild<QObject*>("homeObj");
+    QObject *newConvo = rootObject->findChild<QObject*>("newConvoObj");
     QObject *main = rootObject;
 
     // Signals to slots between QML and c++
     QObject::connect(login, SIGNAL(postCredentials(QString)), &network, SLOT(postCredentials(QString)));
     QObject::connect(&network, SIGNAL(loginSuccess()), login, SLOT(onLoginSuccess()));
     QObject::connect(&network, SIGNAL(loginFail()), login, SLOT(onLoginFail()));
+    QObject::connect(&network, SIGNAL(convoCreatedSignal()), newConvo, SLOT(goToConvo()));
+    QObject::connect(&network, SIGNAL(reloadHome()), home, SLOT(loadXML()));
 
 
     // Tests
-    QObject::connect(&network, SIGNAL(test()), main, SLOT(test()));
+  //  QObject::connect(&network, SIGNAL(error()), main, SLOT(test()));
 
     //logoutbtn.show();
 

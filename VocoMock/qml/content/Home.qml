@@ -43,7 +43,7 @@ Item{
 
         query: "/conversations/conversation"
 
-        // XmlRole { name: "new_messages"; query: "number_new_messages/string()" }
+        XmlRole { name: "new_messages"; query: "msg_count/string()" }
         XmlRole { name: "convo_id"; query: "string(@id)" }
         XmlRole { name: "title"; query: "title/string()" }
         XmlRole { name: "createdby"; query: "createdby/string()" }
@@ -62,6 +62,7 @@ Item{
         id: homeSpinner
         on: xml_conversations.status == XmlListModel.Loading
         anchors.centerIn: parent
+
     }
 
     Rectangle {     // -------------------- Delete Button that pops up on conversation pressed -------|
