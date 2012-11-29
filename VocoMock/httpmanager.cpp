@@ -1,4 +1,5 @@
 #include "httpmanager.h"
+#include "QtTest/qtest.h"
 
 QDir dir;
 static QString APP = "http://vocoloco.herokuapp.com/";
@@ -104,11 +105,33 @@ void HttpManager::writeAudioToFile(){
 void HttpManager::record()
 {
     QString TMP_AUDIO_PATH = dir.absolutePath() + "/tmpAudio.3gp";
+    QFile::remove(TMP_AUDIO_PATH);
     QByteArray latin = TMP_AUDIO_PATH.toLatin1();
     player = new AndroidMediaObject("recorder");
     player->recorderSetUrl(latin);
-     qDebug() << latin;
+    qDebug() << latin;
     player->record();
+
+
+    QTest::qSleep(10000);
+
+
+    player->recorderStop();
+
+
+    QFile contents(TMP_AUDIO_PATH);
+
+    if ( contents.open(QFile::ReadWrite) )
+    {
+        qDebug() << contents.read(2048);
+    }
+    else
+    {
+        qDebug( "Could not open file %s", TMP_AUDIO_PATH );
+    }
+
+    player->play();
+
 }
 
 void HttpManager::stopRecording()
@@ -116,6 +139,20 @@ void HttpManager::stopRecording()
     if(player){
         player->recorderStop();
     }
+
+    QString TMP_AUDIO_PATH = dir.absolutePath() + "/tmpAudio.3gp";
+    QFile contents(TMP_AUDIO_PATH);
+
+    if ( contents.open(QFile::ReadWrite) )
+    {
+        qDebug() << contents.read(2048);
+    }
+    else
+    {
+        qDebug( "Could not open file %s", TMP_AUDIO_PATH );
+    }
+
+    delete player;
 }
 
 /////////////////////////////////////////////////////// End of Audio Player stuff

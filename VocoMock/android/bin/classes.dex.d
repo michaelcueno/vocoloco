@@ -1,6 +1,7 @@
 /home/mike/workspace/voco-loco/VocoMock/android/bin/classes.dex : \
 /home/mike/workspace/voco-loco/VocoMock/android/bin/classes/org/kde/necessitas/origo/QtActivity$3$1$1.class \
 /home/mike/workspace/voco-loco/VocoMock/android/bin/classes/org/kde/necessitas/origo/QtApplication$InvokeResult.class \
+/home/mike/workspace/voco-loco/VocoMock/android/bin/classes/org/kde/necessitas/origo/QSimpleAudioRecorder.class \
 /home/mike/workspace/voco-loco/VocoMock/android/bin/classes/org/kde/necessitas/origo/QtActivity$3.class \
 /home/mike/workspace/voco-loco/VocoMock/android/bin/classes/org/kde/necessitas/origo/QtActivity$1.class \
 /home/mike/workspace/voco-loco/VocoMock/android/bin/classes/org/kde/necessitas/origo/QSimpleAudioPlayer.class \

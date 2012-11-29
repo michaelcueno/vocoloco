@@ -20,7 +20,8 @@ HEADERS += \
 
 RESOURCES += voco.qrc
 
-QT += network
+QT += network \
+        testlib
 
 linux-g++ {
     INCLUDEPATH +=  "/usr/lib/jvm/java-1.6.0-openjdk/include"   \ # path to jni on linux
