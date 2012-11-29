@@ -11,10 +11,15 @@ public:
     NewMessage();
     void setContent(QString body);
     void setOwner(QString name);
+    void setId(QString convoId);
+    bool noContent();
+    QString getId() { return id; }
+    QString getXml();
 
 private:
     QString content;
     QString owner;
+    QString id;
 
 };
 

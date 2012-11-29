@@ -6,7 +6,7 @@ Rectangle {
 
     property string headerTitle: "Your Conversations"
 
-    x: 0; y: 0; width: window.screenWidth; height: window.screenHieght * (1/10);
+    x: 0; y: 0; width: window.screenWidth; height: window.screenHeight * (1/10);
     color: "#ded4b9"
 
     Image {
@@ -35,8 +35,8 @@ Rectangle {
         id: newConvoBtn
         anchors.verticalCenter: parent.verticalCenter
         anchors.right: header_linebreak.left; anchors.rightMargin: 10;
-        width: ((window.width * (1/3) * (1/2)) - 1)
-        height: 64
+        width: 100; height: 100;
+
         Image {  // Using nested image here because I don't know another way to get transparency. I want the gradient to come through
            id: plus_img
            source: "images/plus.png"
@@ -58,16 +58,17 @@ Rectangle {
             name: "HIDDEN"
             PropertyChanges { target: plus_img; y: -40; opacity: 0}
         }
-
+/*
         transitions: Transition{
             from: ''; to: "HIDDEN"
             PropertyAnimation { properties: "opacity"; easing.type: Easing.InQuad; easing.period: 2.5}
         }
+        */
     }
 
     Rectangle { // Line break in header
         id: header_linebreak
-        anchors.top: parent.top; anchors.bottom: parent.bottom; anchors.right: contactsBtn.left; anchors.rightMargin: 25;
+        anchors.top: parent.top; anchors.bottom: parent.bottom; anchors.right: contactsBtn.left; anchors.rightMargin: 15;
         width: 2
         opacity: .6
         color: "black"
@@ -76,8 +77,7 @@ Rectangle {
     Image { // Contacts Button at top right hand corner
         id: contactsBtn
         anchors.verticalCenter: parent.verticalCenter
-        x:window.width-115
-        y: 20
+        anchors.right: settingsBtn.left; anchors.rightMargin: 10
         width: 100
         height: 100
 
@@ -102,11 +102,55 @@ Rectangle {
             name: "HIDDEN"
             PropertyChanges { target: contacts_img; y: -40; opacity: 0}
         }
-
+/*
         transitions: Transition{
             from: ''; to: "HIDDEN"
             PropertyAnimation { properties: "opacity"; easing.type: Easing.InQuad; easing.period: 2.5}
         }
+*/
+    }
+
+    Rectangle { // Line break in header
+        id: header_linebreak2
+        anchors.top: parent.top; anchors.bottom: parent.bottom; anchors.right: settingsBtn.left; anchors.rightMargin: 0;
+        width: 2
+        opacity: .6
+        color: "black"
+    }
+
+    Image { // Settings Button at top right hand corner
+        id: settingsBtn
+        anchors.verticalCenter: parent.verticalCenter
+        x:window.width-105
+        y: 20
+        width: 100
+        height: 100
+
+        Image{
+            id: settings_img
+            source: ":/images/settings.png"
+            anchors.centerIn: parent
+            width: 100
+            height: 100
+        }
+
+        MouseArea{
+            id: settings_mouse_area
+            anchors.fill: parent
+            onClicked: {
+               showSettings()
+            }
+        }
+        states: State {
+            name: "HIDDEN"
+            PropertyChanges { target: settings_img; y: -40; opacity: 0}
+        }
+/*
+        transitions: Transition{
+            from: ''; to: "HIDDEN"
+            PropertyAnimation { properties: "opacity"; easing.type: Easing.InQuad; easing.period: 2.5}
+        }
+        */
     }
 
     Image { // Back Button
@@ -134,11 +178,14 @@ Rectangle {
             }
         }
         states: State { name: "ACTIVE"; PropertyChanges { target: backBtn; opacity: 1; x:0 } }
+
+
         transitions: Transition {
             from: ""; to: "ACTIVE"
             PropertyAnimation { properties: "opacity"; easing.type: Easing.InQuad; easing.period: 2.5}
             NumberAnimation { properties: "x"; easing.type: Easing.InQuad; easing.period: 2.5 }
         }
+
     }
 
     function hideBtns(){

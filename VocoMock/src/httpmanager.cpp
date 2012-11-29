@@ -12,8 +12,6 @@ HttpManager::HttpManager()
     new_convo = new PostNewConversation();
     new_message = new NewMessage();
 
-    m_newConvoId = 1;
-
     // QML Player
     player = 0;
 
@@ -253,13 +251,52 @@ void HttpManager::convoCreatedSlot()
 
 //////////////////////////////////////////////////////////  Methods For Posting a New Message ///////////////////////////////
 
-void HttpManager::setNewMessageContent(QString content){
-    qDebug() << "TODO: implement setNewMessageContent in HttpManager.cpp";
+/**
+ * @brief Sets the content and converstaion id of the message object to be posted
+ * @param content
+ * @param id
+ */
+void HttpManager::setNewMessageContent(QString content, QString id)
+{
+    new_message->setContent(content);
+    new_message->setId(id);
+    new_message->setOwner(m_username);
 }
 
+/**
+ * @brief This method will post the message object to the server
+ */
 bool HttpManager::postNewMessage(){
-    return false;
+
+    // Error Check (not valid if no conent in message)
+    if( new_message->noContent() ){
+        return false;
+    }
+
+    // Start Post Request
+    request = QNetworkRequest(QUrl(APP + "conversation/respondtext/" + new_message->getId()));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "text/xml");
+
+
+    // Attempt Post
+    QNetworkReply *reply = manager->post(request, new_message->getXml().toAscii());
+
+    reply->ignoreSslErrors();
+
+    connect(reply, SIGNAL(finished()), this, SLOT(messagePosted()));
+    return true;
 }
+
+/**
+ * @brief Slot called after message successfully posted to server. Throws signal to update QML
+ */
+void HttpManager::messagePosted()
+{
+    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+
+    emit reloadConvo();
+}
+
 
 bool HttpManager::hasSavedCookie(){
     QSettings settings;

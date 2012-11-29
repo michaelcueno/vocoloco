@@ -5,10 +5,10 @@ Rectangle {
 
     property string convo_id
 
-    //x: 0; y:window.screenHieght * (1/10); width: window.screenWidth; height: window.screenHieght * (9/10)  // Posistioning
+    //x: 0; y:window.screenHeight * (1/10); width: window.screenWidth; height: window.screenHeight * (9/10)  // Posistioning
     anchors.bottom: parent.bottom
     anchors.top: parent.top
-    anchors.topMargin: window.screenHieght * (1/10)
+    anchors.topMargin: window.screenHeight * (1/10)
     anchors { right: parent.right; left: parent.left }
 
     Image {
@@ -59,7 +59,7 @@ Rectangle {
         id: new_message_input
         anchors.bottom: parent.bottom
         width: window.screenWidth
-        height: window.screenHieght * (1/10)
+        height: window.screenHeight * (1/10)
         color: "grey"
 
         SearchBox {
@@ -67,6 +67,7 @@ Rectangle {
             anchors { left: parent.left; leftMargin: 30; verticalCenter: parent.verticalCenter }
             width: parent.width * (3/4)
             height: parent.height * (5/6)
+            default_text: ""
         }
 
         Rectangle {
@@ -102,12 +103,13 @@ Rectangle {
     // Sets the message content in the c++ object in httpManager
     function prepareMessage() {
         message_input.updateTitle()
-        network.setNewMessageContent(message_input.title)
+        network.setNewMessageContent(message_input.title, convo_id)
     }
 
     // Post message to server
     function postMessage(){
         prepareMessage()
         network.postNewMessage();
+        message_input.clear()
     }
 }

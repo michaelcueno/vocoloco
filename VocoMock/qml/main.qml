@@ -11,35 +11,68 @@ Rectangle {
     property string mainUrl: "https://vocoloco.herokuapp.com/"
 
     property int screenWidth
-    property int screenHieght
+    property int screenHeight
 
     property int smallFont: 20
     property int normalFont: 30
 
     //--- Visual components --------- |
 
-    Header {  id: header;  visible: false }
 
-    Login { id: loginScreen; objectName: "loginObj"; visible: true }
+    Settings { id: settingsScreen; visible: true }
 
-    Home { id: homeScreen; objectName: "homeObj"; visible: false; }
 
-    Convo { id: convoScreen; visible: false  }
+    /**
+     * This Item holds all the main screens for the application. Each screen is defined in its own
+     * QML file and thus can be referenced by the QML file name.
+     */
+    Item {
+        id: container
+        x: 0; y: 0;
+        width: screenWidth;
+        anchors.top: parent.top;
+        anchors.bottom: parent.bottom
 
-    NewConvo { id: newConvoScreen; objectName: "newConvoObj"; visible: false  }
+        Header {  id: header;  visible: false }
 
-    Contacts { id: contactScreen;  visible: false }
+        Login { id: loginScreen; objectName: "loginObj"; visible: true }
 
-    Record {id: recordScreen; anchors.fill: parent; visible: false}
+        Home { id: homeScreen; objectName: "homeObj"; visible: false; }
 
-    // Shadow underneath header
-    Image {
-        id: header_shadow
-        width: window.screenWidth
-        source: ":/qml/content/images/header-shadow.png"
-        anchors.top: header.bottom
-        fillMode: Image.TileHorizontally
-        visible: false
+        Convo { id: convoScreen; objectName: "convoObj"; visible: false  }
+
+        NewConvo { id: newConvoScreen; objectName: "newConvoObj"; visible: false  }
+
+        Contacts { id: contactScreen;  visible: false }
+
+        Record {id: recordScreen; anchors.fill: parent; visible: false}
+
+        // Shadow underneath header
+        Image {
+            id: header_shadow
+            width: window.screenWidth
+            source: ":/qml/content/images/header-shadow.png"
+            anchors.top: header.bottom
+            fillMode: Image.TileHorizontally
+            visible: false
+        }
+
+        MouseArea {
+            id: comeBackFromSettings
+            anchors.fill: parent;
+            enabled: false
+            onClicked: parent.state = ""
+        }
+
+        states: State {
+            name: "InSettings"
+            PropertyChanges { target: container; x: -400; }
+            PropertyChanges { target: comeBackFromSettings; enabled: true }
+        }
+
+        transitions: Transition {
+            NumberAnimation { properties: "x"; easing.type: Easing.OutExpo; duration: 1000 }
+        }
     }
 
    // TestScreen {id: audioTest; anchors.fill: parent; visible: true}
@@ -100,7 +133,7 @@ Rectangle {
     }
 
     function changeScreen(screen, id){
-
+        console.log(screen)
 
         if(newConvoScreen.visible)
             var fromNewConvo = true
@@ -144,9 +177,9 @@ Rectangle {
 
     // Set screen width and height for some static properties that will not resize on soft keyboard invokation
     function setDimensions(){
-        screenHieght = window.height - 140
+        screenHeight = window.height - 140
         screenWidth = window.width
-        console.log(screenHieght)
+        console.log(screenHeight)
         console.log(screenWidth)
     }
 
@@ -158,5 +191,20 @@ Rectangle {
       // changeScreen(loginScreen)
         Qt.quit()
 
+    }
+
+    function fuckeduplogout(){
+        logout()
+    }
+
+    // Shows the settings panel (pushes whatever is on the screen left)
+    function showSettings() {
+        container.state = "InSettings"
+        settingsScreen.enable()
+    }
+
+    function hideSettings() {
+        container.state = ""
+        settingsScreen.disable()
     }
 }

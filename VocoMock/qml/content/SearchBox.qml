@@ -45,6 +45,7 @@ FocusScope {
     width: 250; height: 28
 
     property string title;
+    property string default_text;
 
     BorderImage {
         source: "images/lineedit-bg.png"
@@ -63,7 +64,7 @@ FocusScope {
         id: typeSomething
         anchors.fill: parent; anchors.leftMargin: 8
         verticalAlignment: Text.AlignVCenter
-        text: "Title your conversation..."
+        text: default_text
         color: "gray"
         font.italic: true
         font.pixelSize: 35;
@@ -125,5 +126,9 @@ FocusScope {
     function unFocus(){
         focusScope.focus = false;
         textInput.closeSoftwareInputPanel();
+    }
+
+    function clear(){
+        textInput.text = ""
     }
 }

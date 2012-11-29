@@ -70,16 +70,18 @@ Rectangle {
 
     Text {  // Number of new messages
         id: numNewMessages
-        anchors.left: conversationTitle.right; anchors.leftMargin: 20;
+        anchors.left: conversationTitle.right; anchors.leftMargin: 10;
         y: parent.height / 2 - 20
+        width: 50
         text: new_messages;
         font { bold: true; italic: true; family: "Calibri"; pixelSize: 40 }
+        horizontalAlignment: Text.AlignRight
     }
 
     Image {
         id: forwardArrow
         source: ":/images/forward.png"
-        anchors {left: numNewMessages.right; leftMargin: 15;  }
+        anchors {left: numNewMessages.right; leftMargin: 10;  }
         y: parent.height / 2 - 50
     }
 

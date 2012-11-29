@@ -13,7 +13,7 @@ import QtQuick 1.1
 Item{
 
     id: container
-    x: 0; y:window.screenHieght * (1/10); width: window.screenWidth; height: window.screenHieght * (9/10)  // Posistioning
+    x: 0; y:window.screenHeight * (1/10); width: window.screenWidth; height: window.screenHeight * (9/10)  // Posistioning
 
     Image {
         id: background
@@ -70,7 +70,7 @@ Item{
         anchors.centerIn: parent
         color: "#1a7fdd"
         width: screenWidth * 2/3
-        height: screenHieght * 1/4
+        height: screenHeight * 1/4
         visible: false
 
         Text {

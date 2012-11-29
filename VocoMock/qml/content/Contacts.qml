@@ -6,7 +6,7 @@ Rectangle {
 
     signal showScreen(string msg)
 
-    x: 0; y:window.screenHieght * (1/10); width: window.screenWidth; height: window.screenHieght * (9/10)  // Posistioning
+    x: 0; y:window.screenHeight * (1/10); width: window.screenWidth; height: window.screenHeight * (9/10)  // Posistioning
 
     Image {
         id: background

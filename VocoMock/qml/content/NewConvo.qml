@@ -13,7 +13,7 @@ Rectangle {
 
     property int newConvoId
 
-    x: 0; y:window.screenHieght * (1/10); width: window.screenWidth; height: window.screenHieght * (9/10)  // Posistioning
+    x: 0; y:window.screenHeight * (1/10); width: window.screenWidth; height: window.screenHeight * (9/10)  // Posistioning
 
     Image {
         id: background
@@ -22,7 +22,11 @@ Rectangle {
         source: ":/images/carbon_fibre.png"
     }
 
-    SearchBox { id: newConvoTitle; x: 60; y: 30; width: 600; height: 80; }
+    SearchBox {
+        id: newConvoTitle;
+        x: 60; y: 30; width: 600; height: 80;
+        default_text: "Title your conversation..."
+    }
 
     Rectangle { id: addUsersBtn; x: (parent.width / 2) - (addUsersBtn.width / 2); y: 160;
         color: "#c04b4b"
@@ -78,8 +82,8 @@ Rectangle {
     // Contacts Widget
     Rectangle {
         id: contactsWidget
-        width: window.width; height: window.screenHieght
-        x: 0; y: window.screenHieght - ((1/10 * window.screenHieght))
+        width: window.width; height: window.screenHeight
+        x: 0; y: window.screenHeight - ((1/10 * window.screenHeight))
         Rectangle {
             id: topMenu
             color: "#ded4b9"
@@ -115,7 +119,7 @@ Rectangle {
 
         states : State {
             name: "ACTIVE"
-            PropertyChanges { target: contactsWidget; y: 0 - ((1/10 * window.screenHieght)) }
+            PropertyChanges { target: contactsWidget; y: 0 - ((1/10 * window.screenHeight)) }
         }
 
         transitions: Transition {
@@ -165,12 +169,13 @@ Rectangle {
         newConvoTitle.updateTitle()
         setTitle()
         network.postNewConvo() // Send request to server. c++ signals will be triggered on completion and call goToConvo()
+        clearWidget()
+        newConvoTitle.clear()
     }
 
     function goToConvo(){
         newConvoId =  network.newConvoId
         console.log(newConvoId)
         changeScreen(convoScreen, newConvoId)
-        clearWidget()
     }
 }

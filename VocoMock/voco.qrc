@@ -59,5 +59,9 @@
         <file>images/egg_shell.png</file>
         <file>images/Switchboard.png</file>
         <file>images/spinner.png</file>
+        <file>images/settings.png</file>
+        <file>images/egg_shell2.png</file>
+        <file>qml/content/Settings.qml</file>
+        <file>images/twinkle_twinkle.png</file>
     </qresource>
 </RCC>

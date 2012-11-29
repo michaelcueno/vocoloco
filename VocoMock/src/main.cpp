@@ -51,6 +51,7 @@ int main(int argc, char *argv[])
     QObject *login = rootObject->findChild<QObject*>("loginObj");
     QObject *home = rootObject->findChild<QObject*>("homeObj");
     QObject *newConvo = rootObject->findChild<QObject*>("newConvoObj");
+    QObject *convo = rootObject->findChild<QObject*>("convoObj");
     QObject *main = rootObject;
 
     // Signals to slots between QML and c++
@@ -59,6 +60,8 @@ int main(int argc, char *argv[])
     QObject::connect(&network, SIGNAL(loginFail()), login, SLOT(onLoginFail()));
     QObject::connect(&network, SIGNAL(convoCreatedSignal()), newConvo, SLOT(goToConvo()));
     QObject::connect(&network, SIGNAL(reloadHome()), home, SLOT(loadXML()));
+    QObject::connect(&network, SIGNAL(reloadConvo()), convo, SLOT(loadXML()));
+
 
 
     // Tests
@@ -66,7 +69,7 @@ int main(int argc, char *argv[])
 
     //logoutbtn.show();
 
-    viewer.showExpanded();  // TODO: change to showFullScreen somehow grab the width and hieght of the application and resize QML
+    viewer.showExpanded();  // TODO: change to showFullScreen somehow grab the width and Height of the application and resize QML
 
 
     return app.exec();

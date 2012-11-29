@@ -5,7 +5,7 @@ Rectangle {
     id: container
     color: "white"
     x: 0; y:0
-    width: screenWidth; height: screenHieght
+    width: screenWidth; height: screenHeight
 
     Image {
         id:background

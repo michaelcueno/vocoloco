@@ -85,7 +85,7 @@ public:
     Q_INVOKABLE void deleteConvo(QString convo_id);
 
     // For creating and posting a new message
-    Q_INVOKABLE void setNewMessageContent(QString content);
+    Q_INVOKABLE void setNewMessageContent(QString content, QString id);
     Q_INVOKABLE bool postNewMessage();  // Returns false if new_convo doesn't have a title or any users
 
     // For the QML player
@@ -111,6 +111,7 @@ signals:
     void replyFinished();
     void convoCreatedSignal();
     void reloadHome();
+    void reloadConvo();
 
 public slots:
     void postCredentials(QString credentials);
@@ -119,6 +120,7 @@ public slots:
     void writeAudioToFile(); // Plays the file at the end of the method TODO: Should be private
     void replyDone();
     void convoCreatedSlot();
+    void messagePosted();
 
 private:
     QNetworkAccessManager *manager;
