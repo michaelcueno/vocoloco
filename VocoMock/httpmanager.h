@@ -17,8 +17,9 @@
 
 #include "cookiejar.h"
 #include "postnewconversation.h"
+#include "dummydesktopplayer.h"
 #include "newmessage.h"
-#include "androidmediaobject.h"  // Defined in the .pro file (automatically happens when build is switched)
+#include "androidmediarecorder.h"  // Defined in the .pro file (automatically happens when build is switched)
 
 
 class HttpManager : public QObject
@@ -116,7 +117,7 @@ private:
     QString m_username;
     PostNewConversation *new_convo;
     NewMessage *new_message;
-    AndroidMediaObject *player;
+    AndroidMediaRecorder *player;
 };
 
 #endif // HTTPMANAGER_H

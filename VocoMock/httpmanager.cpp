@@ -6,6 +6,7 @@ static QString APP = "http://vocoloco.herokuapp.com/";
 
 HttpManager::HttpManager()
 {
+
     manager = new QNetworkAccessManager(this);
     jar = new CookieJar(this);
     manager->setCookieJar(jar);
@@ -46,7 +47,7 @@ void HttpManager::downloadAudio(QString url){
  * @brief Plays audio file in local storage at TMP_AUDIO_PATH
  */
 void HttpManager::play(){
-
+/*
     QString TMP_AUDIO_PATH = dir.absolutePath() + "/tmpAudio";
 
     QByteArray latin = TMP_AUDIO_PATH.toLatin1();
@@ -54,8 +55,8 @@ void HttpManager::play(){
     qDebug() << latin;
 
 
-    player = new AndroidMediaObject("player");
-    if (!player->playerSetUrl(latin))
+    player = 0;
+    if (!player->setUrl(latin))
     {
         qDebug() << "Error: couldn't load file";
     }
@@ -64,7 +65,7 @@ void HttpManager::play(){
     }
 
     delete player;
-
+*/
 }
 
 /**
@@ -108,8 +109,8 @@ void HttpManager::record()
     QString TMP_AUDIO_PATH = dir.absolutePath() + "/tmpAudio.3gp";
     QFile::remove(TMP_AUDIO_PATH);
     QByteArray latin = TMP_AUDIO_PATH.toLatin1();
-    player = new AndroidMediaObject("recorder");
-    player->recorderSetUrl(latin);
+    player = new AndroidMediaRecorder();
+    player->setUrl(latin);
     qDebug() << latin;
     player->record();
 
@@ -117,7 +118,7 @@ void HttpManager::record()
     QTest::qSleep(10000);
 
 
-    player->recorderStop();
+    player->stop();
 
 
     QFile contents(TMP_AUDIO_PATH);
@@ -139,7 +140,7 @@ void HttpManager::record()
 void HttpManager::stopRecording()
 {
     if(player){
-        player->recorderStop();
+        player->stop();
     }
 
     QString TMP_AUDIO_PATH = dir.absolutePath() + "/tmpAudio.3gp";

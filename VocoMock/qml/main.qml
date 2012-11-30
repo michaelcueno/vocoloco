@@ -120,7 +120,7 @@ Rectangle {
         network.logout()
         console.log(window.y)
         console.log(window.width)
-      // changeScreen(loginScreen)
+       // changeScreen(loginScreen)
         Qt.quit()
 
     }

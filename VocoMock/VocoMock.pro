@@ -5,7 +5,8 @@ SOURCES += main.cpp \
     postnewconversation.cpp \
     newmessage.cpp \
     mainwindow.cpp \
-    dummydesktopplayer.cpp
+    dummydesktopplayer.cpp \
+    androidmediarecorder.cpp
 
 HEADERS += \
     httpmanager.h \
@@ -15,7 +16,8 @@ HEADERS += \
     postnewconversation.h \
     newmessage.h \
     mainwindow.h \
-    dummydesktopplayer.h
+    dummydesktopplayer.h \
+    androidmediarecorder.h
 
 
 RESOURCES += voco.qrc
@@ -25,8 +27,7 @@ QT += network \
 
 linux-g++ {
     INCLUDEPATH +=  "/usr/lib/jvm/java-1.6.0-openjdk/include"   \ # path to jni on linux
-    DEFINES += MEDIA_PLAYER=\\\"dummymediaplayer.h\\\"
-    DEFINES += MEDIA_PLAYER_OBJECT=DummyMediaPlayer
+
 }
 
 # Please do not modify the following two lines. Required for deployment.
@@ -34,13 +35,9 @@ include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
 
 android {
-    SOURCES += androidmediaobject.cpp
 
-    HEADERS += androidmediaobject.h
 
     INCLUDEPATH +=  /usr/lib/jni  #  path to jni for android
-    DEFINES += MEDIA_PLAYER=\\\"androidmediaobject.h\\\"
-    DEFINES += MEDIA_PLAYER_OBJECT=AndroidMediaObject
 
 }
 
