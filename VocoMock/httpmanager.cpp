@@ -53,6 +53,7 @@ void HttpManager::play(){
 
     qDebug() << latin;
 
+
     player = new AndroidMediaObject("player");
     if (!player->playerSetUrl(latin))
     {
@@ -121,7 +122,7 @@ void HttpManager::record()
 
     QFile contents(TMP_AUDIO_PATH);
 
-    if ( contents.open(QFile::ReadWrite) )
+    if ( contents.open(QFile::ReadOnly) )
     {
         qDebug() << contents.read(2048);
     }
@@ -130,7 +131,8 @@ void HttpManager::record()
         qDebug( "Could not open file %s", TMP_AUDIO_PATH );
     }
 
-    player->play();
+    delete player;
+    this->play();
 
 }
 

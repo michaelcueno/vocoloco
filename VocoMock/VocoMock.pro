@@ -95,5 +95,7 @@ OTHER_FILES += \
     qml/content/Contacts.qml \
     qml/content/ContactsDelegate.qml \
     qml/content/SearchBox.qml \
-    qml/TestScreen.qml
+    qml/TestScreen.qml \
+    android/src/org/kde/necessitas/origo/QSimpleAudioRecorder.java \
+    android/src/org/kde/necessitas/origo/QSimpleAudioPlayer.java
 
