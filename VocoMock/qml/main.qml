@@ -133,7 +133,6 @@ Rectangle {
     }
 
     function changeScreen(screen, id){
-        console.log(screen)
 
         if(newConvoScreen.visible)
             var fromNewConvo = true
@@ -152,15 +151,23 @@ Rectangle {
         if(homeScreen.visible){
             changeHeader("All Conversations");
             header.unHideBtns()
+            header.unHideSettings()
         }
 
         if(newConvoScreen.visible){
             newConvoScreen.setFocus()
+            header.hideBtns()
+            header.hideSettings()
         }
 
         if(convoScreen.visible && fromNewConvo){
             convoScreen.convo_id = id
             convoScreen.loadXML()
+        }
+
+        if(convoScreen.visible){
+            header.unHideSettings()
+            settingsScreen.enableConvo()
         }
     }
 
@@ -193,18 +200,18 @@ Rectangle {
 
     }
 
-    function fuckeduplogout(){
-        logout()
-    }
-
     // Shows the settings panel (pushes whatever is on the screen left)
     function showSettings() {
         container.state = "InSettings"
-        settingsScreen.enable()
+
+        if(homeScreen.visible)
+            settingsScreen.enableHome()
     }
 
     function hideSettings() {
         container.state = ""
-        settingsScreen.disable()
+
+        if(homeScreen.visible)
+            settingsScreen.disableHome()
     }
 }

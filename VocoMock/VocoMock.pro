@@ -97,6 +97,7 @@ OTHER_FILES += \
     qml/content/ContactsDelegate.qml \
     qml/content/SearchBox.qml \
     qml/TestScreen.qml \
-    qml/content/Settings.qml
+    qml/content/Settings.qml \
+    qml/content/SettingsOption.qml
 
 

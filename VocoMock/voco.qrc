@@ -63,5 +63,7 @@
         <file>images/egg_shell2.png</file>
         <file>qml/content/Settings.qml</file>
         <file>images/twinkle_twinkle.png</file>
+        <file>fonts/JandaSafeandSound.ttf</file>
+        <file>qml/content/SettingsOption.qml</file>
     </qresource>
 </RCC>

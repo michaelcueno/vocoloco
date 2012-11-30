@@ -12,67 +12,128 @@ Item {
 
     Text {
         id: header
-        anchors { right: parent.right; top: parent.top; topMargin: 20; rightMargin: 100 }
-
+        anchors { right: parent.right; top: parent.top; topMargin: 20; rightMargin: 120 }
         text: "Settings"
         font.bold: true
         font.pixelSize: 40
         color: "white"
     }
 
-    Rectangle {
-        id: logout
-        anchors.top: header.bottom
-        anchors.right: parent.right;
-        anchors.rightMargin: 20
+    Rectangle {   // The "Settings" text at the top of the settings screen
+        id: linebreak
         color: "grey"
-        anchors.topMargin: 30;
-        width: 300
-        height: 100
-        Text {
-            text: "Logout"
-            font.pixelSize: 20
-
-        }
-        MouseArea {
-            id: logout_btn
-            enabled: false
-            anchors.fill: parent
-            onClicked: fuckeduplogout()
-        }
+        width: 400; height: 2;
+        anchors { top: header.bottom; right: parent.right; topMargin: 30 }
     }
-    Rectangle {
-        id: update
-        anchors.top: logout.bottom
-        anchors.right: parent.right;
-        anchors.rightMargin: 20
-        color: "grey"
-        anchors.topMargin: 30;
-        width: 300
-        height: 100
-        Text {
-            text: "update"
-            font.pixelSize: 20
 
+    Item {   // This holds the first menu option
+        id: button1
+        anchors.top: linebreak.bottom
+        anchors.right: parent.right;
+        width: 400
+        height: 100
+
+        SettingsOption {  // Update the Convo Screen
+            id: update_convo_option
+            title: "Update"
+            active: false
+            onSettingClicked: {
+                hideSettings()
+                convoScreen.loadXML()
+            }
+            visible: false
         }
-        MouseArea {
-            id: update_btn
-            anchors.fill: parent
-            enabled: false
-            onClicked: {
+
+        SettingsOption {  // Logout
+            id: logout_option
+            title: "Logout"
+            active: true
+            onSettingClicked: logout()
+        }
+
+
+
+
+    }
+
+    Rectangle {
+        id: linebreak2
+        color: "grey"
+        width: 400; height: 2;
+        anchors { top: button1.bottom; right: parent.right; }
+    }
+
+    Item {  // This holds the second menu option
+
+        id: button2
+        anchors.top: linebreak2.bottom
+        anchors.right: parent.right;
+        width: 400
+        height: 100
+
+        SettingsOption {  // Add Contact to Conversation
+            id: addContactToConveration
+            title: "Add Contact"
+            active: false
+            onSettingClicked: {
+                hideSettings()
+                console.log("TODO: Implement add contact to conversation");
+            }
+            visible: false
+        }
+
+
+        SettingsOption {  // Update Home Screen
+            id: update_option
+            title: "update"
+            active: true
+            onSettingClicked: {
                 hideSettings()
                 homeScreen.loadXML()
             }
         }
+
+
+
     }
 
-    function enable() {
-        update_btn.enabled = true
-        logout_btn.enabled = true
+    Rectangle {
+        id: linebreak3
+        color: "grey"
+        width: 400; height: 2;
+        anchors { top: button2.bottom; right: parent.right; }
     }
 
-    function disable() {
-        update_btn.enabled = false
-        logout_btn.enabled = false
+
+    ///////////////////// NON VISUAL CODE ///////////////////////
+
+    // For HomeScreen Settings
+    function enableHome() {
+        disableConvo()
+        update_option.active = true
+        logout_option.active = true
     }
+
+    function disableHome() {
+        update_option.active = false
+        logout_option.active = false
+        update_option.visible = false
+        logout_option.visible = false
+    }
+
+    // For Conversation View Settings
+    function enableConvo(){
+        disableHome()
+        update_convo_option.active = true
+        addContactToConveration.active = true
+        update_convo_option.visible = true
+        addContactToConveration.visible = true
+    }
+
+    function disableConvo(){
+        update_convo_option.active = false;
+        addContactToConveration.active = false
+
+    }
+
 }

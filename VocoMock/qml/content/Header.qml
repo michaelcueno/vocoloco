@@ -57,6 +57,7 @@ Rectangle {
         states: State {
             name: "HIDDEN"
             PropertyChanges { target: plus_img; y: -40; opacity: 0}
+            PropertyChanges { target: new_convo_mouse_area; enabled: false }
         }
 /*
         transitions: Transition{
@@ -101,6 +102,7 @@ Rectangle {
         states: State {
             name: "HIDDEN"
             PropertyChanges { target: contacts_img; y: -40; opacity: 0}
+            PropertyChanges { target: contacts_mouse_area; enabled: false }
         }
 /*
         transitions: Transition{
@@ -144,6 +146,8 @@ Rectangle {
         states: State {
             name: "HIDDEN"
             PropertyChanges { target: settings_img; y: -40; opacity: 0}
+            PropertyChanges { target: settings_mouse_area; enabled: false }
+            PropertyChanges { target: header_linebreak2; visible: false }
         }
 /*
         transitions: Transition{
@@ -195,8 +199,6 @@ Rectangle {
         header_string.anchors.leftMargin = 60
         header_linebreak.visible = false
         header_linebreak1.visible = false
-        new_convo_mouse_area.enabled = false
-        contacts_mouse_area.enabled = false
     }
 
     function unHideBtns(){
@@ -206,7 +208,13 @@ Rectangle {
         header_string.anchors.leftMargin = 30
         header_linebreak.visible = true
         header_linebreak1.visible = true
-        new_convo_mouse_area.enabled = true
-        contacts_mouse_area.enabled = true
+    }
+
+    function hideSettings(){
+        settingsBtn.state = "HIDDEN"
+    }
+
+    function unHideSettings(){
+        settingsBtn.state = ""
     }
 }
