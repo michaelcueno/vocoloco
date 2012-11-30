@@ -11,7 +11,7 @@ Item {
     height: parent.height
 
     Image {
-        width:105;height:105;
+        width:100;height:100;
         x:10;y:15;
         source: "http://vocoloco.herokuapp.com/" + image
         fillMode: Image.Stretch;

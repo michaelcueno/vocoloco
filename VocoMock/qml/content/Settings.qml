@@ -12,10 +12,10 @@ Item {
 
     Text {
         id: header
-        anchors { right: parent.right; top: parent.top; topMargin: 20; rightMargin: 120 }
+        anchors { right: parent.right; top: parent.top; topMargin: 30; rightMargin: 120 }
         text: "Settings"
         font.bold: true
-        font.pixelSize: 40
+        font.pixelSize: 42
         color: "white"
     }
 
@@ -23,7 +23,7 @@ Item {
         id: linebreak
         color: "grey"
         width: 400; height: 2;
-        anchors { top: header.bottom; right: parent.right; topMargin: 30 }
+        anchors { top: header.bottom; right: parent.right; topMargin: 43 }
     }
 
     Item {   // This holds the first menu option
@@ -50,10 +50,6 @@ Item {
             active: true
             onSettingClicked: logout()
         }
-
-
-
-
     }
 
     Rectangle {
@@ -82,7 +78,6 @@ Item {
             visible: false
         }
 
-
         SettingsOption {  // Update Home Screen
             id: update_option
             title: "update"
@@ -92,8 +87,6 @@ Item {
                 homeScreen.loadXML()
             }
         }
-
-
 
     }
 
@@ -112,6 +105,8 @@ Item {
         disableConvo()
         update_option.active = true
         logout_option.active = true
+        update_option.visible = true
+        logout_option.visible = true
     }
 
     function disableHome() {
@@ -135,5 +130,4 @@ Item {
         addContactToConveration.active = false
 
     }
-
 }
