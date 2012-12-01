@@ -65,5 +65,8 @@
         <file>images/twinkle_twinkle.png</file>
         <file>fonts/JandaSafeandSound.ttf</file>
         <file>qml/content/SettingsOption.qml</file>
+        <file>images/navy_blue.png</file>
+        <file>images/iphone-sms-2.jpg</file>
+        <file>images/iphone-sms-1.jpg</file>
     </qresource>
 </RCC>

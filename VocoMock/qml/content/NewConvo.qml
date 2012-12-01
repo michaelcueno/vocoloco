@@ -150,7 +150,7 @@ Rectangle {
     }
 
     function setTitle(){
-        network.setNewConvoTitle(newConvoTitle.title)
+        network.setNewConvoTitle(newConvoTitle.title.toString())
     }
 
     function bringUpContacts(){
@@ -177,5 +177,6 @@ Rectangle {
         newConvoId =  network.newConvoId
         console.log(newConvoId)
         changeScreen(convoScreen, newConvoId)
+        changeHeader(newConvoTitle.title)
     }
 }

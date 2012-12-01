@@ -117,38 +117,8 @@ void QmlApplicationViewer::addImportPath(const QString &path)
 
 void QmlApplicationViewer::setOrientation(ScreenOrientation orientation)
 {
-#if QT_VERSION < 0x050000
-    Qt::WidgetAttribute attribute;
-    switch (orientation) {
-#if QT_VERSION < 0x040702
-    // Qt < 4.7.2 does not yet have the Qt::WA_*Orientation attributes
-    case ScreenOrientationLockPortrait:
-        attribute = static_cast<Qt::WidgetAttribute>(128);
-        break;
-    case ScreenOrientationLockLandscape:
-        attribute = static_cast<Qt::WidgetAttribute>(129);
-        break;
-    default:
-    case ScreenOrientationAuto:
-        attribute = static_cast<Qt::WidgetAttribute>(130);
-        break;
-#else // QT_VERSION < 0x040702
-    case ScreenOrientationLockPortrait:
-        attribute = Qt::WA_LockPortraitOrientation;
-        break;
-    case ScreenOrientationLockLandscape:
-        attribute = Qt::WA_LockLandscapeOrientation;
-        break;
-    default:
-    case ScreenOrientationAuto:
-        attribute = Qt::WA_AutoOrientation;
-        break;
-#endif // QT_VERSION < 0x040702
-    };
-    setAttribute(attribute, true);
-#else // QT_VERSION < 0x050000
-    Q_UNUSED(orientation)
-#endif // QT_VERSION < 0x050000
+    setAttribute(Qt::WA_LockPortraitOrientation, true);
+
 }
 
 void QmlApplicationViewer::showExpanded()

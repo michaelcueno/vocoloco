@@ -32,9 +32,11 @@ int main(int argc, char *argv[])
     // Override QML's default netowrkAccessManagerFactory with our custom built factory
     NetworkFactory *factory = new NetworkFactory();
     viewer.engine()->setNetworkAccessManagerFactory(factory);
+    viewer.setOrientation(QmlApplicationViewer::ScreenOrientationLockPortrait);
 
     // make network avaiable to QML
     viewer.rootContext()->setContextProperty("network", &network);
+
     // Initailize and build QML
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationLockPortrait);
     viewer.setSource(QUrl(QLatin1String("qrc:/qml/main.qml")));
