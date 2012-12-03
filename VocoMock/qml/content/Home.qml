@@ -1,3 +1,9 @@
+/****************************************************************************
+ * Copyright (C) 2012 Michael Cueno
+ * Contact: mcueno2@uic.edu
+ ****************************************************************************/
+
+
 /*
  * This is the view of the conversations, I called it "home" since it is the first screen a user
  * will see when they log in, also all screens are one away from this screen and they all go back

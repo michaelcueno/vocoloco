@@ -39,6 +39,9 @@ int main(int argc, char *argv[])
 
     // Initailize and build QML
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationLockPortrait);
+    viewer.setAttribute(Qt::WA_LockPortraitOrientation, true);
+    viewer.setAttribute(Qt::WA_AutoOrientation, false);
+
     viewer.setSource(QUrl(QLatin1String("qrc:/qml/main.qml")));
 
     //   viewer.ResizeMode(QDeclarativeView::SizeRootObjectToView);
@@ -63,7 +66,7 @@ int main(int argc, char *argv[])
     QObject::connect(&network, SIGNAL(convoCreatedSignal()), newConvo, SLOT(goToConvo()));
     QObject::connect(&network, SIGNAL(reloadHome()), home, SLOT(loadXML()));
     QObject::connect(&network, SIGNAL(reloadConvo()), convo, SLOT(loadXML()));
-
+    QObject::connect(&network, SIGNAL(playAudioDone()), convo, SLOT(playAudioDone()));
 
 
     // Tests

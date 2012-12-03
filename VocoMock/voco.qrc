@@ -68,5 +68,10 @@
         <file>images/navy_blue.png</file>
         <file>images/iphone-sms-2.jpg</file>
         <file>images/iphone-sms-1.jpg</file>
+        <file>images/play-button.jpg</file>
+        <file>images/play-button.png</file>
+        <file>images/play-button_black.png</file>
+        <file>images/linedpaper.png</file>
+        <file>images/Voco-Loco Logo (Cell).jpg</file>
     </qresource>
 </RCC>

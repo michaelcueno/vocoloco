@@ -1,3 +1,9 @@
+/****************************************************************************
+ * Copyright (C) 2012 Michael Cueno
+ * Contact: mcueno2@uic.edu
+ ****************************************************************************/
+
+
 // import QtQuick 1.0 // to target S60 5th Edition or Maemo 5
 import QtQuick 1.1
 
@@ -10,6 +16,7 @@ import QtQuick 1.1
 
 
 Rectangle {
+    id: container
 
     property int newConvoId
 
@@ -19,18 +26,45 @@ Rectangle {
         id: background
         anchors.fill: parent
         fillMode: Image.Tile
-        source: ":/images/carbon_fibre.png"
+        source: ":/images/navy_blue.png"
+    }
+
+
+    Rectangle {
+        id: titleHeader
+        anchors.right: newConvoTitle.left; anchors.rightMargin: -10; anchors.top: newConvoTitle.top
+        width: 100; height: 80
+        radius: 10
+        color: "black"
+        Text {
+            text: "Title"
+            anchors.centerIn: parent
+            font.pixelSize: 30
+            color: "white"
+        }
     }
 
     SearchBox {
         id: newConvoTitle;
-        x: 60; y: 30; width: 600; height: 80;
+        x: 150; y: 30; width: 500; height: 80;
         default_text: "Title your conversation..."
     }
 
-    Rectangle { id: addUsersBtn; x: (parent.width / 2) - (addUsersBtn.width / 2); y: 160;
-        color: "#c04b4b"
+    Rectangle { id: addUsersBtn; x: (container.width / 2) - (addUsersBtn.width / 2); y: 180;
+        color: "#2881d3"
+        gradient: Gradient {
+            GradientStop {
+                position: 0.00;
+                color: "#2869f5";
+            }
+            GradientStop {
+                position: 1.00;
+                color: "#01298d";
+            }
+        }
+
         width: window.screenWidth * 4/5; height: 80
+
         Text {
             anchors.centerIn: parent
             text: "Add Users"
@@ -41,10 +75,25 @@ Rectangle {
             anchors.fill: parent
             onClicked: bringUpContacts()
         }
+
+        border.width: 2
+        border.color: "black"
     }
 
-    Rectangle { id: submitBtn; x: (parent.width / 2) - (addUsersBtn.width / 2); y: 320;
+    Rectangle { id: submitBtn; x: (container.width / 2) - (addUsersBtn.width / 2); y: 320;
         color: "#1bd73d"
+        border.color: "black"
+        border.width: 2
+        gradient: Gradient {
+            GradientStop {
+                position: 0.00;
+                color: "#15e812";
+            }
+            GradientStop {
+                position: 1.00;
+                color: "#038d08";
+            }
+        }
         width: window.screenWidth * 4/5; height: 80
         Text {
             anchors.centerIn: parent
@@ -79,6 +128,8 @@ Rectangle {
 
     }
 
+
+
     // Contacts Widget
     Rectangle {
         id: contactsWidget
@@ -111,7 +162,7 @@ Rectangle {
             }
         }
 
-        Item { id: container; x: 0; y: 80; width: parent.width; height: window.height - 80;
+        Item { x: 0; y: 80; width: parent.width; height: window.height - 80;
 
             Contacts { id: contactsListWidget; anchors.fill: parent }
 

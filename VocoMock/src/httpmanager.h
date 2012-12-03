@@ -1,3 +1,8 @@
+/****************************************************************************
+ * Copyright (C) 2012 Michael Cueno
+ * Contact: mcueno2@uic.edu
+ ****************************************************************************/
+
 #ifndef HTTPMANAGER_H
 #define HTTPMANAGER_H
 
@@ -14,6 +19,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QDir>
+#include <QProcess>
 
 #include "cookiejar.h"
 #include "postnewconversation.h"
@@ -112,6 +118,7 @@ signals:
     void convoCreatedSignal();
     void reloadHome();
     void reloadConvo();
+    void playAudioDone();
 
 public slots:
     void postCredentials(QString credentials);
@@ -135,7 +142,7 @@ private:
     QString m_username;
     PostNewConversation *new_convo;
     NewMessage *new_message;
-    DummyDesktopPlayer *player;
+    MEDIA_OBJECT *player;
 };
 
 #endif // HTTPMANAGER_H

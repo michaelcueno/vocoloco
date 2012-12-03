@@ -1,3 +1,8 @@
+/****************************************************************************
+ * Copyright (C) 2012 Michael Cueno
+ * Contact: mcueno2@uic.edu
+ ****************************************************************************/
+
 import QtQuick 1.1
 
 Rectangle {
@@ -7,7 +12,7 @@ Rectangle {
     height: 200; width: window.width
     id: messageDelegate
 
-    color: "#dce2ee"
+    color: "white"
 
     /*
     Image {
@@ -18,7 +23,6 @@ Rectangle {
     }
     */
 
-
     Image {
         id: user_img
         source: "http://vocoloco.herokuapp.com/" + userpic
@@ -27,15 +31,12 @@ Rectangle {
         y: 35;
     }
 
-
-
     Text {
         id: sender
         text:owner
         font.pixelSize: window.smallFont
         anchors {top: user_img.bottom; topMargin: 5; horizontalCenter: user_img.horizontalCenter }
     }
-
 
     BorderImage {
         id: user_message_background
@@ -60,6 +61,7 @@ Rectangle {
     }
 
 
+    // If the item is a text item this will show up
     Text {
         id: content;
         anchors.margins: 40;
@@ -70,6 +72,27 @@ Rectangle {
         verticalAlignment: Text.AlignVCenter
         wrapMode: Text.WordWrap
         font.pixelSize: window.normalFont
+        visible: false // isAudio === "true"
+    }
+
+    // If item is an audio file this shows instead
+    Image {
+        id: playBtn
+        source: ":/images/play-button_black.png"
+        width: 157
+        height: 126
+        anchors.top: user_img.top
+        anchors.right: owner === network.username ? user_img.left : undefined;
+        anchors.left: owner === network.username ? undefined : user_img.right;
+        anchors.rightMargin: 100
+        visible: true
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                network.downloadAudio(url)
+                swapPlayBtn()
+            }
+        }
     }
 
     Text {
@@ -89,4 +112,11 @@ Rectangle {
         anchors.bottom: parent.bottom
     }
 
+    function swapPlayBtn() {
+        playBtn.source = ":/images/play-button.png"
+    }
+
+    function playStopped() {
+        playBtn.source = ":/images/play-button_black.png"
+    }
 }

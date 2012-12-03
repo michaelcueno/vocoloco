@@ -1,12 +1,18 @@
+/****************************************************************************
+ * Copyright (C) 2012 Michael Cueno
+ * Contact: mcueno2@uic.edu
+ ****************************************************************************/
+
+
 import QtQuick 1.1
 import 'content'
-
 
 // Main window of application -----------//
 Rectangle {
     id: window
     width: 720; height: 1280;
     objectName: "mainObj";
+
 
     property string mainUrl: "https://vocoloco.herokuapp.com/"
 
@@ -62,6 +68,7 @@ Rectangle {
             anchors.fill: parent;
             enabled: false
             onClicked: parent.state = ""
+            onPressed: parent.state = ""
         }
 
         states: State {
@@ -75,26 +82,8 @@ Rectangle {
         }
     }
 
-   // TestScreen {id: audioTest; anchors.fill: parent; visible: true}
+    // TestScreen {id: audioTest; anchors.fill: parent; visible: true}
 
-    /* Logout button (Not for production)
-    Rectangle {
-        id: logoutBtn
-        color: "red"
-        width: parent.width
-        height: 40
-        anchors.bottom: parent.bottom
-        Text{
-            text: "logout"
-            anchors.centerIn: parent
-            font.pixelSize: 30
-        }
-        MouseArea{
-            anchors.fill: parent
-            onClicked: logout()
-        }
-    }
-    */
 
     //---- End of visual comonents ----- |
 
@@ -169,6 +158,10 @@ Rectangle {
             header.unHideSettings()
             settingsScreen.enableConvo()
         }
+
+        if(contactScreen.visible) {
+            header.hideSettings()
+        }
     }
 
     function changeHeader(msg){
@@ -193,11 +186,7 @@ Rectangle {
     // TODO Would be better if this goes to login screen but.. Getting a seg fault with next login so for now just quit app
     function logout(){
         network.logout()
-        console.log(window.y)
-        console.log(window.width)
-      // changeScreen(loginScreen)
-        Qt.quit()
-
+        //changeScreen(loginScreen)
     }
 
     // Shows the settings panel (pushes whatever is on the screen left)

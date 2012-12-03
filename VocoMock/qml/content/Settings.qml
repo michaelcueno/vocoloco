@@ -1,3 +1,8 @@
+/****************************************************************************
+** Copyright (C) 2012 Michael Cueno
+** Contact: mcueno2@uic.edu
+*****************************************************************************/
+
 import QtQuick 1.1
 
 Item {
@@ -48,7 +53,11 @@ Item {
             id: logout_option
             title: "Logout"
             active: true
-            onSettingClicked: logout()
+            onSettingClicked: {
+                hideSettings()
+                hideHeaderShadow()
+                logout()
+            }
         }
     }
 

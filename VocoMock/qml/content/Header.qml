@@ -1,3 +1,8 @@
+/****************************************************************************
+ * Copyright (C) 2012 Michael Cueno
+ * Contact: mcueno2@uic.edu
+ ****************************************************************************/
+
 
 import QtQuick 1.1
 
@@ -177,6 +182,7 @@ Rectangle {
         MouseArea{
             anchors.fill: parent
             onClicked: {
+               homeScreen.loadXML()
                unHideBtns()
                changeScreen(homeScreen)
             }
@@ -191,6 +197,42 @@ Rectangle {
         }
 
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+    // The create convo icon that comes up in the contacts page when a contact is checked
+/*
+    Rectangle { // This will show up when contact is checked
+        id: createFromContacts
+        anchors.verticalCenter: parent.verticalCenter
+        x:window.width-105
+        y: 20
+        width: 100
+        height: 200
+
+        Text {
+            id: createConvo
+            anchors.centerIn: parent
+            text: "Start Conversation"
+            font.pixelSize: 20
+            color: "black"
+        }
+
+        MouseArea{
+            id: createFromContacts_mouse_area
+            anchors.fill: parent
+            onClicked: {
+               //TODO: Go to create convo w/ users already marked
+            }
+        }
+        states: State {
+            name: "HIDDEN"
+            PropertyChanges { target: settings_img; y: -40; opacity: 0}
+            PropertyChanges { target: settings_mouse_area; enabled: false }
+            PropertyChanges { target: header_linebreak2; visible: false }
+        }
+    }
+        */
+
 
     function hideBtns(){
         contactsBtn.state = "HIDDEN"

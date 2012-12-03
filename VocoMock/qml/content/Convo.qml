@@ -1,3 +1,8 @@
+/****************************************************************************
+ * Copyright (C) 2012 Michael Cueno
+ * Contact: mcueno2@uic.edu
+ ****************************************************************************/
+
 // import QtQuick 1.0 // to target S60 5th Edition or Maemo 5
 import QtQuick 1.1
 
@@ -26,9 +31,9 @@ Rectangle {
         }
     }
 
-    ListView {
+    ListView { id: convo_messages
+
         rotation: 180;
-        id: convo_messages
         width: window.screenWidth
         height: parent.height - new_message_input.height
         maximumFlickVelocity: 2502
@@ -38,6 +43,7 @@ Rectangle {
     }
 
     ScrollBar {
+        rotation: 180
         scrollArea: convo_messages; height: convo_messages.height; width:10;
         anchors.right: convo_messages.right; anchors.top: convo_messages.top;
     }
@@ -53,6 +59,9 @@ Rectangle {
         XmlRole { name: "message_id"; query: "message_id/string()" }
         XmlRole { name: "message"; query: "message/string()"}
         XmlRole { name: "date"; query: "date/string()" }
+        XmlRole { name: "isAudio"; query: "is_audio/string()" }
+        XmlRole { name: "url"; query: "url/string()" }
+
     }
 
     Rectangle {
@@ -64,7 +73,7 @@ Rectangle {
 
         SearchBox {
             id: message_input
-            anchors { left: parent.left; leftMargin: 30; verticalCenter: parent.verticalCenter }
+            anchors { left: parent.left; leftMargin: 15; verticalCenter: parent.verticalCenter }
             width: parent.width * (3/4)
             height: parent.height * (5/6)
             default_text: ""
@@ -73,9 +82,19 @@ Rectangle {
         Rectangle {
             id: send
             anchors { left: message_input.right; verticalCenter: parent.verticalCenter; leftMargin: 15 }
-            width: parent.width * (1/5) - 40
-            height: parent.height * (5/6)
-            color: "green"
+            width: parent.width * (1/5) - 15
+            height: parent.height * (5/6) - 2
+            border.color: "black"
+            gradient: Gradient {
+                GradientStop {
+                    position: 0.00;
+                    color: "#00e000";
+                }
+                GradientStop {
+                    position: 1.00;
+                    color: "#009914";
+                }
+            }
             Text {
                 text: "Send"
                 font.pixelSize: window.normalFont
@@ -111,5 +130,9 @@ Rectangle {
         prepareMessage()
         network.postNewMessage();
         message_input.clear()
+    }
+
+    function playAudioDone() {
+        convo_messages.currentItem.playStopped()
     }
 }

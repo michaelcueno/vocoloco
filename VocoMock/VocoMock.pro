@@ -30,19 +30,20 @@ qtcAddDeployment()
 
 
 linux-g++ {
-    INCLUDEPATH +=  /usr/lib/jvm/java-1.6.0-openjdk/include  \ # path to jni on linux
-    DEFINES += MEDIA_HEADER=\\\\"dummymediaplayer.h\\\\"
-    DEFINES += MEDIA_OBJECT=DummyMediaPlayer
+    INCLUDEPATH +=  /usr/lib/jvm/java-1.6.0-openjdk/include   # path to jni on linux
+    DEFINES += MEDIA_HEADER='dummymediaplayer.h'
+    DEFINES += MEDIA_OBJECT=DummyDesktopPlayer
 }
 
 android {
+    DEFINES -= MEDIA_OBJECT
     SOURCES += src/androidmediaobject.cpp
 
     HEADERS += src/androidmediaobject.h
 
     INCLUDEPATH +=  /usr/lib/jni  #  path to jni for android
     DEFINES += MEDIA_PLAYER=\\\"androidmediaobject.h\\\"
-    DEFINES += MEDIA_PLAYER_OBJECT=AndroidMediaObject
+    DEFINES += MEDIA_OBJECT=AndroidMediaObject
 }
 
 OTHER_FILES += \
@@ -98,6 +99,8 @@ OTHER_FILES += \
     qml/content/SearchBox.qml \
     qml/TestScreen.qml \
     qml/content/Settings.qml \
-    qml/content/SettingsOption.qml
+    qml/content/SettingsOption.qml \
+    qml/content/ScrollBar.qml \
+    android/src/org/kde/necessitas/origo/QSimpleAudioPlayer.java
 
 

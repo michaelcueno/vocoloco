@@ -34,6 +34,7 @@ HttpManager::~HttpManager()
  */
 void HttpManager::downloadAudio(QString url){
 
+    qDebug() << url;
     request = QNetworkRequest(QUrl( url ));
     QNetworkReply *localreply = manager->get(request);
     localreply->ignoreSslErrors();
@@ -51,7 +52,7 @@ void HttpManager::play(){
 
     qDebug() << latin;
 
-    player = new DummyDesktopPlayer("player");
+    player = new MEDIA_OBJECT("player");
     if (!player->playerSetUrl(latin))
     {
         qDebug() << "Error: couldn't load file";
@@ -61,6 +62,7 @@ void HttpManager::play(){
     }
 
     delete player;
+    emit playAudioDone();
 
 }
 
@@ -104,7 +106,7 @@ void HttpManager::record()
 {
     QString TMP_AUDIO_PATH = dir.absolutePath() + "/tmpAudio.3gp";
     QByteArray latin = TMP_AUDIO_PATH.toLatin1();
-    player = new DummyDesktopPlayer("recorder");
+    player = new MEDIA_OBJECT("recorder");
     player->recorderSetUrl(latin);
      qDebug() << latin;
     player->record();
@@ -375,6 +377,6 @@ void HttpManager::logout(){
     CookieJar::STAY_LOGGED_IN = false;
     delete jar;
     jar = new CookieJar(this);
-   // CookieJar::STAY_LOGGED_IN = true;  // Will need to be set back to implement to login screen instead of Qt.quit
+    QProcess::startDetached()
 }
 

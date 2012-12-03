@@ -1,3 +1,9 @@
+/****************************************************************************
+ * Copyright (C) 2012 Michael Cueno
+ * Contact: mcueno2@uic.edu
+ ****************************************************************************/
+
+
 #ifndef COOKIEJAR_H
 #define COOKIEJAR_H
 #include <QNetworkCookieJar>

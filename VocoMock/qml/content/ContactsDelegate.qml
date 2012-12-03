@@ -1,3 +1,9 @@
+/****************************************************************************
+ * Copyright (C) 2012 Michael Cueno
+ * Contact: mcueno2@uic.edu
+ ****************************************************************************/
+
+
 import QtQuick 1.1
 
 Rectangle {
@@ -14,8 +20,12 @@ Rectangle {
 
     Image {
         id: list_background
+        anchors.fill: parent
         source: ":/images/list_background.gif"
+        fillMode: Image.Tile
     }
+
+
 
     Image {
         id: user_img
@@ -87,6 +97,14 @@ Rectangle {
        opacity: 0
     }
 
+    Rectangle {
+        id: linebreak
+        anchors { bottom: parent.bottom; }
+        width: parent.width
+        height: 2
+        color: "grey"
+    }
+
     function contacts_checked()
     {
         if(check_box.state == ""){
@@ -108,5 +126,9 @@ Rectangle {
         first = whole[0]
         if (whole[1])
             last = whole[1]
+    }
+
+    function noContactsChecked(){
+        // TODO: Should hide the "create convo" in header
     }
 }

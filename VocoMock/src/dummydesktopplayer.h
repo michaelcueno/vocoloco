@@ -1,3 +1,8 @@
+/****************************************************************************
+ * Copyright (C) 2012 Michael Cueno
+ * Contact: mcueno2@uic.edu
+ ****************************************************************************/
+
 #ifndef DUMMYDESKTOPPLAYER_H
 #define DUMMYDESKTOPPLAYER_H
 #include <QString>

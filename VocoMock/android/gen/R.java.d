@@ -8,6 +8,7 @@
 /home/mike/workspace/voco-loco/VocoMock/android/res/values-it/strings.xml \
 /home/mike/workspace/voco-loco/VocoMock/android/res/drawable/icon.png \
 /home/mike/workspace/voco-loco/VocoMock/android/res/drawable/logo.png \
+/home/mike/workspace/voco-loco/VocoMock/android/res/drawable/logo_necessitas.png \
 /home/mike/workspace/voco-loco/VocoMock/android/res/values-ja/strings.xml \
 /home/mike/workspace/voco-loco/VocoMock/android/res/values-fa/strings.xml \
 /home/mike/workspace/voco-loco/VocoMock/android/res/values-nl/strings.xml \
