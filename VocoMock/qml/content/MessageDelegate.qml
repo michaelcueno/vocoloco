@@ -9,6 +9,9 @@ Rectangle {
 
     rotation: 180
 
+    property string tr: "true"
+    property string fl: "false"
+
     height: 200; width: window.width
     id: messageDelegate
 
@@ -72,8 +75,9 @@ Rectangle {
         verticalAlignment: Text.AlignVCenter
         wrapMode: Text.WordWrap
         font.pixelSize: window.normalFont
-        visible: false // isAudio === "true"
+        visible: is_audio === fl
     }
+
 
     // If item is an audio file this shows instead
     Image {
@@ -85,7 +89,7 @@ Rectangle {
         anchors.right: owner === network.username ? user_img.left : undefined;
         anchors.left: owner === network.username ? undefined : user_img.right;
         anchors.rightMargin: 100
-        visible: true
+        visible: is_audio === tr
         MouseArea {
             anchors.fill: parent
             onClicked: {
@@ -118,5 +122,25 @@ Rectangle {
 
     function playStopped() {
         playBtn.source = ":/images/play-button_black.png"
+    }
+
+    function isText() {
+
+        var tr =  /^false/;
+
+        if(tr.test(is_audio))
+            return true
+        else
+            return false
+    }
+
+    function isAudio() {
+
+        var tr =  /^true/;
+
+        if(tr.test(is_audio))
+            return true
+        else
+            return false
     }
 }

@@ -377,6 +377,5 @@ void HttpManager::logout(){
     CookieJar::STAY_LOGGED_IN = false;
     delete jar;
     jar = new CookieJar(this);
-    QProcess::startDetached()
 }
 

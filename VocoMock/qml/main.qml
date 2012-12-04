@@ -186,7 +186,7 @@ Rectangle {
     // TODO Would be better if this goes to login screen but.. Getting a seg fault with next login so for now just quit app
     function logout(){
         network.logout()
-        //changeScreen(loginScreen)
+        Qt.quit()
     }
 
     // Shows the settings panel (pushes whatever is on the screen left)

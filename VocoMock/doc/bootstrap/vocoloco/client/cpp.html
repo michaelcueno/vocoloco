@@ -8,7 +8,8 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="../docs/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="../../docs/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="../../docs/assets/js/google-code-prettify/prettify.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -18,7 +19,7 @@
         padding: 9px 0;
       }
     </style>
-    <link href="../docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../../docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -33,7 +34,7 @@
     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
   </head>
 
-  <body>
+  <body onload="prettyPrint()" bgcolor="white">
 
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
@@ -61,49 +62,57 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">LocoClient</li>
-              <li class="active"><a href="#">Overview</a></li>
-              <li><a href="client/qml.html">QML</a></li>
-              <li><a href="client/cpp.html">c++</a></li>
+              <li><a href="../client.html">Overview</a></li>
+              <li><a href="qml.html">QML</a></li>
+              <li class="active"><a href="cpp.html">c++</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
 
 
+
+
         <div class="span9">
-          <div class="hero-unit">
-            <h1>LOCOCLIENT</h1>
-            <p>Vocoloco Android Client</p>
-          </div>
+            <h1>C++ extensions</h1>
+            <p>Implementing necessary functionality for the client through c++</p>
+
+			 
           <div class="row-fluid">
             <div class="span8">
               <h2>Big Picture</h2>
-              <img src="client/images/MainLayout.png">
-            </div><!--/span-->
-          </div><!--/row-->
-			 
-			 
-          <div class="row-fluid">
-            <div class="span8">
-              <h2>QML Application Viewer</h2>
-                <p>Heart and Soul of the Android Client. Most of the client is written in this langauge.
-                You initialize the application viewer with the main.qml file and include the directory containing 
-                all other qml files and away you go! </p>
+               <img src="images/overview_cpp.png">
             </div><!--/span-->
           </div><!--/row-->
 
           <div class="row-fluid">
             <div class="span8">
-              <h2>HttpManager</h2>
-                <p>Backend for the client written in c++. </p>
+              <h2>Example</h2>
+              <img src="images/qml_example.png">
+              <img src="images/qml_visual.png">
+            </div><!--/span-->
+          </div><!--/row-->
 
+          <div class="row-fluid">
+            <div class="span8">
+              <h2>Extensions</h2>
                   <p>QML is a fantastic language, but it doesn't do everything 
                   we needed it it do. For example, there are many things invovling custom networking that we needed
                   to accomplish to implement the messaging client. Luckiliy, QML is extendable through c++</p>
             </div><!--/span-->
           </div><!--/row-->
 
+         <div class="row-fluid">
+            <div class="span8">
+              <pre class="prettyprint linenums languague-c++">
+    HttpManager network;     // My class
+    QmlApplicationViewer viewer;   // Qt's Qml App Viewer
 
-
+    // make network avaiable to QML
+    viewer.rootContext()->setContextProperty("network", &network);
+              </pre>
+          </div>
+        </div>
+          
 
 
 
@@ -126,10 +135,10 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../assets/js/jquery.js"></script>
-    <script src="../assets/js/bootstrap-transition.js"></script>
-    <script src="../assets/js/bootstrap-alert.js"></script>
-    <script src="../assets/js/bootstrap-modal.js"></script>
+    <script src="../../docs/assets/js/jquery.js"></script>
+    <script src="../../docs/assets/js/bootstrap-transition.js"></script>
+    <script src="../../docs/assets/js/bootstrap-alert.js"></script>
+    <script src="../../docs/assets/js/bootstrap-modal.js"></script>
     <script src="../assets/js/bootstrap-dropdown.js"></script>
     <script src="../assets/js/bootstrap-scrollspy.js"></script>
     <script src="../assets/js/bootstrap-tab.js"></script>
@@ -139,6 +148,7 @@
     <script src="../assets/js/bootstrap-collapse.js"></script>
     <script src="../assets/js/bootstrap-carousel.js"></script>
     <script src="../assets/js/bootstrap-typeahead.js"></script>
+    <script src="../../docs/assets/js/google-code-prettify/prettify.js"></script>
 
   </body>
 </html>

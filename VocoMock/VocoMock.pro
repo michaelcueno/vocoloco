@@ -4,7 +4,6 @@ SOURCES += src/main.cpp \
     src/networkfactory.cpp \
     src/postnewconversation.cpp \
     src/newmessage.cpp \
-    src/mainwindow.cpp \
     src/dummydesktopplayer.cpp
 
 HEADERS += \
@@ -14,7 +13,6 @@ HEADERS += \
     src/ImageProvider.h \
     src/postnewconversation.h \
     src/newmessage.h \
-    src/mainwindow.h \
     src/dummydesktopplayer.h
 
 

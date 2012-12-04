@@ -59,7 +59,7 @@ Rectangle {
         XmlRole { name: "message_id"; query: "message_id/string()" }
         XmlRole { name: "message"; query: "message/string()"}
         XmlRole { name: "date"; query: "date/string()" }
-        XmlRole { name: "isAudio"; query: "is_audio/string()" }
+        XmlRole { name: "is_audio"; query: "is_audio/string()" }
         XmlRole { name: "url"; query: "url/string()" }
 
     }
