@@ -15,7 +15,7 @@ Item {
 
     property int textWidth
 
-    height: 200; width: window.width
+    height: 200; width: window.screenWidth
 
     Rectangle {
         width: parent.width
