@@ -47,8 +47,8 @@ int main(int argc, char *argv[])
     //   viewer.ResizeMode(QDeclarativeView::SizeRootObjectToView);
 
 
-    MainWindow logoutbtn;
-    logoutbtn.setOrientation(MainWindow::ScreenOrientationAuto);
+    //MainWindow logoutbtn;
+    //logoutbtn.setOrientation(MainWindow::ScreenOrientationAuto);
 
 
     // Locate and instantiate QML objects for connections

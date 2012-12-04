@@ -75,29 +75,45 @@ Item{
         id: deleteConvo
         anchors.centerIn: parent
         color: "#1a7fdd"
+        gradient: Gradient {
+            GradientStop {
+                position: 0.00;
+                color: "#f9a981";
+            }
+            GradientStop {
+                position: 1.00;
+                color: "#a66f53";
+            }
+        }
+        border.color: "black"
         width: screenWidth * 2/3
-        height: screenHeight * 1/4
+        height: screenHeight * 1/5
         visible: false
 
         Text {
             id: you_sure
-            style: Text.Raised; font.pointSize: 30
+            font.pointSize: 30
             text: "Do you want to delete"
-            anchors.leftMargin: 10
-        }
-        Text {
-            anchors.top: you_sure.bottom;
-            text: convoToDelete_title
-            horizontalAlignment: Text.AlignHCenter
-            font.pixelSize: 30
-            anchors.leftMargin: 10
+            x: 35
+            y: 40
         }
 
         Rectangle {
             id: deleteBtn
             width: parent.width * .45
             height: 70;
-            color: "#d32020"
+
+            border.color: "black"
+            gradient: Gradient {
+                GradientStop {
+                    position: 0.00;
+                    color: "#e60000";
+                }
+                GradientStop {
+                    position: 1.00;
+                    color: "#950000";
+                }
+            }
 
             anchors { left: parent.left; leftMargin: 10; bottom: parent.bottom; bottomMargin: 10}
             Text {
@@ -120,7 +136,18 @@ Item{
             id: cancle
             width: parent.width * .45
             height: 70;
-            color: "#b1c0c8"
+
+            border.color: "black"
+            gradient: Gradient {
+                GradientStop {
+                    position: 0.00;
+                    color: "#ffffff";
+                }
+                GradientStop {
+                    position: 1.00;
+                    color: "#a8c3e8";
+                }
+            }
             anchors { right: parent.right; rightMargin: 10; bottom: parent.bottom; bottomMargin: 10}
             Text {
                 anchors.centerIn: parent

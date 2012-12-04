@@ -15,10 +15,7 @@ HttpManager::HttpManager()
     // QML Player
     player = 0;
 
- //   tmp = new QList<QByteArray>();
- //   reply = new HttpReply();
-    setProgress(0);
-   // QObject::connect(reply, SIGNAL(downloadProgress(int, int)), this, SIGNAL(progress(int)));
+    setProgress(0); // Init
 }
 HttpManager::~HttpManager()
 {
