@@ -5,12 +5,22 @@
 
 import QtQuick 1.1
 
-Rectangle {
+Item {
 
+    id: messageDelegate
     rotation: 180
 
-    height: 200; width: window.width
-    id: messageDelegate
+    property string tr: "true"
+    property string fl: "false"
+
+    property int textWidth
+
+    height: 200; width: window.screenWidth
+
+    Rectangle {
+        width: parent.width
+        height: 190
+
 
     color: "white"
 
@@ -41,23 +51,23 @@ Rectangle {
     BorderImage {
         id: user_message_background
         source: ":/images/iphone-sms-2.jpg"
-        width: content.width + 25; height: 120
+        width: content.width + 30; height: content.height + 25
         border { left: 30; top: 23; right: 30; bottom: 23 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
         anchors.centerIn: content
-        visible: owner === network.username ? true : false;
+        visible: owner === network.username && isText() ? true : false;
     }
 
     BorderImage {
         id: other_message_background
         source: ":/images/iphone-sms-1.jpg"
-        width: content.width + 30; height: 120
+        width: content.width + 30; height: content.height + 25
         border { left: 30; top: 23; right: 30; bottom: 23 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
         anchors.centerIn: content
-        visible: owner === network.username ? false : true;
+        visible: owner !== network.username && isText() ? true : false;
     }
 
 
@@ -65,15 +75,16 @@ Rectangle {
     Text {
         id: content;
         anchors.margins: 40;
-        height: parent.height
         anchors.right: owner === network.username ? user_img.left : undefined;
         anchors.left: owner === network.username ? undefined : user_img.right;
         text: message
-        verticalAlignment: Text.AlignVCenter
-        wrapMode: Text.WordWrap
+        width: textWidth
+        anchors.verticalCenter: parent.verticalCenter
+        wrapMode: "WordWrap"
         font.pixelSize: window.normalFont
-        visible: false // isAudio === "true"
+        visible: is_audio === fl
     }
+
 
     // If item is an audio file this shows instead
     Image {
@@ -85,7 +96,7 @@ Rectangle {
         anchors.right: owner === network.username ? user_img.left : undefined;
         anchors.left: owner === network.username ? undefined : user_img.right;
         anchors.rightMargin: 100
-        visible: true
+        visible: is_audio === tr
         MouseArea {
             anchors.fill: parent
             onClicked: {
@@ -112,11 +123,41 @@ Rectangle {
         anchors.bottom: parent.bottom
     }
 
+    }
+
+   Component.onCompleted: {
+        if (content.paintedWidth > 500) {
+            textWidth = 500
+        } else {
+            textWidth = content.paintedWidth
+        }
+    }
+
     function swapPlayBtn() {
         playBtn.source = ":/images/play-button.png"
     }
 
     function playStopped() {
         playBtn.source = ":/images/play-button_black.png"
+    }
+
+    function isText() {
+
+        var tr =  /^false/;
+
+        if(tr.test(is_audio))
+            return true
+        else
+            return false
+    }
+
+    function isAudio() {
+
+        var tr =  /^true/;
+
+        if(tr.test(is_audio))
+            return true
+        else
+            return false
     }
 }

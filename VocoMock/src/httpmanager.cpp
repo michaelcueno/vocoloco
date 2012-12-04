@@ -15,10 +15,7 @@ HttpManager::HttpManager()
     // QML Player
     player = 0;
 
- //   tmp = new QList<QByteArray>();
- //   reply = new HttpReply();
-    setProgress(0);
-   // QObject::connect(reply, SIGNAL(downloadProgress(int, int)), this, SIGNAL(progress(int)));
+    setProgress(0); // Init
 }
 HttpManager::~HttpManager()
 {
@@ -377,6 +374,5 @@ void HttpManager::logout(){
     CookieJar::STAY_LOGGED_IN = false;
     delete jar;
     jar = new CookieJar(this);
-    QProcess::startDetached()
 }
 

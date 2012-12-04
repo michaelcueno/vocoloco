@@ -8,7 +8,8 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="../docs/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="../../docs/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="../../docs/assets/js/google-code-prettify/prettify.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -18,7 +19,7 @@
         padding: 9px 0;
       }
     </style>
-    <link href="../docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../../docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -46,10 +47,10 @@
           <a class="brand" href="index.html">VocoLoco</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li><a href="index.html">Overview</a></li>
-              <li class="active"><a href="client.html">Client</a></li>
-              <li><a href="server.html">Server</a></li>
-              <li><a href="../../html/index.html">Documentation</a></li>
+              <li><a href="../index.html">Overview</a></li>
+              <li class="active"><a href="../client.html">Client</a></li>
+              <li><a href="../server.html">Server</a></li>
+              <li><a href="../../../html/index.html">Documentation</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -62,53 +63,70 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">LocoClient</li>
-              <li class="active"><a href="#">Overview</a></li>
-              <li><a href="client/qml.html">QML</a></li>
-              <li><a href="client/cpp.html">c++</a></li>
+              <li><a href="../client.html">Overview</a></li>
+              <li class="active"><a href="qml.html">QML</a></li>
+              <li><a href="cpp.html">c++</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
 
 
+
+
         <div class="span9">
-          <div class="hero-unit">
-            <h1>LOCOCLIENT</h1>
-            <p>Vocoloco Android Client</p>
-          </div>
+            <h1>Qt Markup Language</h1>
+
+			 
+          <div class="row-fluid">
+            <div class="span8">
+              <h2>Overview</h2>
+                <ul>
+                  <li>Declarative Language</li>
+                  <li>Inherits Qt's Signals and Slots mechanism</li>
+                  <li>Developed with mobile in mind</li>
+                  <li>Makes developing user interfaces a breeze</li>
+                </ul>
+            </div><!--/span-->
+          </div><!--/row-->
+
+           <div class="row-fluid">
+            <div class="span8">
+              <h2>Example</h2>
+              <img src="images/qml_example.png">
+              <img src="images/qml_visual.png">
+            </div><!--/span-->
+          </div><!--/row-->
+
           <div class="row-fluid">
             <div class="span8">
               <h2>Big Picture</h2>
-              <img src="client/images/MainLayout.png">
-            </div><!--/span-->
-          </div><!--/row-->
-			 
-			 
-          <div class="row-fluid">
-            <div class="span8">
-              <h2>QML Application Viewer</h2>
-                <p>The heart and soul of the Android client. Most of the client is written in QML.
-                You initialize the application viewer by passing in a main.qml file and include the directory containing 
-                all other qml files and the engine builds the app</p>
+              <img src="images/qml_layout.jpg">
             </div><!--/span-->
           </div><!--/row-->
 
           <div class="row-fluid">
             <div class="span8">
-              <h2>HttpManager</h2>
-                <p>Backend for the client written in c++. </p>
-
+              <h2>Extensions</h2>
                   <p>QML is a fantastic language, but it doesn't do everything 
-                  we needed it it do. For example, there are many things involving custom networking that we needed
+                  we needed it it do. For example, there are many things invovling custom networking that we needed
                   to accomplish to implement the messaging client. Luckiliy, QML is extendable through c++</p>
             </div><!--/span-->
           </div><!--/row-->
 
 
 
+         <div class="row-fluid">
+            <div class="span8">
+              <pre class="prettyprint linenums languague-c++">
+    HttpManager network;     // My class
+    QmlApplicationViewer viewer;   // Qt's Qml App Viewer
 
-
-
-
+    // make network avaiable to QML
+    viewer.rootContext()->setContextProperty("network", &network);
+              </pre>
+          </div>
+        </div>
+          
 
 
 
@@ -127,10 +145,10 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../assets/js/jquery.js"></script>
-    <script src="../assets/js/bootstrap-transition.js"></script>
-    <script src="../assets/js/bootstrap-alert.js"></script>
-    <script src="../assets/js/bootstrap-modal.js"></script>
+    <script src="../../docs/assets/js/jquery.js"></script>
+    <script src="../../docs/assets/js/bootstrap-transition.js"></script>
+    <script src="../../docs/assets/js/bootstrap-alert.js"></script>
+    <script src="../../docs/assets/js/bootstrap-modal.js"></script>
     <script src="../assets/js/bootstrap-dropdown.js"></script>
     <script src="../assets/js/bootstrap-scrollspy.js"></script>
     <script src="../assets/js/bootstrap-tab.js"></script>
@@ -140,6 +158,7 @@
     <script src="../assets/js/bootstrap-collapse.js"></script>
     <script src="../assets/js/bootstrap-carousel.js"></script>
     <script src="../assets/js/bootstrap-typeahead.js"></script>
+    <script src="../../docs/assets/js/google-code-prettify/prettify.js"></script>
 
   </body>
 </html>
