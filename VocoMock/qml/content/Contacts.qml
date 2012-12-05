@@ -28,6 +28,7 @@ Rectangle {
         clip: true;
         delegate: ContactsDelegate {id: contactsDelegate}
         model: xml_contacts
+        cacheBuffer:10000
     }
 
     ScrollBar {

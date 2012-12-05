@@ -133,6 +133,9 @@ Rectangle {
     }
 
     function playAudioDone() {
-        convo_messages.currentItem.playStopped()
+
+
+            convo_messages.currentItem.playStopped()
+
     }
 }

@@ -14,6 +14,7 @@ XmlListModel {
 
     XmlRole { name: "name"; query: "name/string()" }
     XmlRole { name: "image"; query: "url/string()" }
+    XmlRole { name: "is_new"; query: "is_new/string()" }
 
     function loadXML(){
         xml_convoUsers.source = mainUrl + "conversations"

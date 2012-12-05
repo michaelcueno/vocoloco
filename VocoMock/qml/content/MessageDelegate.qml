@@ -20,9 +20,10 @@ Item {
     Rectangle {
         width: parent.width
         height: 190
+        color: owner === network.username ? "#c8e2bf" : "#d6e0e2"
 
 
-    color: "white"
+    // Away message: color: "#d6e0e2"
 
     /*
     Image {
@@ -51,22 +52,22 @@ Item {
     BorderImage {
         id: user_message_background
         source: ":/images/iphone-sms-2.jpg"
-        width: content.width + 30; height: content.height + 25
+        width: content.width + 30; height: content.height + 30
         border { left: 30; top: 23; right: 30; bottom: 23 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
-        anchors.centerIn: content
+        anchors.right: content.right; anchors.rightMargin: -20; anchors.top: content.top; anchors.topMargin: -15
         visible: owner === network.username && isText() ? true : false;
     }
 
     BorderImage {
         id: other_message_background
         source: ":/images/iphone-sms-1.jpg"
-        width: content.width + 30; height: content.height + 25
+        width: content.width + 36; height: content.height + 30
         border { left: 30; top: 23; right: 30; bottom: 23 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
-        anchors.centerIn: content
+        anchors.left: content.left; anchors.leftMargin: -24; anchors.top: content.top; anchors.topMargin: -15
         visible: owner !== network.username && isText() ? true : false;
     }
 
@@ -101,6 +102,7 @@ Item {
             anchors.fill: parent
             onClicked: {
                 network.downloadAudio(url)
+                timer.start()
                 swapPlayBtn()
             }
         }
@@ -123,9 +125,18 @@ Item {
         anchors.bottom: parent.bottom
     }
 
+    Timer {
+        id: timer
+        interval: 500;
+        running: false
+        onTriggered: playStopped()
     }
 
-   Component.onCompleted: {
+    }
+
+
+    Component.onCompleted: {
+
         if (content.paintedWidth > 500) {
             textWidth = 500
         } else {
@@ -133,12 +144,14 @@ Item {
         }
     }
 
+
     function swapPlayBtn() {
         playBtn.source = ":/images/play-button.png"
     }
 
     function playStopped() {
         playBtn.source = ":/images/play-button_black.png"
+        console.log(owner)
     }
 
     function isText() {

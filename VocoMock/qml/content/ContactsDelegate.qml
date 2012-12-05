@@ -34,6 +34,7 @@ Rectangle {
         x: 30; y: 22;
     }
 
+
     Text {
         id:first_name
         text: first;
@@ -42,6 +43,7 @@ Rectangle {
         color: "black"
         y: 50;
     }
+
     Text {
         id: last_name
         text: last;
