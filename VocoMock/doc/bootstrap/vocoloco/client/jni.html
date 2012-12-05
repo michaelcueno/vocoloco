@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>VocoLoco QML for Android</title>
+    <title>VocoLoco Mediaplayer and Recorder With Java and the JNI for Android</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -66,8 +66,8 @@
               <li class="nav-header">LocoClient</li>
               <li><a href="../client.html">Overview</a></li>
               <li><a href="qml.html">QML</a></li>
-              <li class="active"><a href="cpp.html">c++</a></li>
-              <li><a href="jni.html">Media Player and Recorder with JNI</a></li>
+              <li><a href="cpp.html">c++</a></li>
+              <li class="active"><a href="jni.html">Media Player and Recorder with JNI</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
@@ -76,53 +76,48 @@
 
 
         <div class="span9">
-            <h1>C++ extensions</h1>
-            <p>Implementing necessary functionality for the client through c++</p>
+            <h1>Java, C++, and the JNI</h1>
+            <p>Running native on the android VM</p>
 
 			 
           <div class="row-fluid">
             <div class="span8">
-              <h2>Big Picture</h2>
-               <a href="images/cpp_layout.jpg"><img src="images/cpp_layout.jpg"></a>
+              <h2>General View of the JNI</h2>
+              <img src="images/jni.png"></a>
             </div><!--/span-->
           </div><!--/row-->
 
           <div class="row-fluid">
             <div class="span8">
-              <h2>HttpManager</h2>
-              <p>Main interface with the QML application (Probably could have been named QMLController, but a heavy majority of what it does is handle the network 
-                aspect of the application). Mostly, this class provides the methods that the QML application engine calls in order to do things like login, post 
-                a message and so on. This class contains a variety of properties that it makes available to QML via a Q_PROPERTY macro. This allows the the functionality
-                that when changed, the properties notify the qml engine so that they can be updated there as well. Privately, this class owns an instance of QNetworkAccessManager
-                which provides the backbone of the http networking.</p>
+              <h2>JNI background</h2>
+              <p>The JNI creates a bridge between the JVM and native code e.g C or C++ at the initialization of the JVM, the JNI creates a pointer that contains the interface to the JVM and includes all functions necessary to interact with the JVM and Java objects, including conversitions of data types.
+              </p>
             </div><!--/span-->
           </div><!--/row-->
 
           <div class="row-fluid">
             <div class="span8">
-              <h2>CookieJar</h2>
-               <p>The QNetworkAccessManager in HttpManager has been supplied a custom cookie jar that allows for an important functionality that saves the cookie to local storage. 
-                This is accomplised by saving the cookie in ~CookieJar() and loading a cookie (if there is one) in CookieJar(). This is necessary because the QML engine uses a new
-                QNetworkAccessManager for each call that it makes to a new http location. If the cookie wasn't saved and used in each instance of QNetworkAccessManager that QML uses
-                then the user would not be able to use the app, since they would fail to authenticate on successive calls to the server.</p>
+              <h2>MediaPlayer.cpp</h2>
+               <p>A wrapper of a simple Java class that wraps an instance AndroidMediaPlayer object.</p>
             </div><!--/span-->
           </div><!--/row-->
 
           <div class="row-fluid">
             <div class="span8">
-              <h2>NetworkFactory</h2>
-                <p>Since the QML engine uses many instances of QNetworkAccessManager, we need to override the factory that it uses to create this instance. We do this by subclassing
-                  QDeclarativeNetworkAccessManagerFactory and implementing the create() method to our specifications. In this case it as simple as creating an instance of QNetworkAccessManager
-                  and supplying it with the custom CookieJar. (Also we needed to ignore ssl errors due to a necessitas problem)</p>
+              <h2>MediaRecorder.cpp</h2>
+                <p>A wrapper of a simple Java class that wraps an instance AndroidMediaRecorder object.</p>
             </div><!--/span-->
           </div><!--/row-->
 
+
           <div class="row-fluid">
             <div class="span8">
-              <h2>Post New Conversation/Message</h2>
-               <p>These classes simply model the data that is needed to post a conversation or a message to the server.</p>
+              <h2>How these C++ classes work</h2>
+                <p>Both C++ classes  contain a pointer to the JVM enviorment interface (*env) and basically provide a mapping that directly relates to the actual java code. The method wrappers handle bi-directional data type conversations and message passing to the JVM and or java classes. </p>
             </div><!--/span-->
           </div><!--/row-->
+
+
 
 
 
