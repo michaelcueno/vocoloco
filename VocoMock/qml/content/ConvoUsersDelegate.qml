@@ -9,13 +9,24 @@ Item {
 
     property string first
     property string last
+
+    property string tr: "true"   // For checking if a user has a new message post
+
     Component.onCompleted: setFirstLast()
 
     id: column
     width: 115
     height: parent.height
 
+    Rectangle {
+        width: 105; height: 105
+        anchors.centerIn: usrImg
+        color: "#ff9b4f"
+        visible: is_new === tr
+    }
+
     Image {
+        id: usrImg
         width:100;height:100;
         x:10;y:15;
         source: "http://vocoloco.herokuapp.com/" + image
@@ -29,8 +40,9 @@ Item {
         anchors {left: parent.left; right:parent.right;}
         horizontalAlignment: Text.AlignHCenter;
         text: first
-        font.pixelSize: 22;
+        font.pixelSize: 22
         font.bold: true
+        color: is_new === tr ? "#23a400" : "black"
     }
 
     function setFirstLast(){

@@ -8,7 +8,6 @@ static jmethodID s_audioRecorderRecordMethodID=0;
 static jmethodID s_audioRecorderStopMethodID=0;
 static jmethodID s_audioRecorderReleaseMethodID=0;
 
-
 static jclass s_audioPlayerClassID = 0;
 static jmethodID s_audioPlayerConstructorMethodID=0;
 static jmethodID s_audioPlayerSetUrlMethodID=0;

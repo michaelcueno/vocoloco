@@ -58,8 +58,10 @@ void HttpManager::play(){
         qDebug() << "Error: couldn't play file";
     }
 
-    delete player;
+
     emit playAudioDone();
+    qDebug() << "Should have turned black";
+    delete player;
 
 }
 
@@ -70,11 +72,15 @@ void HttpManager::writeAudioToFile(){
 
     QString TMP_AUDIO_PATH = dir.absolutePath() + "/tmpAudio";
 
+    // Clear out anything that was in tmpAudio before
+
+
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
 
     QFile file(TMP_AUDIO_PATH);
-    if ( file.open(QFile::ReadWrite) )
+    if ( file.open(QFile::WriteOnly | QFile::Truncate) )
     {
+
         QTextStream stream( &file );
         stream << reply->readAll();
     }
@@ -105,7 +111,7 @@ void HttpManager::record()
     QByteArray latin = TMP_AUDIO_PATH.toLatin1();
     player = new MEDIA_OBJECT("recorder");
     player->recorderSetUrl(latin);
-     qDebug() << latin;
+    qDebug() << latin;
     player->record();
 }
 
