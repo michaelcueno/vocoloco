@@ -602,6 +602,10 @@ em {
   color: #999999;
 }
 
+.presentation {
+  font-size: 20px;
+}
+
 abbr[title] {
   cursor: help;
   border-bottom: 1px dotted #999999;
