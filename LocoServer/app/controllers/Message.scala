@@ -12,6 +12,7 @@ import anorm._
 import models._
 import views._
 
+// written by Patrick Burd
 
 object MessageController extends Controller with Secured {
 

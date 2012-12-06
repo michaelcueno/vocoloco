@@ -8,6 +8,7 @@ import play.api.data.Forms._
 import models._
 import views._
 
+// written by Patrick Burd
 
 object FriendController extends Controller with Secured{
 

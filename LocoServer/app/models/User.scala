@@ -5,7 +5,7 @@ import play.api.Play.current
 import anorm._
 import anorm.SqlParser._
 
-
+// written by Patrick Burd
 case class User(username: String, name: String, url: String, password: String, isNew: String="false")
 
 object User {

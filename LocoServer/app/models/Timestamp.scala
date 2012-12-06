@@ -9,7 +9,7 @@ import anorm.SqlParser._
 import java.util.Calendar
 
 
-
+// written by Patrick Burd
 
 // create table time_stamp (
 // 	id 								bigint		 not null,
