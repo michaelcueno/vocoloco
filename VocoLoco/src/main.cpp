@@ -11,7 +11,7 @@
 #include <QDebug>
 #include <QMenuBar>
 #include "mainwindow.h"
-#include <jni.h>
+//#include <jni.h>
 
 
 int main(int argc, char *argv[])

@@ -1,0 +1,85 @@
+\hypertarget{classCookieJar}{\section{Cookie\-Jar Class Reference}
+\label{classCookieJar}\index{Cookie\-Jar@{Cookie\-Jar}}
+}
+
+
+Allows for a permanent cookie jar by saving cookies on delete to Q\-Settings and then loading from Q\-Settings on creation.  
+
+
+
+
+{\ttfamily \#include $<$cookiejar.\-h$>$}
+
+Inheritance diagram for Cookie\-Jar\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classCookieJar}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classCookieJar_a9d8362bfcc4d3fb2c5317de3305635a7}{{\bfseries Cookie\-Jar} (Q\-Object $\ast$parent)}\label{classCookieJar_a9d8362bfcc4d3fb2c5317de3305635a7}
+
+\item 
+\hyperlink{classCookieJar_ada1a5607a27433955f2b985c6d10bd0a}{$\sim$\-Cookie\-Jar} ()
+\item 
+void \hyperlink{classCookieJar_aa36822f501cf36baf4984ce9920bfb75}{save} ()
+\item 
+void \hyperlink{classCookieJar_ab58f94721665cfcf1eb24b140abe53f8}{load} ()
+\item 
+\hypertarget{classCookieJar_aa887fb809d2206d4d03e623310fba49a}{Q\-List$<$ Q\-Network\-Cookie $>$ {\bfseries get\-Cookies} ()}\label{classCookieJar_aa887fb809d2206d4d03e623310fba49a}
+
+\item 
+\hypertarget{classCookieJar_ac2659e9f1aca758ba2b56bbde81a6e21}{void {\bfseries Print\-Cookies} ()}\label{classCookieJar_ac2659e9f1aca758ba2b56bbde81a6e21}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{classCookieJar_a73f0b1e75f689e85ab833b0f1d680827}{S\-T\-A\-Y\-\_\-\-L\-O\-G\-G\-E\-D\-\_\-\-I\-N} = true
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Allows for a permanent cookie jar by saving cookies on delete to Q\-Settings and then loading from Q\-Settings on creation. 
+
+Allows for a permanent cookie jar by saving cookies on delete to Q\-Settings and then loading from Q\-Settings on creation. The Q\-M\-L engine requires this functionality because it sends a new request for all contents it recieves from the server (conversations, messages, contacts...ect). Each one of these requests is created in a different thread and instantiates its own Q\-Network\-Access\-Manager. This means it creates a new cookie jar. By using this cookie jar for each instantiation, cookies are able to be reused, thus the user is able to stay logged in across the application. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classCookieJar_ada1a5607a27433955f2b985c6d10bd0a}{\index{Cookie\-Jar@{Cookie\-Jar}!$\sim$\-Cookie\-Jar@{$\sim$\-Cookie\-Jar}}
+\index{$\sim$\-Cookie\-Jar@{$\sim$\-Cookie\-Jar}!CookieJar@{Cookie\-Jar}}
+\subsubsection[{$\sim$\-Cookie\-Jar}]{\setlength{\rightskip}{0pt plus 5cm}Cookie\-Jar\-::$\sim$\-Cookie\-Jar (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classCookieJar_ada1a5607a27433955f2b985c6d10bd0a}
+Destructor that will save the cookie to local storage if boolean S\-T\-A\-Y\-\_\-\-L\-O\-G\-G\-E\-D\-\_\-\-I\-N is true 
+
+\subsection{Member Function Documentation}
+\hypertarget{classCookieJar_ab58f94721665cfcf1eb24b140abe53f8}{\index{Cookie\-Jar@{Cookie\-Jar}!load@{load}}
+\index{load@{load}!CookieJar@{Cookie\-Jar}}
+\subsubsection[{load}]{\setlength{\rightskip}{0pt plus 5cm}void Cookie\-Jar\-::load (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classCookieJar_ab58f94721665cfcf1eb24b140abe53f8}
+If a cookie is saved in the Q\-Settings then this will load that cookie into the cookiejar for all cookie jars accross the application \hypertarget{classCookieJar_aa36822f501cf36baf4984ce9920bfb75}{\index{Cookie\-Jar@{Cookie\-Jar}!save@{save}}
+\index{save@{save}!CookieJar@{Cookie\-Jar}}
+\subsubsection[{save}]{\setlength{\rightskip}{0pt plus 5cm}void Cookie\-Jar\-::save (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classCookieJar_aa36822f501cf36baf4984ce9920bfb75}
+Saves cookie to Q\-Settings object which is stored in the directory where the binaries are kept. 
+
+\subsection{Member Data Documentation}
+\hypertarget{classCookieJar_a73f0b1e75f689e85ab833b0f1d680827}{\index{Cookie\-Jar@{Cookie\-Jar}!S\-T\-A\-Y\-\_\-\-L\-O\-G\-G\-E\-D\-\_\-\-I\-N@{S\-T\-A\-Y\-\_\-\-L\-O\-G\-G\-E\-D\-\_\-\-I\-N}}
+\index{S\-T\-A\-Y\-\_\-\-L\-O\-G\-G\-E\-D\-\_\-\-I\-N@{S\-T\-A\-Y\-\_\-\-L\-O\-G\-G\-E\-D\-\_\-\-I\-N}!CookieJar@{Cookie\-Jar}}
+\subsubsection[{S\-T\-A\-Y\-\_\-\-L\-O\-G\-G\-E\-D\-\_\-\-I\-N}]{\setlength{\rightskip}{0pt plus 5cm}bool Cookie\-Jar\-::\-S\-T\-A\-Y\-\_\-\-L\-O\-G\-G\-E\-D\-\_\-\-I\-N = true\hspace{0.3cm}{\ttfamily [static]}}}\label{classCookieJar_a73f0b1e75f689e85ab833b0f1d680827}
+This variable is used to delete the cookies in the settings for the applicaiton. The Q\-Application\-Viewer will set this variable upon its destruction to either true or false depending on if the user checked the 'keep me logged in button' 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+cookiejar.\-h\item 
+cookiejar.\-cpp\end{DoxyCompactItemize}

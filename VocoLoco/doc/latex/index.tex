@@ -1,0 +1,18 @@
+{\bfseries O\-V\-E\-R\-V\-I\-E\-W}
+
+Voco\-Loco is a messaging android application with an emphasis on group messaging and the use of audio. The goal is to create an instant, group voice-\/mail without having to wait for the end of a missed call to leave a message.
+
+{\bfseries S\-T\-R\-U\-C\-T\-U\-R\-E}
+
+The application is written primarily in Qt's Q\-M\-L (Qt Markup Language) which was meant for mobile applications. It is a very useful declarative language with much more functionality than most markup languages. With conditionals, Qt's signals and slots functionality, and the integration of javascript, Q\-M\-L is a well rounded language. But somethings were not possible using just Q\-M\-L itself. Fortunately, it allows for extension via c++.
+
+{\bfseries C++ E\-X\-T\-E\-N\-S\-I\-O\-N}
+
+The Q\-M\-L engine allows a c++ class to be set as a root context. This allows that class and it's methods to be called directly from the Q\-M\-L. We leveraged this by using the Http\-Manager which serves as the backend controller of the application (written in c++).
+
+{\bfseries Team Members} 
+\begin{DoxyItemize}
+\item Michael Cueno 
+\item Patrick Burd 
+\item Alex Oomen 
+\end{DoxyItemize}

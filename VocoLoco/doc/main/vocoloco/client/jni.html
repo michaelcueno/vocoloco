@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>VocoLoco Mediaplayer and Recorder With Java and the JNI for Android</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="../../docs/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="../../docs/assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="../../docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+  </head>
+
+  <body onload="prettyPrint()" bgcolor="white">
+
+     
+   <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="../index.html">VocoLoco</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="../index.html">Overview</a></li>
+              <li class="active"><a href="../design.html">Design</a></li>
+              <li><a href="../instructions.html">instructions</a></li>
+              <li><a href="../../../html/index.html">Documentation</a></li>
+              <li><a href="../../../../vocoloco.apk">Download</a></li>
+              <li><a href="http://github.com">Source</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+ 
+ <!--Client -->
+
+  <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">LocoClient</li>
+              <li><a href="../design.html">Overview</a></li>
+              <li><a href="qml.html">QML</a></li>
+              <li><a href="cpp.html">c++</a></li>
+              <li class="active"><a href="jni.html">Media Player and Recorder with JNI</a></li>
+            </ul>
+          </div><!--/.well -->
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">LocoServer</li>
+              <li><a href="../server.html">Overview</a></li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/ span -->
+
+
+
+        <div class="span9">
+            <h1>Java, C++, and the JNI</h1>
+            <p>Running native on the android VM</p>
+
+			 
+          <div class="row-fluid">
+            <div class="span8">
+              <h2>General View of the JNI</h2>
+              <img src="images/jni.png"></a>
+            </div><!--/span-->
+          </div><!--/row-->
+
+          <div class="row-fluid">
+            <div class="span8">
+              <h2>JNI background</h2>
+              <p>The JNI creates a bridge between the JVM and native code e.g C or C++ at the initialization of the JVM, the JNI creates a pointer that contains the interface to the JVM and includes all functions necessary to interact with the JVM and Java objects, including conversitions of data types.
+              </p>
+            </div><!--/span-->
+          </div><!--/row-->
+
+          <div class="row-fluid">
+            <div class="span8">
+              <h2>MediaPlayer.cpp</h2>
+               <p>A wrapper of a simple Java class that wraps an instance AndroidMediaPlayer object.</p>
+            </div><!--/span-->
+          </div><!--/row-->
+
+          <div class="row-fluid">
+            <div class="span8">
+              <h2>MediaRecorder.cpp</h2>
+                <p>A wrapper of a simple Java class that wraps an instance AndroidMediaRecorder object.</p>
+            </div><!--/span-->
+          </div><!--/row-->
+
+
+          <div class="row-fluid">
+            <div class="span8">
+              <h2>How these C++ classes work</h2>
+                <p>Both C++ classes  contain a pointer to the JVM enviorment interface (*env) and basically provide a mapping that directly relates to the actual java code. The method wrappers handle bi-directional data type conversations and message passing to the JVM and or java classes. </p>
+            </div><!--/span-->
+          </div><!--/row-->
+
+
+
+
+
+
+
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>&copy; Vocoloco 2012</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../docs/assets/js/jquery.js"></script>
+    <script src="../../docs/assets/js/bootstrap-transition.js"></script>
+    <script src="../../docs/assets/js/bootstrap-alert.js"></script>
+    <script src="../../docs/assets/js/bootstrap-modal.js"></script>
+    <script src="../assets/js/bootstrap-dropdown.js"></script>
+    <script src="../assets/js/bootstrap-scrollspy.js"></script>
+    <script src="../assets/js/bootstrap-tab.js"></script>
+    <script src="../assets/js/bootstrap-tooltip.js"></script>
+    <script src="../assets/js/bootstrap-popover.js"></script>
+    <script src="../assets/js/bootstrap-button.js"></script>
+    <script src="../assets/js/bootstrap-collapse.js"></script>
+    <script src="../assets/js/bootstrap-carousel.js"></script>
+    <script src="../assets/js/bootstrap-typeahead.js"></script>
+    <script src="../../docs/assets/js/google-code-prettify/prettify.js"></script>
+
+  </body>
+</html>

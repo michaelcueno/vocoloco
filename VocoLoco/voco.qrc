@@ -15,7 +15,6 @@
         <file>qml/content/images/box-shadow.png</file>
         <file>qml/content/images/cardboard.png</file>
         <file>qml/content/TextBox.qml</file>
-        <file>xml/conversations.xml</file>
         <file>qml/content/ConvoUsersXML.qml</file>
         <file>qml/content/ConvoUsersDelegate.qml</file>
         <file>qml/content/images/users/dood1.jpg</file>
@@ -52,7 +51,6 @@
         <file>images/clear.png</file>
         <file>images/forward.png</file>
         <file>images/shade.png</file>
-        <file>qml/TestScreen.qml</file>
         <file>qml/content/images/header-shadow.png</file>
         <file>images/contacts.png</file>
         <file>images/egg_shell.png</file>
@@ -62,7 +60,6 @@
         <file>images/egg_shell2.png</file>
         <file>qml/content/Settings.qml</file>
         <file>images/twinkle_twinkle.png</file>
-        <file>fonts/JandaSafeandSound.ttf</file>
         <file>qml/content/SettingsOption.qml</file>
         <file>images/navy_blue.png</file>
         <file>images/iphone-sms-2.jpg</file>

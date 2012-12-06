@@ -28,7 +28,7 @@ qtcAddDeployment()
 
 
 linux-g++ {
-    INCLUDEPATH +=  /usr/lib/jvm/java-1.6.0-openjdk/include   # path to jni on linux
+    INCLUDEPATH +=  /susr/lib/jvm/java-1.6.0-openjdk/include   # path to jni on linux
     DEFINES += MEDIA_HEADER='dummymediaplayer.h'
     DEFINES += MEDIA_OBJECT=DummyDesktopPlayer
 }
@@ -95,7 +95,6 @@ OTHER_FILES += \
     qml/content/Contacts.qml \
     qml/content/ContactsDelegate.qml \
     qml/content/SearchBox.qml \
-    qml/TestScreen.qml \
     qml/content/Settings.qml \
     qml/content/SettingsOption.qml \
     qml/content/ScrollBar.qml \

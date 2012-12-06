@@ -7,6 +7,12 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -64,6 +70,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('classHttpManager.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -78,7 +99,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">HttpManager Member List</div>  </div>
@@ -88,53 +108,67 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>This is the complete list of members for <a class="el" href="classHttpManager.html">HttpManager</a>, including all inherited members.</p>
 <table class="directory">
   <tr class="even"><td class="entry"><a class="el" href="classHttpManager.html#ac345aafb8d298dd34573971f3a7ad242">addNewConvoUser</a>(QString user)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>authenticate</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">slot</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classHttpManager.html#a7dd56984ebb6adbad298a755c0b4d66a">authenticate</a>()</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">slot</span></td></tr>
   <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>clearNewConvoUsers</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>convoCreatedSignal</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">signal</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classHttpManager.html#aa22b5c70375b6df662da1dfc4ba29620">convoCreatedSlot</a>()</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">slot</span></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>deleteConvo</b>(QString convo_id) (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>downloadAudio</b>(QString url) (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>getManager</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>getNam</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>hasSavedCookie</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>HttpManager</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classHttpManager.html#aa2f331facd6aeaff68c6f424f10bbce5">isLoading</a></td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>isLoading</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>loadingChanged</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">signal</span></td></tr>
-  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>loginFail</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">signal</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>loginSuccess</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">signal</span></td></tr>
-  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>logout</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>newConvoId</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>error</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">signal</span></td></tr>
+  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>getManager</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>getNam</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>hasSavedCookie</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>HttpManager</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classHttpManager.html#aa2f331facd6aeaff68c6f424f10bbce5">isLoading</a></td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>isLoading</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>loadingChanged</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">signal</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>loginFail</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">signal</span></td></tr>
+  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>loginSuccess</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">signal</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>logout</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classHttpManager.html#a0e0fcfe7fd5ecd0b63e0208e3ba28a5c">messagePosted</a>()</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">slot</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>newConvoId</b> (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>newConvoId</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>newConvoIdChanged</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">signal</span></td></tr>
   <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>path</b> (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>path</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>pathChanged</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">signal</span></td></tr>
   <tr><td class="entry"><a class="el" href="classHttpManager.html#a5d7a7272de96966d3bcf40c4448ed55f">play</a>()</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>postCredentials</b>(QString credentials) (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">slot</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classHttpManager.html#a1abaa98249ae82e1742b3ffbcf33fa4f">postNewConvo</a>()</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>postNewMessage</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classHttpManager.html#a090619732438afb63e0605bc1bb2d33f">progress</a></td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>progress</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>progressChanged</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">signal</span></td></tr>
-  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>record</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>removeNewConvoUser</b>(QString user) (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>setDownloadProgress</b>(qint64 soFar, qint64 total) (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">slot</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>setLoading</b>(bool x) (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>playAudioDone</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">signal</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classHttpManager.html#ac1e6cdef1723a7b28a348b3046ddfe86">postCredentials</a>(QString credentials)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">slot</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classHttpManager.html#a1abaa98249ae82e1742b3ffbcf33fa4f">postNewConvo</a>()</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classHttpManager.html#a695213e7f8b379811f09846e979fd50e">postNewMessage</a>()</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classHttpManager.html#a090619732438afb63e0605bc1bb2d33f">progress</a></td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>progress</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>progressChanged</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">signal</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>record</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>reloadConvo</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">signal</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>reloadHome</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">signal</span></td></tr>
+  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>removeNewConvoUser</b>(QString user) (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classHttpManager.html#afcc4a484cd9acbb604b95fe273c0fd80">replyDone</a>()</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">slot</span></td></tr>
+  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>replyFinished</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">signal</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>setDownloadProgress</b>(qint64 soFar, qint64 total) (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">slot</span></td></tr>
+  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>setLoading</b>(bool x) (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>setNewConvoId</b>(int id) (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>setNewConvoTitle</b>(QString title) (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>setNewMessageContent</b>(QString content) (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classHttpManager.html#ae665ee770c4ee653743a067b9bb8efff">setNewMessageContent</a>(QString content, QString id)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>setPath</b>(QUrl path) (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>setProgress</b>(int prog) (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>setUsername</b>(QString name) (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>stopRecording</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>test</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">signal</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>username</b> (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>username</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>usernameChanged</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">signal</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classHttpManager.html#a5a810bffa61e583780bfdaca7e85a9fd">writeAudioToFile</a>()</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">slot</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>~HttpManager</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>username</b> (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>username</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>usernameChanged</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">signal</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classHttpManager.html#a5a810bffa61e583780bfdaca7e85a9fd">writeAudioToFile</a>()</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"><span class="mlabel">slot</span></td></tr>
+  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>~HttpManager</b>() (defined in <a class="el" href="classHttpManager.html">HttpManager</a>)</td><td class="entry"><a class="el" href="classHttpManager.html">HttpManager</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 27 2012 13:33:09 for VocoLoco by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.2
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Wed Dec 5 2012 22:55:24 for VocoLoco by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
+  </ul>
+</div>
 </body>
 </html>
