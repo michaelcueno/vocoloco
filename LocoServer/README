@@ -1,0 +1,69 @@
+
+========================
+General use of heroku
+========================
+Allows the user to delete database  
+Reset data on the db when applying new evolutions heroku pg:reset DATABASE --app vocoloco
+login to heroku			    heroku login
+App url vocoloco.herokuapp.net
+
+
+
+========================
+Compile Project
+========================
+
+* SBT is a build tool like Maven or Ant
+
+* I have included the correct version in this folder
+
+* install sbt 0.11.2  if you do not have it already. You can get it from here: https://github.com/harrah/xsbt/wiki/Getting-Started-Setup
+
+* execute 'sbt' and then `help play` for play specific commands
+
+* execute `sbt` and then `compile` to build the project
+
+* execute `sbt` and then 'run' to run the built-in development server
+
+
+
+=========================
+RESTFUL API DOCUMENTATION
+=========================
+POST /login
+     To login users
+     requires a form with parameters username and password
+
+GET /logout
+     destroys the users session on the server
+
+GET /conversations
+     Returns an XML representation of all conversations an authenticated user belongs to
+
+GET /conversation/id:Long
+     Returns an XML representation of all messages in the conversation to an authenticated user that belongs the conversation
+
+POST /conversation/respondtext/id:Long
+     Deliver an XML payload in the form of 
+
+POST /conversation/respondaudio/id:Long
+     Deliver a multipart form based on rfc 4343234
+
+GET /conversation/delete/id:Long
+     Just send a get request to this address to delete this view from your conversation stream
+
+GET /contacts
+     Returns an XML representation of all contacts that belong to the authenticated user
+    
+     	
+==================================
+Basic infrastructure of Locoserver
+==================================
+
+Host: Heroku
+
+Database: Postgresql
+	
+
+Fileserver: Amazon S3
+

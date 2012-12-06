@@ -1,0 +1,24 @@
+@(conversations : List[(Conversation, List[User], Int)])
+<conversations>
+	@conversations.map { conversation =>
+		<conversation id="@conversation._1.id">
+			<msg_count>@conversation._3</msg_count>
+			<title>@conversation._1.title</title>
+			<createdby>@conversation._1.created_by</createdby>
+			<date>@conversation._1.date</date>
+
+			<members>
+				@conversation._2.map { user =>	
+					<member>
+						<username>@user.username</username>
+						<name>@user.name</name>
+						<url>@user.url</url>
+						<is_new>@user.isNew</is_new>
+					</member>
+				}
+			</members>
+
+		</conversation>
+	}
+
+</conversations>

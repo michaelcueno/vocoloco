@@ -1,0 +1,32 @@
+@(conv_mesg: List[(Message, User)], conv_id: Long)
+
+<conversation>
+
+	<messages>
+		@conv_mesg.map { cm =>
+			@if(cm._1.url == "message url") {
+				<message>
+					<is_audio>false</is_audio>
+					<conv_id>@conv_id</conv_id>
+					<sender>@cm._2.username</sender>
+					<userpic>@cm._2.url</userpic>
+					<mesg_id>@cm._1.id</mesg_id>
+					<message>@cm._1.message</message>
+					<date>@cm._1.date</date>
+				</message>
+
+			} else {
+				<message>
+					<is_audio>true</is_audio>
+					<conv_id>@conv_id</conv_id>
+					<sender>@cm._2.username</sender>
+					<userpic>@cm._2.url</userpic>
+					<mesg_id>@cm._1.id</mesg_id>
+					<date>@cm._1.date</date>
+					<url>@cm._1.url</url>
+				</message>
+			}
+		}
+	</messages>
+
+</conversation>

@@ -1,0 +1,11 @@
+@(friends: Seq[User])
+
+<contacts>
+  @friends.map { user =>
+    <contact>
+      <username>@user.username</username>
+      <name>@user.name</name>
+      <url>@user.url</url>
+    </contact>
+  }
+</contacts>

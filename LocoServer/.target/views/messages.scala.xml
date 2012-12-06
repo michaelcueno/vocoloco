@@ -1,0 +1,14 @@
+@(messages: Seq[Message])
+
+
+<messages> 
+	@messages.map { message =>
+		<message>
+			<id>@message.id</id>
+			<user_sender>@message.user_sender</user_sender>
+			<title>@message.message</title>
+			<url>@message.url</url>
+			<date>@message.date</date>
+		</message>
+	}
+</messages>
