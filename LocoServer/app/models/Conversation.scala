@@ -9,6 +9,8 @@ import anorm.SqlParser._
 import java.util.Calendar
 
 
+// written by Patrick Burd
+
 case class Conversation(id: Pk[Long], title: String, created_by: String, date: Option[Date])
 
 object Conversation {

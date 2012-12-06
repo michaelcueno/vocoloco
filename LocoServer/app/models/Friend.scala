@@ -9,6 +9,8 @@ import anorm._
 import anorm.SqlParser._
 
 
+// written by Patrick Burd
+
 case class Friend()
 
 

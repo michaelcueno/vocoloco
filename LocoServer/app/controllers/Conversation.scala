@@ -19,6 +19,8 @@ import fly.play.aws.auth.AwsCredentials
 import fly.play.s3._
 
 
+// written by Patrick Burd
+
 object ListUtil {
   def removeDupsStrings(elements: List[String]):List[String] = {
     if (elements.isEmpty)

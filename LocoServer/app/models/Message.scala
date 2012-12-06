@@ -8,7 +8,7 @@ import play.api.Play.current
 import anorm._
 import anorm.SqlParser._
 
-
+// written by Patrick Burd
 
 case class Message(
 	id: Pk[Long],
