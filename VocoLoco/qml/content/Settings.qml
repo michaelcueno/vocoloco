@@ -2,6 +2,15 @@
 ** Copyright (C) 2012 Michael Cueno
 ** Contact: mcueno2@uic.edu
 *****************************************************************************/
+/**
+  * This is the settings screen that rests behind the application windows. This makes it visible when the
+  * main application screens are moved to the side.
+  *
+  * This file contains:
+  *     o Logout option
+  *     o Update homescreen and conversation screen  options
+  *     o Options to add users to conversations (not implemented yet in server)
+  */
 
 import QtQuick 1.1
 

@@ -2,7 +2,13 @@
  * Copyright (C) 2012 Michael Cueno
  * Contact: mcueno2@uic.edu
  ****************************************************************************/
-
+/**
+  * Formatting for the messages
+  * This file contains:
+  *   o Logic for the which side of the screen to put the messages (based on if the message was sent by the current user
+  *   o Logic for determining and implementing messages that contain audio
+  *   o All other formatting needed to make messages look pretty
+  */
 import QtQuick 1.1
 
 Item {
@@ -17,22 +23,11 @@ Item {
 
     height: 200; width: window.screenWidth
 
+    // Main background color for the message
     Rectangle {
         width: parent.width
         height: 190
         color: owner === network.username ? "#c8e2bf" : "#d6e0e2"
-
-
-    // Away message: color: "#d6e0e2"
-
-    /*
-    Image {
-        anchors.fill: parent
-        id: list_background
-        source: ":/images/navy_blue.png"
-        fillMode: Image.Tile
-    }
-    */
 
     Image {
         id: user_img
@@ -42,6 +37,7 @@ Item {
         y: 35;
     }
 
+    // Username of sender
     Text {
         id: sender
         text:owner
@@ -49,6 +45,7 @@ Item {
         anchors {top: user_img.bottom; topMargin: 5; horizontalCenter: user_img.horizontalCenter }
     }
 
+    // Apple ios style message border
     BorderImage {
         id: user_message_background
         source: ":/images/iphone-sms-2.jpg"
@@ -60,6 +57,7 @@ Item {
         visible: owner === network.username && isText() ? true : false;
     }
 
+    // Same as above but for when message is sent by someone else
     BorderImage {
         id: other_message_background
         source: ":/images/iphone-sms-1.jpg"
@@ -125,6 +123,7 @@ Item {
         anchors.bottom: parent.bottom
     }
 
+    // Used to return play button to black state after a short delay
     Timer {
         id: timer
         interval: 500;
@@ -134,7 +133,8 @@ Item {
 
     }
 
-
+    // Needed to set the text width (if text is too long we don't want it to run off the screen)
+    // Basically accomplishes the functionality of a max width for the text content
     Component.onCompleted: {
 
         if (content.paintedWidth > 500) {
@@ -144,7 +144,7 @@ Item {
         }
     }
 
-
+    // Make playbutton blue
     function swapPlayBtn() {
         playBtn.source = ":/images/play-button.png"
     }
@@ -154,8 +154,8 @@ Item {
         console.log(owner)
     }
 
+    // for use in determining if the message is audio or text
     function isText() {
-
         var tr =  /^false/;
 
         if(tr.test(is_audio))
@@ -164,8 +164,8 @@ Item {
             return false
     }
 
+    // inverse of above
     function isAudio() {
-
         var tr =  /^true/;
 
         if(tr.test(is_audio))

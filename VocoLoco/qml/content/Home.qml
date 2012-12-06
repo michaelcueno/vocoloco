@@ -18,6 +18,9 @@ import QtQuick 1.1
 
 Item{
 
+    property string convoToDelete_id   // needed so that convo_id can be passed along to the mouse area on the delete button
+    property string convoToDelete_title
+
     id: container
     x: 0; y:window.screenHeight * (1/10); width: window.screenWidth; height: window.screenHeight * (9/10)  // Posistioning
 
@@ -28,6 +31,7 @@ Item{
         source: ":/images/carbon_fibre.png"
     }
 
+    // List view of all converstaions
     ListView {
         id: allConversations
         x: 0; y:0; width: window.width; height: parent.height  // Posistioning
@@ -43,7 +47,8 @@ Item{
         anchors.right: allConversations.right; anchors.top: allConversations.top;
     }
 
-    XmlListModel { // Provides data for conversation listmodel
+    // Provides data for conversation listmodel
+    XmlListModel {
 
         id: xml_conversations
 
@@ -71,7 +76,8 @@ Item{
 
     }
 
-    Rectangle {     // -------------------- Delete Button that pops up on conversation pressed -------|
+    // -------------------- Delete Button that pops up on conversation pressed ---------------------|
+    Rectangle {
         id: deleteConvo
         anchors.centerIn: parent
         color: "#1a7fdd"
@@ -162,13 +168,10 @@ Item{
                 }
             }
         }
-
-
-    }
+    } /*---------------------------- END OF DELETE BOX --------------------------------------------|
 
     /**
       This function darkens the covo view and brings up the delete button
-      TODO: Should make all functionality of normal homescreen inactive.
     */
     function pressed_convo(convo_id, convo_title){
         shader.visible = true
@@ -176,9 +179,6 @@ Item{
         convoToDelete_id = convo_id
         convoToDelete_title = convo_title
     }
-
-    property string convoToDelete_id   // needed so that convo_id can be passed along to the mouse area on the delete button
-    property string convoToDelete_title
 
     function loadXML(){
         xml_conversations.source = mainUrl + "conversations"

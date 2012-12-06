@@ -2,7 +2,9 @@
  * Copyright (C) 2012 Michael Cueno
  * Contact: mcueno2@uic.edu
  ****************************************************************************/
-
+/**
+  * Simple image that rotates when property "on" is true
+  */
 
 import QtQuick 1.1
 

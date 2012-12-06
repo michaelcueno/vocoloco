@@ -2,22 +2,25 @@
  * Copyright (C) 2012 Michael Cueno
  * Contact: mcueno2@uic.edu
  ****************************************************************************/
-
+/**
+  * Provides the formatting for the contacts listview
+  */
 
 import QtQuick 1.1
 
 Rectangle {
 
-    property string first
-    property string last
+    property string first   // contact first name
+    property string last    // contact last name
 
-    Component.onCompleted: setFirstLast()
+    Component.onCompleted: setFirstLast()     // String manipulation to get first and last name
 
     id: row
     width: parent.width
     height: 150
     color: "#ffffff"
 
+    // background image
     Image {
         id: list_background
         anchors.fill: parent
@@ -25,8 +28,7 @@ Rectangle {
         fillMode: Image.Tile
     }
 
-
-
+    // User image
     Image {
         id: user_img
         source: "http://vocoloco.herokuapp.com/" + image
@@ -34,7 +36,7 @@ Rectangle {
         x: 30; y: 22;
     }
 
-
+    // First name
     Text {
         id:first_name
         text: first;
@@ -44,6 +46,7 @@ Rectangle {
         y: 50;
     }
 
+    // Last Name
     Text {
         id: last_name
         text: last;
@@ -52,6 +55,8 @@ Rectangle {
         color: "#46433a"
         y: 50;
     }
+
+    // Username
     Text {
         id: usrName
         text: "username: "+ username
@@ -83,6 +88,7 @@ Rectangle {
         }
         ]
     }
+    //--------------- End Check Box-------------------------------------------------------|
 
     Image {
         id: un_checked_box
@@ -107,6 +113,8 @@ Rectangle {
         color: "grey"
     }
 
+    // Depending on check box state, changes to opposite state and adds the contact to the PostNewConversation
+    // model in the c++
     function contacts_checked()
     {
         if(check_box.state == ""){
@@ -130,7 +138,4 @@ Rectangle {
             last = whole[1]
     }
 
-    function noContactsChecked(){
-        // TODO: Should hide the "create convo" in header
-    }
 }

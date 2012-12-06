@@ -2,6 +2,9 @@
  * Copyright (C) 2012 Michael Cueno
  * Contact: mcueno2@uic.edu
  ****************************************************************************/
+/**
+  * Formatting for the converstaion listview in the homescreen
+  */
 
 import QtQuick 1.1
 
@@ -15,24 +18,11 @@ Rectangle {
     //------------------------------- Non-Visual Logic Code -----------------------------//
 
     property string convo_title;
-    function setTitle(){
-        var slicedTitle = title;   // XMLRole defined property
-
-        if(title.length > 19 ){
-            slicedTitle = title.slice(0,16).concat("...");
-        }
-
-        convo_title = slicedTitle;
-    }
-
-    function load(){
-        convoUsersXML.loadXML()
-    }
 
     signal convo_pressed()
     signal convo_normal()
 
-    Component.onCompleted: {setTitle(); load()}
+    Component.onCompleted: {setTitle(); load()}   // tunrcate the title if too long and load xml
 
     //------------------------------- End of Logic Code ---------------------------------//
 
@@ -47,6 +37,7 @@ Rectangle {
             fillMode: Image.Tile
         }
 
+        // Users in the left that scroll sideways
         ListView {
             id: convoUsersList
             anchors.fill:parent
@@ -58,6 +49,7 @@ Rectangle {
         }
     }
 
+    // Just a shadow on the right side of the users list
     Image {
         id: users_side
         source: ":/images/users_side.png"
@@ -102,9 +94,6 @@ Rectangle {
     MouseArea {
         anchors { left: convoUsers.right; right:parent.right; top:parent.top; bottom:parent.bottom;}
 
-//        onPressed: parent.state = "pressed"
-//        onReleased: parent.state = "normal"
-
         onPressAndHold: {
             parent.state = "normal"
             homeScreen.pressed_convo(convo_id, title)
@@ -139,4 +128,19 @@ Rectangle {
         }
     ]
 //-------------------------------End of Clickable code -----------------------------//
+
+    // Truncates the title in case it is too long to fit on the homescreen
+    function setTitle(){
+        var slicedTitle = title;   // XMLRole defined property
+
+        if(title.length > 19 ){
+            slicedTitle = title.slice(0,16).concat("...");
+        }
+
+        convo_title = slicedTitle;
+    }
+
+    function load(){
+        convoUsersXML.loadXML()
+    }
 }

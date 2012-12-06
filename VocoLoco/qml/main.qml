@@ -2,7 +2,11 @@
  * Copyright (C) 2012 Michael Cueno
  * Contact: mcueno2@uic.edu
  ****************************************************************************/
-
+/**
+  * This is the main qml file that is fed to the qmlapplicationviewer. It contains all the screens
+  * in the app and sets them as invisible (except the login screen or the homescreen based on login
+  * status). The major logic functions that need to cross screens is a the bottom of the file
+  */
 
 import QtQuick 1.1
 import 'content'
@@ -10,16 +14,18 @@ import 'content'
 // Main window of application -----------//
 Rectangle {
     id: window
+
+    /** Change hieght attribute so that the app will fit in your screen completely */
     width: 720; height: 1280;
     objectName: "mainObj";
 
 
     property string mainUrl: "https://vocoloco.herokuapp.com/"
 
-    property int screenWidth
-    property int screenHeight
+    property int screenWidth    // A static reference to screen width
+    property int screenHeight   // Since the screen dimensions change when software keyboard is brought up
 
-    property int smallFont: 20
+    property int smallFont: 20   // Some gobal font sizes
     property int normalFont: 30
 
     //--- Visual components --------- |
@@ -121,6 +127,7 @@ Rectangle {
         header_shadow.visible = true;
     }
 
+    // Logic to change screen. This function is used throughout the Application each time a new screen is needed
     function changeScreen(screen, id){
 
         if(newConvoScreen.visible)
@@ -149,6 +156,7 @@ Rectangle {
             header.hideSettings()
         }
 
+        // case when we go into a new conversation that we just created
         if(convoScreen.visible && fromNewConvo){
             convoScreen.convo_id = id
             convoScreen.loadXML()
@@ -164,11 +172,13 @@ Rectangle {
         }
     }
 
+    // used to set the text at the top of the header
     function changeHeader(msg){
         header.headerTitle = msg
         header.visible = true;
     }
 
+    // loads the xml for all xml models throughout the application
     function loadXML(){
         homeScreen.loadXML()
         contactScreen.loadXML()
@@ -179,8 +189,6 @@ Rectangle {
     function setDimensions(){
         screenHeight = window.height - 140
         screenWidth = window.width
-        console.log(screenHeight)
-        console.log(screenWidth)
     }
 
     // TODO Would be better if this goes to login screen but.. Getting a seg fault with next login so for now just quit app
@@ -197,6 +205,7 @@ Rectangle {
             settingsScreen.enableHome()
     }
 
+    // Hides the settings screen
     function hideSettings() {
         container.state = ""
 

@@ -3,6 +3,11 @@
  * Contact: mcueno2@uic.edu
  ****************************************************************************/
 
+/**
+  * This QML file is shown on the app startup if there is no saved cookie on file.
+  * Otherwise the app will bypass this screen and go into the homescreen.
+  */
+
 
 // import QtQuick 1.0 // to target S60 5th Edition or Maemo 5
 import QtQuick 1.1
@@ -13,18 +18,18 @@ Rectangle {
     x: 0; y:0
     width: screenWidth; height: screenHeight
 
+    signal postCredentials(string credentials)  // Connects to HttpManager::postCredentials
+    signal stayLoggedIn(bool saveSesh)  // Connected to qmlapplicationviewer (tells the destructor to not delete the session cookie)
+    signal submitted()    // Connects to TextBox, sets TextBox input
+    signal requestXML(string xml)  // Connects to HttpManager::requestXML
+    property bool isLoading        // Boolean for the spinner
+
+
     Image {
         id:background
         source: ":/images/Switchboard.png"
         anchors.fill: parent
     }
-
-    signal postCredentials(string credentials)  // Connects to HttpManager::postCredentials
-    signal stayLoggedIn(bool saveSesh)  // Connected to qmlapplicationviewer (tells the destructor to not delete the session cookie)
-    signal submitted()    // Connects to TextBox, sets TextBox input
-    signal requestXML(string xml)  // Connects to HttpManager::requestXML
-    property bool isLoading
-
 
     // Masthead
     Text {
@@ -87,6 +92,7 @@ Rectangle {
         }
     }
 
+    // Loading Spinner dependant on the login request to the server
     BusySpinner {
         on: network.isLoading;
         anchors { horizontalCenter: parent.horizontalCenter; top:login_btn.bottom; topMargin: 40;}
@@ -107,21 +113,20 @@ Rectangle {
         }
     }
 
-   //  Component.onCompleted: username.setFocus()
-    //  Component.onCompleted: username.setFocus()
-
+    // Go to home Screen
     function onLoginSuccess(){
         changeScreen(homeScreen)
         loadXML()
         homeScreen.loadXML()
     }
 
+    // Login failure notification
     function onLoginFail(){
         loginFail.visible = true;
     }
 
+    // When user enters password bubble, the login btn color changes
     function brightenLoginBtn(){
-        console.log("Got Here")
         login_btn.color = "#3baaea"
         login_btn.opacity = 1
     }

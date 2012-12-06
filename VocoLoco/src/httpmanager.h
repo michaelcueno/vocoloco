@@ -24,7 +24,7 @@
 #include "cookiejar.h"
 #include "postnewconversation.h"
 #include "newmessage.h"
-#include "androidmediaobject.h"  // Defined in the .pro file (automatically happens when build is switched)
+#include "dummydesktopplayer.h"  // Defined in the .pro file (automatically happens when build is switched)
 
 /**
  * @brief This class acts as the backend controller for the QML engine viewer.

@@ -2,6 +2,9 @@
  * Copyright (C) 2012 Michael Cueno
  * Contact: mcueno2@uic.edu
  ****************************************************************************/
+/**
+  * This file models the code for creating a settings option
+  */
 
 import QtQuick 1.1
 
@@ -9,9 +12,9 @@ Rectangle {
 
     id: container
 
-    property string title
-    signal settingClicked
-    property bool active
+    property string title  // The text that will appear as the settings option
+    signal settingClicked  // The signal to indicate that this option was tapped
+    property bool active   // Makes the option visible (so that different options can be present in different states
 
     width: 400
     height: 100
