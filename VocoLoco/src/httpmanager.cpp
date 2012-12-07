@@ -1,8 +1,19 @@
+/***********************************************************************
+ * COPYRIGHT @ 2012 Michael Cueno
+ * Contact: mcueno2@uic.edu
+ ***********************************************************************/
+
 #include "httpmanager.h"
 
 QDir dir;
 static QString APP = "http://vocoloco.herokuapp.com/";
 
+/**
+ * @brief The constructor for the HttpManager
+ *
+ * This creates instances of QNetworkAccessManager, CookieJar, PostNewConversation and NewMessage.
+ * It also sets isLoading to false.
+ */
 HttpManager::HttpManager()
 {
     manager = new QNetworkAccessManager(this);
@@ -17,16 +28,22 @@ HttpManager::HttpManager()
 
     setProgress(0); // Init
 }
+
+/**
+ * @brief Destructor for the HttpManager. Deletes QNetworkAccessManager, and CookieJar
+ */
 HttpManager::~HttpManager()
 {
     delete manager;
     delete jar;
+    delete new_convo;
+    delete new_message;
 }
 
 /////////////////////////////////////// TEMP FOR AUDIO PLAYER
 
-/*
- * Sends a request to "url". This method will then download the audio file
+/**
+ * @brief Sends a request to "url". This method will then download the audio file
  * that is hosted at "url" and call the slot writeAudioToFile().
  */
 void HttpManager::downloadAudio(QString url){
@@ -43,6 +60,7 @@ void HttpManager::downloadAudio(QString url){
  */
 void HttpManager::play(){
 
+    // We use one location for all audio files, each play() rewrites this file
     QString TMP_AUDIO_PATH = dir.absolutePath() + "/tmpAudio";
 
     QByteArray latin = TMP_AUDIO_PATH.toLatin1();
@@ -66,14 +84,11 @@ void HttpManager::play(){
 }
 
 /**
- * Writes the audio file to local storage.
+ * @brief Writes the audio file to local storage.
  */
 void HttpManager::writeAudioToFile(){
 
     QString TMP_AUDIO_PATH = dir.absolutePath() + "/tmpAudio";
-
-    // Clear out anything that was in tmpAudio before
-
 
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
 
@@ -105,6 +120,9 @@ void HttpManager::writeAudioToFile(){
     this->play();
 }
 
+/**
+ * @brief We couldn't get this to work unfortunately
+ */
 void HttpManager::record()
 {
     QString TMP_AUDIO_PATH = dir.absolutePath() + "/tmpAudio.3gp";
@@ -131,11 +149,6 @@ int HttpManager::progress(){ return m_progress; }
 
 void HttpManager::setProgress(int prog){ m_progress = prog; emit progressChanged(); }
 
-/**
- * @brief Boolean given to QML to mark if a request is loading
- *
- * This is used by the spinner at the login screen for example.
- */
 bool HttpManager::isLoading(){ return m_isLoading; }
 
 void HttpManager::setLoading(bool x){ m_isLoading = x; emit loadingChanged();}
@@ -168,27 +181,29 @@ void HttpManager::replyDone()
 }
 
 
-////////////////////////////////////////////////////////////////////////////////// Interaction invoving Conversations //////////////////////////////////////////
+//////////////////////////////////////// Interaction invoving Conversations //////////////////////////////////////////
 
-// Sets the title for a new conversation that will later be pushed to the server
+//! @brief Sets the title for a new conversation that will later be pushed to the server
 void HttpManager::setNewConvoTitle(QString title)
 {
     new_convo->setTitle(title);
 }
 
 /**
- * Adds a user to the conversation that will be sent to the server vai POST
+ * @brief Adds a user to the conversation that will be sent to the server vai POST
  */
 void HttpManager::addNewConvoUser(QString user)
 {
     new_convo->addUser(user);
 }
 
+//! @brief Removes a user from the PostNewConversation model
 void HttpManager::removeNewConvoUser(QString user)
 {
     new_convo->removeUser(user);
 }
 
+//! @brief Clears all users from the new coversation
 void HttpManager::clearNewConvoUsers()
 {
     new_convo->clearUsers();
@@ -219,6 +234,10 @@ bool HttpManager::postNewConvo()
     return true;
 }
 
+/**
+ * @brief Delete a conversation. Posts to the server to implement the delete from the server
+ * @param convo_id
+ */
 void HttpManager::deleteConvo(QString convo_id)
 {
     request = QNetworkRequest(QUrl(APP + "conversation/delete/" + convo_id ));
@@ -302,7 +321,10 @@ void HttpManager::messagePosted()
     emit reloadConvo();
 }
 
-
+/**
+ * @brief Checks if there is a saved cookie on file
+ * @return Boolean
+ */
 bool HttpManager::hasSavedCookie(){
     QSettings settings;
     QVariant cookie = settings.value("Cookies");
@@ -315,7 +337,7 @@ bool HttpManager::hasSavedCookie(){
 }
 
 /**
- * This method Posts login credentails to server @ vocoloco.herokuapp.com/login
+ * @brief This method Posts login credentails to server @ vocoloco.herokuapp.com/login
  */
 void HttpManager::postCredentials(QString credentials){
 
@@ -354,9 +376,7 @@ void HttpManager::postCredentials(QString credentials){
 }
 
 /**
- * This method determines if the login post was a success or failure and emits the corresponding signals
- * TODO: Implement custom class inheriting QCookieJar for loacal storage in order to do single sign on,
- *      Also will allow a better way to check for successful login
+ * @brief This method determines if the login post was a success or failure and emits the corresponding signals
  */
 void HttpManager::authenticate(){
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
@@ -374,6 +394,9 @@ void HttpManager::authenticate(){
     setLoading(false);
 }
 
+/**
+ * @brief Logs out of the app, (deletes the cookie)
+ */
 void HttpManager::logout(){
     QSettings settings;
     settings.clear();

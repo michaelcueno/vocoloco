@@ -10,7 +10,6 @@ HEADERS += \
     src/httpmanager.h \
     src/cookiejar.h \
     src/networkfactory.h \
-    src/ImageProvider.h \
     src/postnewconversation.h \
     src/newmessage.h \
     src/dummydesktopplayer.h
@@ -28,7 +27,7 @@ qtcAddDeployment()
 INCLUDEPATH +=  /usr/lib/jvm/java-1.6.0-openjdk/include
 
 linux-g++ {
-    INCLUDEPATH +=  /usr/lib/jvm/java-1.6.0-openjdk/include   # path to jni on linux
+    INCLUDEPATH +=  /usr/Classeslib/jvm/java-1.6.0-openjdk/include   # path to jni on linux
     DEFINES += MEDIA_HEADER='dummymediaplayer.h'
     DEFINES += MEDIA_OBJECT=DummyDesktopPlayer
 }

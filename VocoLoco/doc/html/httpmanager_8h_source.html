@@ -127,128 +127,130 @@ $(document).ready(function(){initNavTree('httpmanager_8h_source.html','');});
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;cookiejar.h&quot;</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;postnewconversation.h&quot;</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;newmessage.h&quot;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;androidmediaobject.h&quot;</span>  <span class="comment">// Defined in the .pro file (automatically happens when build is switched)</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;dummydesktopplayer.h&quot;</span>  <span class="comment">// Defined in the .pro file (automatically happens when build is switched)</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="code" href="classHttpManager.html">   36</a></span>&#160;<span class="keyword">class </span><a class="code" href="classHttpManager.html" title="This class acts as the backend controller for the QML engine viewer.">HttpManager</a> : <span class="keyword">public</span> QObject</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    Q_OBJECT</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">// These declarations are used by the compiler to link c++ properties to be used in QML</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="comment">// !! IMPORTANT !!</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="comment">//   These values must be changed by using set____, never changed directly!</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    Q_PROPERTY(<span class="keywordtype">int</span> <a class="code" href="classHttpManager.html#a090619732438afb63e0605bc1bb2d33f" title="progress of a current http request">progress</a></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;               READ <a class="code" href="classHttpManager.html#a090619732438afb63e0605bc1bb2d33f" title="progress of a current http request">progress</a></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;               WRITE setProgress</div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="code" href="classHttpManager.html#a090619732438afb63e0605bc1bb2d33f">   47</a></span>&#160;               NOTIFY progressChanged )</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    Q_PROPERTY(<span class="keywordtype">bool</span> isLoading</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;               READ isLoading</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;               WRITE setLoading</div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="code" href="classHttpManager.html#aa2f331facd6aeaff68c6f424f10bbce5">   51</a></span>&#160;               NOTIFY loadingChanged )</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    Q_PROPERTY(QUrl path</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;               READ path</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;               WRITE setPath</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;               NOTIFY pathChanged )</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    Q_PROPERTY(QString username</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;               READ username</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;               WRITE setUsername</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;               NOTIFY usernameChanged )</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    Q_PROPERTY(<span class="keywordtype">int</span> newConvoId</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;               READ newConvoId</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;               WRITE setNewConvoId</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;               NOTIFY newConvoIdChanged )</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="classHttpManager.html" title="This class acts as the backend controller for the QML engine viewer.">HttpManager</a>();</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    ~<a class="code" href="classHttpManager.html" title="This class acts as the backend controller for the QML engine viewer.">HttpManager</a>();</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">void</span> setProgress(<span class="keywordtype">int</span> prog);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classHttpManager.html#a090619732438afb63e0605bc1bb2d33f" title="progress of a current http request">progress</a>();</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classHttpManager.html#aa2f331facd6aeaff68c6f424f10bbce5" title="Boolean given to QML to mark if a request is loading.">isLoading</a>();</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">void</span> setLoading(<span class="keywordtype">bool</span> x);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    QUrl path();</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">void</span> setPath(QUrl path);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    QString username();</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">void</span> setUsername(QString name);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> setNewConvoId(<span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">int</span> newConvoId();</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    QNetworkAccessManager* getManager(){<span class="keywordflow">return</span> manager;}</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    Q_INVOKABLE <span class="keywordtype">bool</span> hasSavedCookie();</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> logout();</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="comment">// For creating, posting, deleting a conversation</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> setNewConvoTitle(QString title);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#ac345aafb8d298dd34573971f3a7ad242">addNewConvoUser</a>(QString user);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> removeNewConvoUser(QString user);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> clearNewConvoUsers();</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    Q_INVOKABLE <span class="keywordtype">bool</span> <a class="code" href="classHttpManager.html#a1abaa98249ae82e1742b3ffbcf33fa4f">postNewConvo</a>();  <span class="comment">// Returns false if new_convo doesn&#39;t have a title or any users</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> deleteConvo(QString convo_id);</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="comment">// For creating and posting a new message</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#ae665ee770c4ee653743a067b9bb8efff" title="Sets the content and converstaion id of the message object to be posted.">setNewMessageContent</a>(QString content, QString <span class="keywordtype">id</span>);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    Q_INVOKABLE <span class="keywordtype">bool</span> <a class="code" href="classHttpManager.html#a695213e7f8b379811f09846e979fd50e" title="This method will post the message object to the server.">postNewMessage</a>();  <span class="comment">// Returns false if new_convo doesn&#39;t have a title or any users</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="comment">// For the QML player</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#a5d7a7272de96966d3bcf40c4448ed55f" title="Plays audio file in local storage at TMP_AUDIO_PATH.">play</a>();</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> record();</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> downloadAudio(QString url);  <span class="comment">// Plays the audio after downloading</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> stopRecording();</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    QNetworkAccessManager* getNam();</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="code" href="classHttpManager.html">   40</a></span>&#160;<span class="keyword">class </span><a class="code" href="classHttpManager.html" title="This class acts as the backend controller for the QML engine viewer.">HttpManager</a> : <span class="keyword">public</span> QObject</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">// These declarations are used by the compiler to link c++ properties to be used in QML</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">// !! IMPORTANT !!</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="comment">//   These values must be changed by using set____, never changed directly!</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    Q_PROPERTY(<span class="keywordtype">int</span> <a class="code" href="classHttpManager.html#a090619732438afb63e0605bc1bb2d33f" title="Used to tell QML the progress of a request to the server.">progress</a></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;               READ <a class="code" href="classHttpManager.html#a090619732438afb63e0605bc1bb2d33f" title="Used to tell QML the progress of a request to the server.">progress</a></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;               WRITE setProgress</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="code" href="classHttpManager.html#a090619732438afb63e0605bc1bb2d33f">   55</a></span>&#160;               NOTIFY <a class="code" href="classHttpManager.html#a99ea650ff18d71bcde580fd79cdba6ed" title="To notify the qml engine that the progress property changed.">progressChanged</a> )</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    Q_PROPERTY(<span class="keywordtype">bool</span> isLoading</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;               READ isLoading</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;               WRITE setLoading</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="code" href="classHttpManager.html#aa2f331facd6aeaff68c6f424f10bbce5">   62</a></span>&#160;               NOTIFY <a class="code" href="classHttpManager.html#a5c311d02671b1421b34fcfc8b2468248" title="To notify the qml engine that the isLoading property changed.">loadingChanged</a> )</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    Q_PROPERTY(QUrl path</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;               READ path</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;               WRITE setPath</div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="code" href="classHttpManager.html#aa32509947efe9fbdfd54b88516969af8">   69</a></span>&#160;               NOTIFY <a class="code" href="classHttpManager.html#a2b6ff00a02c78ecfab25eaafb99f8cb3" title="To notify the qml engine that the path property changed.">pathChanged</a> )</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    Q_PROPERTY(QString username</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;               READ username</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;               WRITE setUsername</div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="code" href="classHttpManager.html#a7d7b4a614a7e7a7950710e16e3790638">   76</a></span>&#160;               NOTIFY <a class="code" href="classHttpManager.html#aa9dab42655f7d1a877b81406576a5e66" title="To notify the qml engine that the username property changed.">usernameChanged</a> )</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    Q_PROPERTY(<span class="keywordtype">int</span> newConvoId</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;               READ newConvoId</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;               WRITE setNewConvoId</div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="code" href="classHttpManager.html#a5134e5011eab9ea4ee8c42dbc5f0426a">   85</a></span>&#160;               NOTIFY <a class="code" href="classHttpManager.html#a3b01fbca81f84123c6a7f42c28aa950b" title="To notify the qml engine that the newConvoId property changed.">newConvoIdChanged</a> )</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="classHttpManager.html#a771eb23f2f772af7be506b4023529878" title="The constructor for the HttpManager.">HttpManager</a>();</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <a class="code" href="classHttpManager.html#af2a54bf0ea83847543b87f5ba06cb760" title="Destructor for the HttpManager. Deletes QNetworkAccessManager, and CookieJar.">~HttpManager</a>();</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordtype">void</span> setProgress(<span class="keywordtype">int</span> prog);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classHttpManager.html#a090619732438afb63e0605bc1bb2d33f" title="Used to tell QML the progress of a request to the server.">progress</a>();</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classHttpManager.html#aa2f331facd6aeaff68c6f424f10bbce5" title="used to tell QML if the reply is still loading">isLoading</a>();</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">void</span> setLoading(<span class="keywordtype">bool</span> x);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    QUrl <a class="code" href="classHttpManager.html#aa32509947efe9fbdfd54b88516969af8" title="used to tell QML the path of the xml (depreciated)">path</a>();</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordtype">void</span> setPath(QUrl path);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    QString <a class="code" href="classHttpManager.html#a7d7b4a614a7e7a7950710e16e3790638" title="used to tell QML the username of the current user logged into the client">username</a>();</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordtype">void</span> setUsername(QString name);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordtype">void</span> setNewConvoId(<span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classHttpManager.html#a5134e5011eab9ea4ee8c42dbc5f0426a" title="used to tell QML the id of the newly created converstion so the client can go">newConvoId</a>();</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    QNetworkAccessManager* getManager(){<span class="keywordflow">return</span> manager;}</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;signals:</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordtype">void</span> loginSuccess();</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordtype">void</span> loginFail();</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="comment">/* The signals below are used by the QML meta object system to notify QML components</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">     * of changes to the values they correspond to */</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordtype">void</span> loadingChanged();</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordtype">void</span> progressChanged();</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordtype">void</span> pathChanged();</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordtype">void</span> usernameChanged();</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordtype">void</span> newConvoIdChanged();</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordtype">void</span> error();</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keywordtype">void</span> replyFinished();</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordtype">void</span> convoCreatedSignal();</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordtype">void</span> reloadHome();</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordtype">void</span> reloadConvo();</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordtype">void</span> playAudioDone();</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="keyword">public</span> slots:</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#ac1e6cdef1723a7b28a348b3046ddfe86">postCredentials</a>(QString credentials);</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keywordtype">void</span> setDownloadProgress(qint64 soFar,qint64 total);</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#a7dd56984ebb6adbad298a755c0b4d66a">authenticate</a>();</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#a5a810bffa61e583780bfdaca7e85a9fd">writeAudioToFile</a>(); <span class="comment">// Plays the file at the end of the method TODO: Should be private</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#afcc4a484cd9acbb604b95fe273c0fd80" title="Sets the loading variable to done so that qml can stop the loading animation.">replyDone</a>();</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#aa22b5c70375b6df662da1dfc4ba29620" title="Sets loading variable to false, and emits convoCreatedSignal for the qml to trigger the screen change...">convoCreatedSlot</a>();</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#a0e0fcfe7fd5ecd0b63e0208e3ba28a5c" title="Slot called after message successfully posted to server. Throws signal to update QML.">messagePosted</a>();</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    QNetworkAccessManager *manager;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    QNetworkRequest request;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <a class="code" href="classCookieJar.html" title="Allows for a permanent cookie jar by saving cookies on delete to QSettings and then loading from QSet...">CookieJar</a> *jar;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keywordtype">int</span> m_newConvoId;</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="comment">// QML Accessible Properties</span></div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="keywordtype">int</span> m_progress;</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="keywordtype">bool</span> m_isLoading;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    QUrl xml_path;</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    QString m_username;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <a class="code" href="classPostNewConversation.html" title="This class is used to model the data of a conversation before it is posted to the server...">PostNewConversation</a> *new_convo;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <a class="code" href="classNewMessage.html" title="This class is used to model the data of a message before it is posted to the server.">NewMessage</a> *new_message;</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    MEDIA_OBJECT *player;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;};</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="preprocessor">#endif // HTTPMANAGER_H</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    Q_INVOKABLE <span class="keywordtype">bool</span> <a class="code" href="classHttpManager.html#ae8be30969ab90769d320474cba273cea" title="Checks if there is a saved cookie on file.">hasSavedCookie</a>();</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#a69067bb2736567a01f69595fac80398b" title="Logs out of the app, (deletes the cookie)">logout</a>();</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="comment">// For creating, posting, deleting a conversation</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#abc77a75cfec070dc986707bdab152c49" title="Sets the title for a new conversation that will later be pushed to the server.">setNewConvoTitle</a>(QString title);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#ac345aafb8d298dd34573971f3a7ad242" title="Adds a user to the conversation that will be sent to the server vai POST.">addNewConvoUser</a>(QString user);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#afc880ea260ad8d393259f44762799278" title="Removes a user from the PostNewConversation model.">removeNewConvoUser</a>(QString user);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#aa8bf26e7de4b36c0e96ee06baccfd933" title="Clears all users from the new coversation.">clearNewConvoUsers</a>();</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    Q_INVOKABLE <span class="keywordtype">bool</span> <a class="code" href="classHttpManager.html#a1abaa98249ae82e1742b3ffbcf33fa4f">postNewConvo</a>();  <span class="comment">// Returns false if new_convo doesn&#39;t have a title or any users</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#a97d6513de9a9c490dcd982921d320104" title="Delete a conversation. Posts to the server to implement the delete from the server.">deleteConvo</a>(QString convo_id);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="comment">// For creating and posting a new message</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#ae665ee770c4ee653743a067b9bb8efff" title="Sets the content and converstaion id of the message object to be posted.">setNewMessageContent</a>(QString content, QString <span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    Q_INVOKABLE <span class="keywordtype">bool</span> <a class="code" href="classHttpManager.html#a695213e7f8b379811f09846e979fd50e" title="This method will post the message object to the server.">postNewMessage</a>();  <span class="comment">// Returns false if new_convo doesn&#39;t have a title or any users</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="comment">// For the QML player</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#a5d7a7272de96966d3bcf40c4448ed55f" title="Plays audio file in local storage at TMP_AUDIO_PATH.">play</a>();</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#adc162b753bd1ca62d74672e96a4775e2" title="We couldn&#39;t get this to work unfortunately.">record</a>();</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#a9baefea195b0e488348adeb82a0d80e1" title="Sends a request to &quot;url&quot;. This method will then download the audio file that is hosted at &quot;url&quot; and c...">downloadAudio</a>(QString url);  <span class="comment">// Plays the audio after downloading</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> stopRecording();</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    QNetworkAccessManager* getNam();</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;signals:</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#ae18a2a0c1ae743d7a0b965fb30f3a2b3" title="Used to trigger events on successful login. i.e. go to home screen.">loginSuccess</a>();</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#a2149f63897ada8b87623c44a22787e85" title="Used to throw login error screen, stays on login screen.">loginFail</a>();</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <span class="comment">/* The signals below are used by the QML meta object system to notify QML components</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="comment">     * of changes to the values they correspond to */</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#a5c311d02671b1421b34fcfc8b2468248" title="To notify the qml engine that the isLoading property changed.">loadingChanged</a>();</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#a99ea650ff18d71bcde580fd79cdba6ed" title="To notify the qml engine that the progress property changed.">progressChanged</a>();</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#a2b6ff00a02c78ecfab25eaafb99f8cb3" title="To notify the qml engine that the path property changed.">pathChanged</a>();</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#aa9dab42655f7d1a877b81406576a5e66" title="To notify the qml engine that the username property changed.">usernameChanged</a>();</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#a3b01fbca81f84123c6a7f42c28aa950b" title="To notify the qml engine that the newConvoId property changed.">newConvoIdChanged</a>();</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#af7cf956c8d5030868461822967a3fa14" title="For signaling an error (usually results in an error screen appearing.">error</a>();</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#ab831af38fd5b6ce97c2c6beb6121e492" title="Triggered when a reply from the server finished downloaded.">replyFinished</a>();</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#a2f40bfdca452129a4a8e027a77eaa5df" title="Triggered when a new conversation is created.">convoCreatedSignal</a>();</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#a7eae90c3f5e23af35805c68996441f4b" title="Used to reload the homescreen after a new conversation has been posted for example.">reloadHome</a>();</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#a196c46ed5d6721b6d846f6d2451491dd" title="Used to reload a conversation.">reloadConvo</a>();</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#aba8708814f16b1026dfe1786f08bc332" title="Triggered when the audio is fininished playing in a message.">playAudioDone</a>();</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="keyword">public</span> slots:</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#ac1e6cdef1723a7b28a348b3046ddfe86" title="This method Posts login credentails to server @ vocoloco.herokuapp.com/login.">postCredentials</a>(QString credentials);</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="keywordtype">void</span> setDownloadProgress(qint64 soFar,qint64 total);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#a7dd56984ebb6adbad298a755c0b4d66a" title="This method determines if the login post was a success or failure and emits the corresponding signals...">authenticate</a>();</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#a5a810bffa61e583780bfdaca7e85a9fd" title="Writes the audio file to local storage.">writeAudioToFile</a>(); <span class="comment">// Plays the file at the end of the method TODO: Should be private</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#afcc4a484cd9acbb604b95fe273c0fd80" title="Sets the loading variable to done so that qml can stop the loading animation.">replyDone</a>();</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#aa22b5c70375b6df662da1dfc4ba29620" title="Sets loading variable to false, and emits convoCreatedSignal for the qml to trigger the screen change...">convoCreatedSlot</a>();</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpManager.html#a0e0fcfe7fd5ecd0b63e0208e3ba28a5c" title="Slot called after message successfully posted to server. Throws signal to update QML.">messagePosted</a>();</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    QNetworkAccessManager *manager;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    QNetworkRequest request;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <a class="code" href="classCookieJar.html" title="Allows for a permanent cookie jar by saving cookies on delete to QSettings and then loading from QSet...">CookieJar</a> *jar;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <span class="keywordtype">int</span> m_newConvoId;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="comment">// QML Accessible Properties</span></div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <span class="keywordtype">int</span> m_progress;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <span class="keywordtype">bool</span> m_isLoading;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    QUrl xml_path;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    QString m_username;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    <a class="code" href="classPostNewConversation.html" title="This class is used to model the data of a conversation before it is posted to the serverls...">PostNewConversation</a> *new_convo;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <a class="code" href="classNewMessage.html" title="This class is used to model the data of a message before it is posted to the server.">NewMessage</a> *new_message;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    MEDIA_OBJECT *player;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;};</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="preprocessor">#endif // HTTPMANAGER_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>httpmanager.h</b></li>
-    <li class="footer">Generated on Wed Dec 5 2012 22:55:23 for VocoLoco by
+    <li class="footer">Generated on Thu Dec 6 2012 19:11:05 for VocoLoco by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

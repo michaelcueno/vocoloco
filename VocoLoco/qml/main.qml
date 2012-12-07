@@ -57,8 +57,6 @@ Rectangle {
 
         Contacts { id: contactScreen;  visible: false }
 
-        Record {id: recordScreen; anchors.fill: parent; visible: false}
-
         // Shadow underneath header
         Image {
             id: header_shadow

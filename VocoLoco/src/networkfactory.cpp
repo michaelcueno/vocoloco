@@ -8,6 +8,15 @@
 
 NetworkFactory::NetworkFactory(QObject *parent) : QObject(parent){}
 
+/**
+ * @brief Implements the create function of the QDeclarativeNetworkAccessManagerFactory class
+ * @param parent
+ * @return QNetworkAccessManager*
+ *
+ * This class creates a new instance of the QNetworkAccessManager and a CookieJar, sets the cookie jar instance to be used
+ * in the QNetworkAccessManager and then returns a reference to that manager. The Engine takes care of the destruction of the
+ * manager since we set the parent to this. We also ingore ssl errors here.
+ */
 QNetworkAccessManager* NetworkFactory::create(QObject *parent){
     manager = new QNetworkAccessManager(this);
     CookieJar *jar = new CookieJar(manager);
@@ -24,6 +33,9 @@ void NetworkFactory::onIgnoreSSLErrors(QNetworkReply* reply, QList<QSslError> er
     reply->ignoreSslErrors();
 }
 
+/**
+ * @brief Just a flag for debugging, should never be needed in production
+ */
 void NetworkFactory::onAuthNeeded(QNetworkReply*, QAuthenticator*){
     qDebug() << "Required Authentication!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
 }

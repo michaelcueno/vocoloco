@@ -76,16 +76,29 @@
       <br></br><h3>Android Build</h3>
           <p>To build for android, it is very important to modify the httpmanager.h file so that it includes “androidmediaobject.h” <b>instead</b> of “dummydesktopplayer.h”. Also make sure that your jni.h path is correct. This should be set in the .pro file automatically. </p>
 
-      <br></br><h3>Precompiled Locations</h3>
+      <br></br><h2>Precompiled Locations</h2>
+      <hr>
             <p>Of course you can download the .apk from <a href="../../../vocoloco.apk">here</a></p>
             <p>Or run the desktop build by entering the VocoLoco directory and running ./VocoLoco</p>
+      <br />
 
-      <br></br><h3>Changing Screen Dimensions</h3>
+      <h2>Misc</h2>
+      <hr>
+      <h3>Changing Screen Dimensions</h3>
             <p>If compiling the desktop build, you can change the dimensions of the program by going into the main.qml file and changing the width and height of the first rectangle (line 13). The best thing to do is just modify the height, and leave width alone. </p>
+
+      <br></br><h3>Some Logins for testing</h3>
+            <p>In order to use the app you will need a login and password. For this you can use any of the ones listed below</p>
+            <p>username: mcueno2    | pass: mcuenopass</p>
+            <p>username: pburd2    | pass: burdpass</p>
+            <p>username: hal    | pass: computer</p>
+            <p>username: boboma    | pass: elpresidente</p>
+
         </div>
       </div>
 		
-      <br></br><h3>Building and running the server</h3>
+      <br></br><h2>Building and running the server</h2>
+      <hr>
             <p>Within the root of Locoserver will live and executeable jar named sbt-launch.jar, keep in mind <b>you will need scala 2.9 installed</b></p>
             <p>This is what is used to build and run the server locally. This can be achieved by executing the command</p>
 				<p><b>java -Xmx512M -jar sbt-launch.jar</b></p>

@@ -111,17 +111,17 @@ $(document).ready(function(){initNavTree('postnewconversation_8h_source.html',''
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;QString&gt;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;QList&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="code" href="classPostNewConversation.html">   15</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPostNewConversation.html" title="This class is used to model the data of a conversation before it is posted to the server...">PostNewConversation</a></div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="code" href="classPostNewConversation.html">   15</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPostNewConversation.html" title="This class is used to model the data of a conversation before it is posted to the serverls...">PostNewConversation</a></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="classPostNewConversation.html" title="This class is used to model the data of a conversation before it is posted to the server...">PostNewConversation</a>();</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="classPostNewConversation.html" title="This class is used to model the data of a conversation before it is posted to the serverls...">PostNewConversation</a>();</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">void</span> setTitle(QString title);</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">void</span> addUser(QString user);</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">void</span> removeUser(QString user);</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">void</span> clearUsers();</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">bool</span> noUsers();</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">bool</span> noTitle();</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    QString getXML();</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classPostNewConversation.html#a93092a7591d0abc8de09e82c948b0177" title="Returns true if there are no users added to the conversation.">noUsers</a>();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classPostNewConversation.html#a821171e9118e29d3cd873ab0d13f3cba" title="Returns true if there is no title to this conversation.">noTitle</a>();</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    QString <a class="code" href="classPostNewConversation.html#a892dd3df54101c8ab6c27a60e1d2a6a5" title="Wraps the information about the new conversation to be posted in the xml format that the server accep...">getXML</a>();</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    QString *convoTitle;</div>
@@ -135,7 +135,7 @@ $(document).ready(function(){initNavTree('postnewconversation_8h_source.html',''
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>postnewconversation.h</b></li>
-    <li class="footer">Generated on Wed Dec 5 2012 22:55:23 for VocoLoco by
+    <li class="footer">Generated on Thu Dec 6 2012 19:11:05 for VocoLoco by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>
