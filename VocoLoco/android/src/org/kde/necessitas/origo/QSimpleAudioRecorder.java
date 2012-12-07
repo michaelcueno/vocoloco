@@ -2,7 +2,7 @@ package org.kde.necessitas.origo;
 
 
 import android.media.MediaRecorder;
-import android.util.Log;
+//import android.util.Log;
 
 public class QSimpleAudioRecorder {
 
@@ -13,9 +13,7 @@ public class QSimpleAudioRecorder {
 	}
 
 	boolean setUrl(String path) {
-
-                Log.i("Error Bitch", path);
-
+		
 		try {
 			m_MediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
 			m_MediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
@@ -65,5 +63,4 @@ public class QSimpleAudioRecorder {
 		}
 		return true;
 	}
-	public static native int addTwoNumbers(int a, int b);
 }

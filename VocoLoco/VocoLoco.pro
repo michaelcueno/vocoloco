@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 SOURCES += src/main.cpp \
     src/httpmanager.cpp \
     src/cookiejar.cpp \
@@ -13,13 +14,43 @@ HEADERS += \
     src/postnewconversation.h \
     src/newmessage.h \
     src/dummydesktopplayer.h
+=======
+SOURCES += main.cpp \ 
+    httpmanager.cpp \
+    cookiejar.cpp \
+    networkfactory.cpp \
+    postnewconversation.cpp \
+    newmessage.cpp \
+    mainwindow.cpp \
+    dummydesktopplayer.cpp \
+    androidmediarecorder.cpp
+
+HEADERS += \
+    httpmanager.h \
+    cookiejar.h \
+    networkfactory.h \
+    ImageProvider.h \
+    postnewconversation.h \
+    newmessage.h \
+    mainwindow.h \
+    dummydesktopplayer.h \
+    androidmediarecorder.h
+>>>>>>> 33132f0b36ff52eb2b68c9890427c026b5fc67ab
 
 
 RESOURCES += voco.qrc
 
-QT += network
+QT += network \
+        testlib
 
+<<<<<<< HEAD
 QML_IMPORT_PATH = ["/home/mike/necessitas/QtCreator/Qt/imports/desktop/components/plugin"]
+=======
+linux-g++ {
+    INCLUDEPATH +=  "/usr/lib/jvm/java-1.6.0-openjdk/include"   \ # path to jni on linux
+
+}
+>>>>>>> 33132f0b36ff52eb2b68c9890427c026b5fc67ab
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -33,6 +64,7 @@ linux-g++ {
 }
 
 android {
+<<<<<<< HEAD
     DEFINES -= MEDIA_OBJECT
     SOURCES += src/androidmediaobject.cpp
 
@@ -41,6 +73,12 @@ android {
     INCLUDEPATH +=  /usr/lib/jni  #  path to jni for android
     DEFINES += MEDIA_PLAYER=\\\"androidmediaobject.h\\\"
     DEFINES += MEDIA_OBJECT=AndroidMediaObject
+=======
+
+
+    INCLUDEPATH +=  /usr/lib/jni  #  path to jni for android
+
+>>>>>>> 33132f0b36ff52eb2b68c9890427c026b5fc67ab
 }
 
 OTHER_FILES += \
@@ -93,9 +131,15 @@ OTHER_FILES += \
     qml/content/Contacts.qml \
     qml/content/ContactsDelegate.qml \
     qml/content/SearchBox.qml \
+<<<<<<< HEAD
     qml/content/Settings.qml \
     qml/content/SettingsOption.qml \
     qml/content/ScrollBar.qml \
     android/src/org/kde/necessitas/origo/QSimpleAudioPlayer.java
 
+=======
+    qml/TestScreen.qml \
+    android/src/org/kde/necessitas/origo/QSimpleAudioRecorder.java \
+    android/src/org/kde/necessitas/origo/QSimpleAudioPlayer.java
+>>>>>>> 33132f0b36ff52eb2b68c9890427c026b5fc67ab
 

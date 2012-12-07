@@ -4,6 +4,7 @@
  ***********************************************************************/
 
 #include "httpmanager.h"
+#include "QtTest/qtest.h"
 
 QDir dir;
 static QString APP = "http://vocoloco.herokuapp.com/";
@@ -16,6 +17,7 @@ static QString APP = "http://vocoloco.herokuapp.com/";
  */
 HttpManager::HttpManager()
 {
+
     manager = new QNetworkAccessManager(this);
     jar = new CookieJar(this);
     manager->setCookieJar(jar);
@@ -59,16 +61,26 @@ void HttpManager::downloadAudio(QString url){
  * @brief Plays audio file in local storage at TMP_AUDIO_PATH
  */
 void HttpManager::play(){
+<<<<<<< HEAD
 
     // We use one location for all audio files, each play() rewrites this file
+=======
+/*
+>>>>>>> 33132f0b36ff52eb2b68c9890427c026b5fc67ab
     QString TMP_AUDIO_PATH = dir.absolutePath() + "/tmpAudio";
 
     QByteArray latin = TMP_AUDIO_PATH.toLatin1();
 
     qDebug() << latin;
 
+<<<<<<< HEAD
     player = new MEDIA_OBJECT("player");
     if (!player->playerSetUrl(latin))
+=======
+
+    player = 0;
+    if (!player->setUrl(latin))
+>>>>>>> 33132f0b36ff52eb2b68c9890427c026b5fc67ab
     {
         qDebug() << "Error: couldn't load file";
     }
@@ -80,7 +92,7 @@ void HttpManager::play(){
     emit playAudioDone();
     qDebug() << "Should have turned black";
     delete player;
-
+*/
 }
 
 /**
@@ -126,18 +138,60 @@ void HttpManager::writeAudioToFile(){
 void HttpManager::record()
 {
     QString TMP_AUDIO_PATH = dir.absolutePath() + "/tmpAudio.3gp";
+    QFile::remove(TMP_AUDIO_PATH);
     QByteArray latin = TMP_AUDIO_PATH.toLatin1();
+<<<<<<< HEAD
     player = new MEDIA_OBJECT("recorder");
     player->recorderSetUrl(latin);
+=======
+    player = new AndroidMediaRecorder();
+    player->setUrl(latin);
+>>>>>>> 33132f0b36ff52eb2b68c9890427c026b5fc67ab
     qDebug() << latin;
     player->record();
+
+
+    QTest::qSleep(10000);
+
+
+    player->stop();
+
+
+    QFile contents(TMP_AUDIO_PATH);
+
+    if ( contents.open(QFile::ReadOnly) )
+    {
+        qDebug() << contents.read(2048);
+    }
+    else
+    {
+        qDebug( "Could not open file %s", TMP_AUDIO_PATH );
+    }
+
+    delete player;
+    this->play();
+
 }
 
 void HttpManager::stopRecording()
 {
     if(player){
-        player->recorderStop();
+        player->stop();
     }
+
+    QString TMP_AUDIO_PATH = dir.absolutePath() + "/tmpAudio.3gp";
+    QFile contents(TMP_AUDIO_PATH);
+
+    if ( contents.open(QFile::ReadWrite) )
+    {
+        qDebug() << contents.read(2048);
+    }
+    else
+    {
+        qDebug( "Could not open file %s", TMP_AUDIO_PATH );
+    }
+
+    delete player;
 }
 
 /////////////////////////////////////////////////////// End of Audio Player stuff
