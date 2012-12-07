@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>VocoLoco QML for Android</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="../docs/assets/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="../docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+  </head>
+
+   <body>
+
+    
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="index.html">VocoLoco</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="index.html">Overview</a></li>
+              <li><a href="design.html">Design</a></li>
+              <li><a href="instructions.html">instructions</a></li>
+              <li><a href="../../html/index.html">Documentation</a></li>
+              <li><a href="../../../vocoloco.apk">Download</a></li>
+              <li><a href="http://github.com">Source</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <h1>This is VocoLoco!</h1>
+        <p>An Android Messaging Developed through Qt Quick for Software Design @ UIC</p>
+      </div>
+
+      <div class="row">
+        <div class="span9">
+          <h2>DESCRIPTION</h2>
+          <p>VocoLoco was conceptualized to be a group messaging application that would allow users to record and send audio files as well as text messages to other users. The other innovative component to the application is that a user is able to see who was the last to send a message through an intuitive home screen which shows all the users in a conversation and orders them based on who last posted a message.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span9">
+          <h2>TEAM MEMBERS</h2>
+          <ul>
+            <li>Patrick Burd</li>
+            <li>Michael Cueno</li>
+            <li>Alex Oomen</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span9">
+          <h2>FILE STRUCTURE</h2>         
+          <pre class="prettyprint">
++ Designs                // Contains story boards, 
+ \-- + images            // Contains images for use in html and elsewhere
++ Notes                  // Contains a few files like a todo list and issues
++ VocoLoco               // Client code 
+ \-- + android           // Necessary files for Necessitas to build for android 
+ \-- + doc               // Documentation
+     \-- + html          // Doxygen files 
+     \-- + latex
+     \-- + main          // html files (what you are looking at right now) and assets (css, js, images)     
+ \-- + images            // Images used in the appliction 
+ \-- + qml               // all the QML files
+     \-- + content       //  Contains all the other qml files and some images used in outsourced code fromo Qt
+     \-- main.qml        // The main qml file fed to the QmlApplicationViewer
+ \-- + qmlapplicationviewer
+ \-- + src               // c++ files (headers and .cpp)
+ \-- VocoLoco            // Compiled project (desktop build)
+ \-- VocoLoco.pro        // Qt build file (open this to view in Qt Creator)
+ \-- voco.qrc            // The resources for the project in XML (so they can be compiled into the binary)
++ LocoServe
+ \-- + app
+     \-- + controllers  // Controllers that are mapped by routes and handles request response 
+	  \-- + views        // Templates used by the controllers to generate XML
+	  \-- + models       // Models that represent tables in the DB and contain the methods and query
+ \-- + conf             // Routes are defined here
+	  \-- + evolutions   // Db build stuff
+		   \-- 1          // Database scheme lives here in 1.sql
+ \-- + public           // Static files used by ther service
+ \-- + project          // General configuration
+</pre>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span9">
+          <h2>UNDERSTANDING THE QML</h2>         
+          <p>Unfortuately there does not seem to be any automated documentation solution for QML yet. I did however try to conform to some consistent, in-line, documentation and comment styles. In each QML file, the properties are defined at the top and are typically the first thing in the file. Then the visual markup is the body of the file with comments throughout and finally, at the bottom of each file are the functions that pretain to that file with comments above them describing their use and purpose.
+          </p>
+        </div>
+      </div>
+
+<br></br>
+      <h2>SCREENSHOTS</h2>
+      <div class="row">
+        <div class="span4">
+          <h2>Home Screen</h2>
+          <img src="../../../../Designs/images/SH1.png">
+          <br></br>
+          <p>The home screen allows users to immediately see who has posted a new message in their conversations by highlighting the users image when that user has posted a message that hasn't been read yet.</p>
+        </div>
+        <div class="span4">
+          <h2>Conversation View</h2>
+          <img src="../../../../Designs/images/SH2.png">
+          <br></br>
+          <p>Messages will change their layout based on if the message was sent from the current user or from someone else. We were able to implement playing audio files, and when a user sends an audio file it will appear with the play button which the user can push to hear the audio file.</p>
+       </div>
+        <div class="span4">
+          <h2>Contacts</h2>
+          <img src="../../../../Designs/images/SH4.png">
+          <br></br>
+          <p>This is a view of the new conversation create page when the user adds contacts to include in the conversation. </p>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <div class="span9">
+          <h2>ORIGINAL STORYBOARD</h2>
+          <img src="../../../../Designs/storyboard.jpg">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span9">
+          <h2>SHORTCOMMINGS</h2>
+          <p>With significant effort, we were not able to implement the storing of recorded audio files on the android phone. It required the use of the JNI and instantiating a MediaRecorder in the native code on the android device from within Qt's framework. This gave us very little debugging information and ultimately stopped us from reaching the project goal of sending voice messages across a group message application. We were able to implement the playing of audio files however. In this case the audio files were given in xml as a url, downloaded to the phone and played in the JNI with a MediaPlayer object. Even though this last piece didn't fall into place, we feel that we still have a competent application and a fulfilling project. Created, by hand the components needed to send and receive messages from one android device to another in real time.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span9">
+          <h2>CREDITS</h2>
+          <p>This project uses SearchBox.qml and ScrollBar.qml, both of which are example qml files found in Qt Quick documentation and tutorials. More information and copyright information is included in the file comment headers of these files. 
+          </p>
+        </div>
+      </div>
+      </div>
+      </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; VocoLoco 2012</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/bootstrap-transition.js"></script>
+    <script src="../assets/js/bootstrap-alert.js"></script>
+    <script src="../assets/js/bootstrap-modal.js"></script>
+    <script src="../assets/js/bootstrap-dropdown.js"></script>
+    <script src="../assets/js/bootstrap-scrollspy.js"></script>
+    <script src="../assets/js/bootstrap-tab.js"></script>
+    <script src="../assets/js/bootstrap-tooltip.js"></script>
+    <script src="../assets/js/bootstrap-popover.js"></script>
+    <script src="../assets/js/bootstrap-button.js"></script>
+    <script src="../assets/js/bootstrap-collapse.js"></script>
+    <script src="../assets/js/bootstrap-carousel.js"></script>
+    <script src="../assets/js/bootstrap-typeahead.js"></script>
+
+  </body>
+</html>
