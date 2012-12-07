@@ -23,7 +23,9 @@
 
 #include "cookiejar.h"
 #include "postnewconversation.h"
+#include "dummydesktopplayer.h"
 #include "newmessage.h"
+<<<<<<< HEAD
 #include "dummydesktopplayer.h"  // Defined in the .pro file (automatically happens when build is switched)
 
 /**
@@ -37,6 +39,11 @@
  * Also, all functions defined with the Q_INVOKABLE macro or defined as a public slot can be called
  * from within the qml.
  */
+=======
+#include "androidmediarecorder.h"  // Defined in the .pro file (automatically happens when build is switched)
+
+
+>>>>>>> 33132f0b36ff52eb2b68c9890427c026b5fc67ab
 class HttpManager : public QObject
 {
 
@@ -178,7 +185,11 @@ private:
     QString m_username;
     PostNewConversation *new_convo;
     NewMessage *new_message;
+<<<<<<< HEAD
     MEDIA_OBJECT *player;
+=======
+    AndroidMediaRecorder *player;
+>>>>>>> 33132f0b36ff52eb2b68c9890427c026b5fc67ab
 };
 
 #endif // HTTPMANAGER_H
