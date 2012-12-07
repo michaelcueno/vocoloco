@@ -28,16 +28,22 @@ void PostNewConversation::clearUsers()
     users = new QList<QString>();
 }
 
+//! @brief Returns true if there is no title to this conversation
 bool PostNewConversation::noTitle()
 {
     return (convoTitle->isEmpty());
 }
 
+//! @brief Returns true if there are no users added to the conversation
 bool PostNewConversation::noUsers()
 {
     return (users->isEmpty());
 }
 
+/**
+ * @brief Wraps the information about the new conversation to be posted in the xml format that the server accepts
+ * @return QString xml
+ */
 QString PostNewConversation::getXML()
 {
     QString result = QString("<conversation><title>" + *convoTitle + "</title><contacts>");

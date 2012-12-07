@@ -2,7 +2,6 @@
 #include <QDeclarativeComponent>
 #include "qmlapplicationviewer.h"
 #include "httpmanager.h"
-#include "ImageProvider.h"
 #include <QGraphicsObject>
 #include <QDeclarativeContext>
 #include "networkfactory.h"
@@ -10,8 +9,7 @@
 #include <QDeclarativeImageProvider>
 #include <QDebug>
 #include <QMenuBar>
-#include "mainwindow.h"
-//#include <jni.h>
+#include <jni.h>
 
 
 int main(int argc, char *argv[])
@@ -25,9 +23,6 @@ int main(int argc, char *argv[])
     HttpManager network;
     QmlApplicationViewer viewer;
 
-                     //  ImageProvider *imageProvider = new ImageProvider(network.getManager());
-
-                     //  viewer.engine()->addImageProvider(QString("my_provider"), imageProvider);
 
     // Override QML's default netowrkAccessManagerFactory with our custom built factory
     NetworkFactory *factory = new NetworkFactory();

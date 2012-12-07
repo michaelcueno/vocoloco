@@ -9,7 +9,7 @@
 #include <QString>
 #include <QList>
 /**
- * @brief This class is used to model the data of a conversation before it is posted to the server
+ * @brief This class is used to model the data of a conversation before it is posted to the serverls
  */
 
 class PostNewConversation

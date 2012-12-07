@@ -2,11 +2,13 @@
  * Copyright (C) 2012 Michael Cueno
  * Contact: mcueno2@uic.edu
  ****************************************************************************/
-
+/**
+  * This is the header that appears at the top of almost every screen in the app. This file holds all of the
+  * buttons and text that will appear in the header and sets them as visible when they are needed
+  */
 
 import QtQuick 1.1
 
-// Header, this is on almost every screen
 Rectangle {
 
     property string headerTitle: "Your Conversations"
@@ -64,12 +66,6 @@ Rectangle {
             PropertyChanges { target: plus_img; y: -40; opacity: 0}
             PropertyChanges { target: new_convo_mouse_area; enabled: false }
         }
-/*
-        transitions: Transition{
-            from: ''; to: "HIDDEN"
-            PropertyAnimation { properties: "opacity"; easing.type: Easing.InQuad; easing.period: 2.5}
-        }
-        */
     }
 
     Rectangle { // Line break in header
@@ -109,12 +105,6 @@ Rectangle {
             PropertyChanges { target: contacts_img; y: -40; opacity: 0}
             PropertyChanges { target: contacts_mouse_area; enabled: false }
         }
-/*
-        transitions: Transition{
-            from: ''; to: "HIDDEN"
-            PropertyAnimation { properties: "opacity"; easing.type: Easing.InQuad; easing.period: 2.5}
-        }
-*/
     }
 
     Rectangle { // Line break in header
@@ -154,12 +144,6 @@ Rectangle {
             PropertyChanges { target: settings_mouse_area; enabled: false }
             PropertyChanges { target: header_linebreak2; visible: false }
         }
-/*
-        transitions: Transition{
-            from: ''; to: "HIDDEN"
-            PropertyAnimation { properties: "opacity"; easing.type: Easing.InQuad; easing.period: 2.5}
-        }
-        */
     }
 
     Image { // Back Button
@@ -198,42 +182,8 @@ Rectangle {
 
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////
-    // The create convo icon that comes up in the contacts page when a contact is checked
-/*
-    Rectangle { // This will show up when contact is checked
-        id: createFromContacts
-        anchors.verticalCenter: parent.verticalCenter
-        x:window.width-105
-        y: 20
-        width: 100
-        height: 200
 
-        Text {
-            id: createConvo
-            anchors.centerIn: parent
-            text: "Start Conversation"
-            font.pixelSize: 20
-            color: "black"
-        }
-
-        MouseArea{
-            id: createFromContacts_mouse_area
-            anchors.fill: parent
-            onClicked: {
-               //TODO: Go to create convo w/ users already marked
-            }
-        }
-        states: State {
-            name: "HIDDEN"
-            PropertyChanges { target: settings_img; y: -40; opacity: 0}
-            PropertyChanges { target: settings_mouse_area; enabled: false }
-            PropertyChanges { target: header_linebreak2; visible: false }
-        }
-    }
-        */
-
-
+    // Hides all buttons in the header
     function hideBtns(){
         contactsBtn.state = "HIDDEN"
         newConvoBtn.state = "HIDDEN"
@@ -243,6 +193,7 @@ Rectangle {
         header_linebreak1.visible = false
     }
 
+    // Makes buttons visible
     function unHideBtns(){
         contactsBtn.state = ""
         newConvoBtn.state = ""
@@ -252,10 +203,12 @@ Rectangle {
         header_linebreak1.visible = true
     }
 
+    // Hides the three-lined-settings button
     function hideSettings(){
         settingsBtn.state = "HIDDEN"
     }
 
+    // Makes settings button visible
     function unHideSettings(){
         settingsBtn.state = ""
     }

@@ -96,12 +96,27 @@ $(document).ready(function(){initNavTree('index.html','');});
 <div class="title">VocoLoco Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-</div><!-- contents -->
+<div class="textblock"><p><b>OVERVIEW</b></p>
+<p>VocoLoco is a messaging android application with an emphasis on group messaging and the use of audio. The goal is to create an instant, group voice-mail without having to wait for the end of a missed call to leave a message.</p>
+<p><b>STRUCTURE</b></p>
+<p>The application is written primarily in Qt's QML (Qt Markup Language) which was meant for mobile applications. It is a very useful declarative language with much more functionality than most markup languages. With conditionals, Qt's signals and slots functionality, and the integration of javascript, QML is a well rounded language. But somethings were not possible using just QML itself. Fortunately, it allows for extension via c++.</p>
+<p><b>C++ EXTENSION</b></p>
+<p>The QML engine allows a c++ class to be set as a root context. This allows that class and it's methods to be called directly from the QML. We leveraged this by using the <a class="el" href="classHttpManager.html" title="This class acts as the backend controller for the QML engine viewer.">HttpManager</a> which serves as the backend controller of the application (written in c++).</p>
+<p><b>Team Members</b> </p>
+<ul>
+<li>
+Michael Cueno </li>
+<li>
+Patrick Burd </li>
+<li>
+Alex Oomen </li>
+</ul>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Dec 5 2012 22:55:25 for VocoLoco by
+    <li class="footer">Generated on Thu Dec 6 2012 19:11:06 for VocoLoco by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

@@ -20,7 +20,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"ImageProvider_8h_source.html"
+"androidmediaobject_8h_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

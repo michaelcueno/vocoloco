@@ -128,7 +128,8 @@ Public Slots</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>onIgnoreSSLErrors</b> (QNetworkReply *, QList&lt; QSslError &gt;)</td></tr>
 <tr class="separator:abd29b95726eecc9d617b6585ce2fcb03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9078cc80c6fe15c0121d2c9aea489da"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae9078cc80c6fe15c0121d2c9aea489da"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onAuthNeeded</b> (QNetworkReply *, QAuthenticator *)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkFactory.html#ae9078cc80c6fe15c0121d2c9aea489da">onAuthNeeded</a> (QNetworkReply *, QAuthenticator *)</td></tr>
+<tr class="memdesc:ae9078cc80c6fe15c0121d2c9aea489da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Just a flag for debugging, should never be needed in production. <br/></td></tr>
 <tr class="separator:ae9078cc80c6fe15c0121d2c9aea489da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -136,14 +137,49 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aac6aff662a45cc52031ec39f1631be3d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac6aff662a45cc52031ec39f1631be3d"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>NetworkFactory</b> (QObject *parent=0)</td></tr>
 <tr class="separator:aac6aff662a45cc52031ec39f1631be3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d48936e4b8f27a60b8277bc52b2eb9d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3d48936e4b8f27a60b8277bc52b2eb9d"></a>
-virtual QNetworkAccessManager *&#160;</td><td class="memItemRight" valign="bottom"><b>create</b> (QObject *parent=0)</td></tr>
+<tr class="memitem:a3d48936e4b8f27a60b8277bc52b2eb9d"><td class="memItemLeft" align="right" valign="top">virtual QNetworkAccessManager *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkFactory.html#a3d48936e4b8f27a60b8277bc52b2eb9d">create</a> (QObject *parent=0)</td></tr>
+<tr class="memdesc:a3d48936e4b8f27a60b8277bc52b2eb9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the create function of the QDeclarativeNetworkAccessManagerFactory class.  <a href="#a3d48936e4b8f27a60b8277bc52b2eb9d"></a><br/></td></tr>
 <tr class="separator:a3d48936e4b8f27a60b8277bc52b2eb9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class is fed to the QML engine so that it uses this class on each new server request. </p>
 <p>This class inherits from QDeclarativeNetworkAccessManagerFactory, and adds some neccessary functionality. First we needed to ingore SSL errors because necessitas doesn't handle them correctly. Also the constructor creates and uses our <a class="el" href="classCookieJar.html" title="Allows for a permanent cookie jar by saving cookies on delete to QSettings and then loading from QSet...">CookieJar</a> implementation so that the user can stay logged in. This is also necessary for requests to function properly (the QML engine must send the cookie with each request). </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a3d48936e4b8f27a60b8277bc52b2eb9d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QNetworkAccessManager * NetworkFactory::create </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements the create function of the QDeclarativeNetworkAccessManagerFactory class. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parent</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>QNetworkAccessManager*</dd></dl>
+<p>This class creates a new instance of the QNetworkAccessManager and a <a class="el" href="classCookieJar.html" title="Allows for a permanent cookie jar by saving cookies on delete to QSettings and then loading from QSet...">CookieJar</a>, sets the cookie jar instance to be used in the QNetworkAccessManager and then returns a reference to that manager. The Engine takes care of the destruction of the manager since we set the parent to this. We also ingore ssl errors here. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="networkfactory_8h_source.html">networkfactory.h</a></li>
 <li>networkfactory.cpp</li>
 </ul>
@@ -153,7 +189,7 @@ virtual QNetworkAccessManager *&#160;</td><td class="memItemRight" valign="botto
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classNetworkFactory.html">NetworkFactory</a></li>
-    <li class="footer">Generated on Wed Dec 5 2012 22:55:25 for VocoLoco by
+    <li class="footer">Generated on Thu Dec 6 2012 19:11:06 for VocoLoco by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

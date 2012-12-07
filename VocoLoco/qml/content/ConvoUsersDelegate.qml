@@ -2,7 +2,9 @@
  * Copyright (C) 2012 Michael Cueno
  * Contact: mcueno2@uic.edu
  ****************************************************************************/
-
+/**
+  * This is used to format the users list in the homescreen users listview
+  */
 import QtQuick 1.1
 
 Item {

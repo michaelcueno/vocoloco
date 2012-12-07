@@ -130,7 +130,8 @@ Rectangle {
 
 
 
-    // Contacts Widget
+    //------------------ Contacts Widget ------------------------------------------------------------|
+    // Scrolls up from the bottom of the screen when the user clicks on the "add contacts" btn
     Rectangle {
         id: contactsWidget
         width: window.width; height: window.screenHeight
@@ -184,16 +185,19 @@ Rectangle {
         contactsListWidget.loadXML()
     }
 
+    // For use upon entering the new converstaion screen to get the keyboard to come up automatically
     function setFocus(){
         newConvoTitle.setFocus()
     }
 
+    // Set contacts check box's back to default state
     function clearWidget() {
         contactsWidget.state = ""
         network.clearNewConvoUsers()
         contactsListWidget.clearCheckBoxes()
     }
 
+    // reinitialize the contacts widget on cancle
     function cancleWidget() {
         clearWidget()
         changeScreen(homeScreen)
@@ -204,12 +208,14 @@ Rectangle {
         network.setNewConvoTitle(newConvoTitle.title.toString())
     }
 
+    // Show the contacts widget
     function bringUpContacts(){
         contactsWidget.state = "ACTIVE"
         hideHeaderShadow()
         newConvoTitle.unFocus()
     }
 
+    // close contacts widget
     function widgetDone(){
         contactsWidget.state = ""
         showHeaderShadow()
@@ -224,6 +230,7 @@ Rectangle {
         newConvoTitle.clear()
     }
 
+    // on successful post to server, go into the newly created conversation
     function goToConvo(){
         newConvoId =  network.newConvoId
         console.log(newConvoId)

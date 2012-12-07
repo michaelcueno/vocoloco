@@ -53,6 +53,9 @@ void CookieJar::load()
    // QList<QNetworkCookie> cookies = this->getCookies();
 }
 
+/**
+ * @brief Just for debugging, prints a list of the cookies in this jar
+ */
 void CookieJar::PrintCookies(){
     qDebug() << getCookies();
 }

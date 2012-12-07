@@ -2,9 +2,10 @@
  * Copyright (C) 2012 Michael Cueno
  * Contact: mcueno2@uic.edu
  ****************************************************************************/
-
-
-// import QtQuick 1.0 // to target S60 5th Edition or Maemo 5
+/**
+  * This file is used as the text box for the login screen. It wraps a textInput to allow for password hiding
+  * and for gathering data and having an initial, greyed out text that will dissapear on focus
+  */
 import QtQuick 1.1
 
 Rectangle {
@@ -53,7 +54,7 @@ Rectangle {
         }
     }
 
-
+    // Clears out the text that was in the text box
     function reset(){
         textInput.text = ""
         textInput.font.italic = false;

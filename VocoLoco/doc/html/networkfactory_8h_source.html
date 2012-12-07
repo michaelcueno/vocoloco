@@ -120,11 +120,11 @@ $(document).ready(function(){initNavTree('networkfactory_8h_source.html','');});
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classNetworkFactory.html" title="This class is fed to the QML engine so that it uses this class on each new server request...">NetworkFactory</a>(QObject *parent = 0);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">virtual</span> QNetworkAccessManager* create(QObject *parent = 0);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">virtual</span> QNetworkAccessManager* <a class="code" href="classNetworkFactory.html#a3d48936e4b8f27a60b8277bc52b2eb9d" title="Implements the create function of the QDeclarativeNetworkAccessManagerFactory class.">create</a>(QObject *parent = 0);</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">public</span> slots:</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> onIgnoreSSLErrors(QNetworkReply*, QList&lt;QSslError&gt;);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> onAuthNeeded(QNetworkReply*, QAuthenticator*);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classNetworkFactory.html#ae9078cc80c6fe15c0121d2c9aea489da" title="Just a flag for debugging, should never be needed in production.">onAuthNeeded</a>(QNetworkReply*, QAuthenticator*);</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    QNetworkAccessManager* manager;</div>
@@ -138,7 +138,7 @@ $(document).ready(function(){initNavTree('networkfactory_8h_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>networkfactory.h</b></li>
-    <li class="footer">Generated on Wed Dec 5 2012 22:55:23 for VocoLoco by
+    <li class="footer">Generated on Thu Dec 6 2012 19:11:05 for VocoLoco by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

@@ -3,14 +3,15 @@
  * Contact: mcueno2@uic.edu
  ****************************************************************************/
 
-// import QtQuick 1.0 // to target S60 5th Edition or Maemo 5
+/**
+  * Conversation focus screen (When user taps on a conversation from the main screen
+  */
 import QtQuick 1.1
 
 Rectangle {
 
     property string convo_id
 
-    //x: 0; y:window.screenHeight * (1/10); width: window.screenWidth; height: window.screenHeight * (9/10)  // Posistioning
     anchors.bottom: parent.bottom
     anchors.top: parent.top
     anchors.topMargin: window.screenHeight * (1/10)
@@ -31,6 +32,7 @@ Rectangle {
         }
     }
 
+    // All messages in the conversation rotated 180 degrees so that it is initalized to the bottom
     ListView { id: convo_messages
 
         rotation: 180;
@@ -48,7 +50,8 @@ Rectangle {
         anchors.right: convo_messages.right; anchors.top: convo_messages.top;
     }
 
-
+    // XML model for the message. The xml query gets the conversation messages and the
+    // XML roles get the elements
     XmlListModel {
 
         id: message_xml
@@ -64,6 +67,7 @@ Rectangle {
 
     }
 
+    // Beginning of the send new message object at the bottom of the screen
     Rectangle {
         id: new_message_input
         anchors.bottom: parent.bottom
@@ -71,6 +75,7 @@ Rectangle {
         height: window.screenHeight * (1/10)
         color: "grey"
 
+        // Text input box
         SearchBox {
             id: message_input
             anchors { left: parent.left; leftMargin: 15; verticalCenter: parent.verticalCenter }
@@ -79,6 +84,7 @@ Rectangle {
             default_text: ""
         }
 
+        // Button to send
         Rectangle {
             id: send
             anchors { left: message_input.right; verticalCenter: parent.verticalCenter; leftMargin: 15 }
@@ -133,9 +139,6 @@ Rectangle {
     }
 
     function playAudioDone() {
-
-
             convo_messages.currentItem.playStopped()
-
     }
 }
