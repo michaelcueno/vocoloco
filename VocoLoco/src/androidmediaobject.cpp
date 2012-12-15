@@ -24,7 +24,7 @@ AndroidMediaObject::AndroidMediaObject(QString type)
     if( type == "recorder" ){
         AndroidMediaObject::type = "recorder";
         // Qt is running in a different thread than Java UI, so you always Java VM *MUST* be attached to current thread
-        if (s_javaVM->AttachCurrentThread(&env, NULL)<0)
+        if (s_javaVM->AttachCurrentThread((void**)&env, NULL)<0)
         {
             qCritical()<<"AttachCurrentThread failed";
             return;
@@ -44,7 +44,7 @@ AndroidMediaObject::AndroidMediaObject(QString type)
     else if ( type == "player" )
     {
         // Qt is running in a different thread than Java UI, so you always Java VM *MUST* be attached to current thread
-        if (s_javaVM->AttachCurrentThread(&env, NULL)<0)
+        if (s_javaVM->AttachCurrentThread((void**)&env, NULL)<0)
         {
             qCritical()<<"AttachCurrentThread failed";
             return;
@@ -74,7 +74,7 @@ AndroidMediaObject::~AndroidMediaObject()
             return;
 
         JNIEnv* env;
-        if (s_javaVM->AttachCurrentThread(&env, NULL)<0)
+        if (s_javaVM->AttachCurrentThread((void**)&env, NULL)<0)
         {
             qCritical()<<"AttachCurrentThread failed";
             return;
@@ -93,7 +93,7 @@ AndroidMediaObject::~AndroidMediaObject()
             return;
 
         JNIEnv* env;
-        if (s_javaVM->AttachCurrentThread(&env, NULL)<0)
+        if (s_javaVM->AttachCurrentThread((void**)&env, NULL)<0)
         {
             qCritical()<<"AttachCurrentThread failed";
             return;
@@ -115,7 +115,7 @@ bool AndroidMediaObject::playerSetUrl(const QString &url)
         return false;
 
     JNIEnv* env;
-    if (s_javaVM->AttachCurrentThread(&env, NULL)<0)
+    if (s_javaVM->AttachCurrentThread((void**)&env, NULL)<0)
     {
         qCritical()<<"AttachCurrentThread failed";
         return false;
@@ -133,7 +133,7 @@ bool AndroidMediaObject::play()
         return false;
 
     JNIEnv* env;
-    if (s_javaVM->AttachCurrentThread(&env, NULL)<0)
+    if (s_javaVM->AttachCurrentThread((void**)&env, NULL)<0)
     {
         qCritical()<<"AttachCurrentThread failed";
         return false;
@@ -149,7 +149,7 @@ bool AndroidMediaObject::playerPause()
         return false;
 
     JNIEnv* env;
-    if (s_javaVM->AttachCurrentThread(&env, NULL)<0)
+    if (s_javaVM->AttachCurrentThread((void**)&env, NULL)<0)
     {
         qCritical()<<"AttachCurrentThread failed";
         return false;
@@ -165,7 +165,7 @@ bool AndroidMediaObject::playerStop()
         return false;
 
     JNIEnv* env;
-    if (s_javaVM->AttachCurrentThread(&env, NULL)<0)
+    if (s_javaVM->AttachCurrentThread((void**)&env, NULL)<0)
     {
         qCritical()<<"AttachCurrentThread failed";
         return false;
@@ -183,7 +183,7 @@ bool AndroidMediaObject::recorderSetUrl(const QString &url)
         return false;
 
     JNIEnv* env;
-    if (s_javaVM->AttachCurrentThread(&env, NULL)<0)
+    if (s_javaVM->AttachCurrentThread((void**)&env, NULL)<0)
     {
         qCritical()<<"AttachCurrentThread failed";
         return false;
@@ -201,7 +201,7 @@ bool AndroidMediaObject::record()
         return false;
 
     JNIEnv* env;
-    if (s_javaVM->AttachCurrentThread(&env, NULL)<0)
+    if (s_javaVM->AttachCurrentThread((void**)&env, NULL)<0)
     {
         qCritical()<<"AttachCurrentThread failed";
         return false;
@@ -216,7 +216,7 @@ bool AndroidMediaObject::recorderStop()
         return false;
 
     JNIEnv* env;
-    if (s_javaVM->AttachCurrentThread(&env, NULL)<0)
+    if (s_javaVM->AttachCurrentThread((void**)&env, NULL)<0)
     {
         qCritical()<<"AttachCurrentThread failed";
         return false;

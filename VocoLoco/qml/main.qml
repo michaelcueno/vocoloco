@@ -133,7 +133,6 @@ Rectangle {
 
         header.visible = true;
         homeScreen.visible = false;
-        recordScreen.visible = false;
         convoScreen.visible = false;
         newConvoScreen.visible = false;
         contactScreen.visible = false;

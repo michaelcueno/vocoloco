@@ -10,6 +10,7 @@ HEADERS += \
     src/httpmanager.h \
     src/cookiejar.h \
     src/networkfactory.h \
+    src/ImageProvider.h \
     src/postnewconversation.h \
     src/newmessage.h \
     src/dummydesktopplayer.h
@@ -24,13 +25,13 @@ QML_IMPORT_PATH = ["/home/mike/necessitas/QtCreator/Qt/imports/desktop/component
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
-INCLUDEPATH +=  /usr/lib/jvm/java-1.6.0-openjdk/include
 
-linux-g++ {
-    INCLUDEPATH +=  /usr/Classeslib/jvm/java-1.6.0-openjdk/include   # path to jni on linux
+
+
+    INCLUDEPATH +=  /usr/lib/jvm/java-1.6.0-openjdk/include   # path to jni on linux
     DEFINES += MEDIA_HEADER='dummymediaplayer.h'
     DEFINES += MEDIA_OBJECT=DummyDesktopPlayer
-}
+
 
 android {
     DEFINES -= MEDIA_OBJECT
@@ -89,6 +90,7 @@ OTHER_FILES += \
     qml/content/ConvoUsersXML.qml \
     qml/content/ConvoUsersDelegate.qml \
     qml/content/BusySpinner.qml \
+    qml/content/Record.qml \
     qml/content/MessageDelegate.qml \
     qml/content/Contacts.qml \
     qml/content/ContactsDelegate.qml \
